@@ -44,6 +44,7 @@ public class CameraSetup : MonoBehaviour
                 camera.orthographicSize *= maxCameraSize.y / cameraSize.y;
             }
         }
+        //////adaskdjhasjhdgashjdbdjkashk
     }
 
 #if UNITY_EDITOR
