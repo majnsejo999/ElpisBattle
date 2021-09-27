@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f91f4987a72fa418f18d676dbaa286, type: 3}
+  m_Name: 6_Angel
+  m_EditorClassIdentifier: 
+  id: 6
+  name_hero: 
+  sex: 
+  origin: Angel
+  attack: 210
+  hp: 120
+  armour: 120
+  speed: 150
+  attack_lv: 12.25
+  hp_lv: 7
+  armour_lv: 7
+  speed_lv: 8.75
+  attack_ev: 36.75
+  hp_ev: 21
+  armour_ev: 21
+  speed_ev: 26.25

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f91f4987a72fa418f18d676dbaa286, type: 3}
+  m_Name: 3_Orc
+  m_EditorClassIdentifier: 
+  id: 3
+  name_hero: 
+  sex: 
+  origin: Orc
+  attack: 180
+  hp: 180
+  armour: 180
+  speed: 120
+  attack_lv: 10.5
+  hp_lv: 10.5
+  armour_lv: 10.5
+  speed_lv: 7
+  attack_ev: 31.5
+  hp_ev: 31.5
+  armour_ev: 31.5
+  speed_ev: 21

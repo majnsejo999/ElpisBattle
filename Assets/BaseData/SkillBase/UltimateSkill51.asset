@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6a7d1e70ad09744829f1f9e5f1abf0, type: 3}
+  m_Name: UltimateSkill51
+  m_EditorClassIdentifier: 
+  id: 0
+  skill_name: 52
+  rality: Legendary
+  type_skill: Ultimate
+  detail: "-Gi\u1EA3i hi\u1EC7u \u1EE9ng x\u1EA5u 1 \u0111\u1ED3ng \u0111\u1ED9i"
+  origin:
+  - All
+  mana: 60
+  spriteSkill: {fileID: 0}
+  statsSkillNormals:
+    target:
+    - 1
+    - 2
+    - 4
+    require: none
+    type_damge: none
+    damge:
+    - 0
+    - 0
+    - 0
+    effect: 
+    rate: []
+    round: 0
+    max_stack: 0
+    effect_dame:
+    - 0
+    - 0
+    - 0
