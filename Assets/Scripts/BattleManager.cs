@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    //abc
+    //def
     public List<HeroManager> list1, list2, listRound;
 
     private void Start()
