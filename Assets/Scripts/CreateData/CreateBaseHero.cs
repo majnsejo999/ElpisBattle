@@ -117,11 +117,28 @@ public class CreateBaseHero : MonoBehaviour
                         statsSkill.statsSkillNormals.require = _skillData[i].require;
                         statsSkill.statsSkillNormals.type_damge = _skillData[i].type_dame;
                         statsSkill.statsSkillNormals.damge = StringToListFloat(_skillData[i].dame.Split('/').ToList());
-                      //  statsSkill.statsSkillNormals.effect = _skillData[i].effect;
-                      //  statsSkill.statsSkillNormals.rate = StringToListFloat(_skillData[i].rate.Split('/').ToList());
                         statsSkill.statsSkillNormals.round = _skillData[i].round;
                         statsSkill.statsSkillNormals.max_stack = _skillData[i].max_stack;
                         statsSkill.statsSkillNormals.effect_dame = StringToListFloat(_skillData[i].effect_dame.Split('/').ToList());
+                        List<string> listEffect = new List<string>();
+                        List<string> listRate = new List<string>();
+                        if (_skillData[i].effect.Contains('\n'))
+                        {
+                            listEffect = _skillData[i].effect.Split('\n').ToList();
+                            listRate = _skillData[i].rate.Split('\n').ToList();
+                        }
+                        else
+                        {
+                            listEffect.Add(_skillData[i].effect);
+                            listRate.Add(_skillData[i].rate);
+                        }
+                        for (int j = 0; j < listEffect.Count; j++)
+                        {
+                            StatsEffectSkill effectSkill = new StatsEffectSkill();                           
+                            effectSkill.effect = listEffect[j];
+                            effectSkill.rate = StringToListFloat(listRate[j].Split('/').ToList());
+                            statsSkill.statsSkillNormals.effectSkill.Add(effectSkill);
+                        }
                         UnityEditor.AssetDatabase.CreateAsset(statsSkill, "Assets/BaseData/SkillBase/" + statsSkill.type_skill + "Skill" + i + ".asset");
                         UnityEditor.AssetDatabase.SaveAssets();
                         UnityEditor.AssetDatabase.Refresh();

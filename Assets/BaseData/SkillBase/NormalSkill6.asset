@@ -34,8 +34,12 @@ MonoBehaviour:
     - 1
     - 1.2
     - 1.5
-    effect: 
-    rate: []
+    effectSkill:
+    - effect: poison
+      rate:
+      - 0.2
+      - 0.25
+      - 0.3
     round: 0
     max_stack: 1
     effect_dame:

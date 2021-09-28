@@ -32,8 +32,12 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    effect: 
-    rate: []
+    effectSkill:
+    - effect: reduce_attack
+      rate:
+      - -0.1
+      - -0.2
+      - -0.3
     round: 0
     max_stack: 0
     effect_dame:

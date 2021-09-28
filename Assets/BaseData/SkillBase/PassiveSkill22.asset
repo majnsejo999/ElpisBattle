@@ -32,8 +32,12 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    effect: 
-    rate: []
+    effectSkill:
+    - effect: magic_resist
+      rate:
+      - 0.25
+      - 0.35
+      - 0.45
     round: 0
     max_stack: 0
     effect_dame:

@@ -32,8 +32,12 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    effect: 
-    rate: []
+    effectSkill:
+    - effect: revome_cc
+      rate:
+      - 1
+      - 2
+      - 4
     round: 0
     max_stack: 0
     effect_dame:

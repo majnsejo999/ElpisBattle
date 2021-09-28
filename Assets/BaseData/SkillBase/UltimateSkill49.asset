@@ -33,8 +33,12 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    effect: 
-    rate: []
+    effectSkill:
+    - effect: mana
+      rate:
+      - -20
+      - -20
+      - -20
     round: 0
     max_stack: 0
     effect_dame:

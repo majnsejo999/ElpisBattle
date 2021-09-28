@@ -22,8 +22,7 @@ public class StatsSkill
     public string require;
     public string type_damge;
     public List<float> damge;
-    public string effect;
-    public List<float> rate;
+    public List<StatsEffectSkill> effectSkill;
     public float round;
     public float max_stack;
     public List<float> effect_dame;
@@ -33,10 +32,20 @@ public class StatsSkill
         require = string.Empty;
         type_damge = string.Empty;
         damge = new List<float>();
-        effect = string.Empty;
-        rate = new List<float>();
+        effectSkill = new List<StatsEffectSkill>();
         round = 0;
         max_stack = 0;
         effect_dame = new List<float>();
+    }
+}
+[System.Serializable]
+public class StatsEffectSkill
+{
+    public string effect;
+    public List<float> rate;
+    public StatsEffectSkill()
+    {
+        effect = string.Empty;
+        rate = new List<float>();
     }
 }

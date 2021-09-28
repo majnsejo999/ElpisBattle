@@ -34,8 +34,17 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    effect: 
-    rate: []
+    effectSkill:
+    - effect: armor
+      rate:
+      - -0.15
+      - -0.3
+      - -0.3
+    - effect: hp
+      rate:
+      - -0.15
+      - -0.3
+      - -0.3
     round: 0
     max_stack: 1
     effect_dame:

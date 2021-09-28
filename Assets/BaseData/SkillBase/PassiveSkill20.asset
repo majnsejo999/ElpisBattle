@@ -32,8 +32,12 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    effect: 
-    rate: []
+    effectSkill:
+    - effect: regen_hp
+      rate:
+      - 500
+      - 1000
+      - 2000
     round: 0
     max_stack: 0
     effect_dame:

@@ -34,8 +34,12 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    effect: 
-    rate: []
+    effectSkill:
+    - effect: attack_hp
+      rate:
+      - 0.01
+      - 0.015
+      - 0.02
     round: 0
     max_stack: 0
     effect_dame:
