@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f30222ff407bb44be4d80acf34aabf, type: 3}
   m_Name: 7_None
   m_EditorClassIdentifier: 
-  id: 0
-  origin: Shadow
-  attack: 4
-  hp: 4
-  armour: 4
+  id: 7
+  origin: None
+  attack: 0
+  hp: 0
+  armour: 0
   speed: 0
