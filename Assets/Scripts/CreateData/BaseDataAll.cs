@@ -7,4 +7,5 @@ public class BaseDataAll : MonoBehaviour
     public StatsBaseHero[] ListStatsBaseHeroe;
     public StatsBaseBody[] ListStatsBaseBody;
     public StatsSkillHero[] ListStatsSkillHero;
+    public BaseBodyPartAnim[] baseBodyPartAnim;
 }

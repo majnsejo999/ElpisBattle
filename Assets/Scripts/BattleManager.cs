@@ -22,7 +22,8 @@ public class BattleManager : MonoBehaviour
             list2[i].transform.position = lineEnemy[list2[i].line].posHero.position;
             list2[i].Init();
         }
-        CheckNewRound();
+        Invoke("CheckNewRound", 0.1f);
+       // CheckNewRound();
     }
     public enum BattleStats
     {
@@ -52,14 +53,14 @@ public class BattleManager : MonoBehaviour
                 {
                     for (int i = 0; i < list1.Count; i++)
                     {
-                        RaycastHit hit;
-                        if (!Physics.Linecast(transform.position, list1[i].transform.position,out hit))
+                        RaycastHit2D h = Physics2D.Linecast(_hero.transform.position, list1[i].transform.position);                    
+                        if(h.collider != null && h.collider.tag != "Enemy")
                         {
-                            list1[i].heroCanAttck.SetActive(true);
+                            Debug.Log(h.collider.gameObject.name);
                         }
                         else
                         {
-                            Debug.Log(hit.transform.gameObject.name);
+                            list1[i].heroCanAttck.SetActive(true);
                         }
                     }
                 }
@@ -67,14 +68,9 @@ public class BattleManager : MonoBehaviour
                 {
                     for (int i = 0; i < list2.Count; i++)
                     {
-                        RaycastHit hit;
-                        if (!Physics.Linecast(transform.position, list2[i].transform.position,out hit))
+                        if (!Physics.Linecast(_hero.transform.position, list2[i].transform.position))
                         {
                             list2[i].heroCanAttck.SetActive(true);
-                        }
-                        else
-                        {
-                            Debug.Log(hit.transform.gameObject.name);
                         }
                     }
                 }
