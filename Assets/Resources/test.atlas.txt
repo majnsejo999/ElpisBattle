@@ -1,0 +1,41 @@
+
+Naga.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+armR
+  rotate: false
+  xy: 320, 248
+  size: 204, 158
+  orig: 207, 158
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 0, 246
+  size: 320, 384
+  orig: 339, 392
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 0, 0
+  size: 351, 246
+  orig: 360, 246
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: true
+  xy: 524, 104
+  size: 302, 16
+  orig: 304, 18
+  offset: 1, 1
+  index: -1
+tail
+  rotate: true
+  xy: 320, 406
+  size: 224, 254
+  orig: 224, 254
+  offset: 0, 0
+  index: -1
