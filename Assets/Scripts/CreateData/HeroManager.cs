@@ -4,7 +4,7 @@ using UnityEngine;
 using Spine.Unity;
 using Spine;
 using Spine.Unity.AttachmentTools;
-
+using UnityEngine.U2D;
 public class HeroManager : MonoBehaviour
 {
     [Header("Stats Hero")]
@@ -23,8 +23,9 @@ public class HeroManager : MonoBehaviour
     public float sum_stats_body = 0;
     public int line;
     public BaseDataAll baseData;
-    public SkeletonAnimation anim;
-    public GameObject heroSelected, heroCanAttck;
+    public SkeletonMecanim skeletonMecanim;
+    public Animator animator;
+    public GameObject objSelected, objCanAttck;
     public List<StatsSkillHero> listSkill;
     public bool isSkill;
     public bool isEnemy;
@@ -32,18 +33,17 @@ public class HeroManager : MonoBehaviour
     [SpineSkin] public string DefaultSkinName = "skin_default";
     public void Init()
     {
-        anim = this.GetComponent<SkeletonAnimation>();
         if (isEnemy)
         {
-            anim.GetComponent<MeshRenderer>().sortingOrder = line;
+            skeletonMecanim.GetComponent<MeshRenderer>().sortingOrder = line;
         }
         else
         {
-            anim.GetComponent<MeshRenderer>().sortingOrder = line + 6;
+            skeletonMecanim.GetComponent<MeshRenderer>().sortingOrder = line + 6;
         }
         AddSkill();
-        heroSelected.SetActive(false);
-        heroCanAttck.SetActive(false);
+        objSelected.SetActive(false);
+        objCanAttck.SetActive(false);
         CalculateStatsHero(baseData.ListStatsBaseHeroe[idHero]);
         gameObject.SetActive(true);
     }
@@ -89,7 +89,7 @@ public class HeroManager : MonoBehaviour
     }
     public void SumStatsBody()
     {
-        var _skin2 = anim.Skeleton.Skin;
+        var _skin2 = skeletonMecanim.Skeleton.Skin;
         for (int i = 0; i < listIdBody.Count; i++)
         {
             StatsBaseBody baseBody = baseData.ListStatsBaseBody[listIdBody[i]];
@@ -98,32 +98,42 @@ public class HeroManager : MonoBehaviour
             hero_armour += baseBody.hp;
             hero_speed += baseBody.speed;
             sum_stats_body += (baseBody.attack + baseBody.hp + baseBody.hp + baseBody.speed);
-            if (listIdBody[i] % 2 == 0)
-            {
-                ChangSkin(baseData.baseBodyPartAnim[0].listBodyCharacter[i]._sprite, _skin2);
-            }
+            ChangSkin(baseData.baseBodyPartAnim[0].listBodyCharacter[i].nameSprite, baseData.baseBodyPartAnim[0].spriteAtlas[listIdBody[i] % 2], _skin2);
         }
         rality = 1 + (float)Mathf.Clamp((int)(sum_stats_body / 12) - 1, 0, 5) / 10;
         ClearSkin(_skin2);
     }
-    public void ChangSkin(Sprite[] _sprite,Skin skin)
+    public void ChangSkin(string[] nameSlot, SpriteAtlas spriteAtlas, Skin skin)
     {
-        for (int i = 0; i < _sprite.Length; i++)
+        for (int i = 0; i < nameSlot.Length; i++)
         {
-            string nameSlot2 = _sprite[i].name;
-            Debug.Log(nameSlot2);
-            int slotIndex = anim.skeletonDataAsset.GetSkeletonData(true).FindSlot(nameSlot2).Index;
-            Attachment attachment1 = anim.skeleton.GetAttachment(nameSlot2, nameSlot2);
-            Attachment attachment2 = attachment1.GetRemappedClone(_sprite[i], sourceMaterial);
-            skin.SetAttachment(slotIndex, nameSlot2, attachment2);
+            int slotIndex = skeletonMecanim.skeletonDataAsset.GetSkeletonData(true).FindSlot(nameSlot[i]).Index;
+            Attachment attachment1 = skeletonMecanim.skeleton.GetAttachment(nameSlot[i], nameSlot[i]);
+            Attachment attachment2 = attachment1.GetRemappedClone(spriteAtlas.GetSprite(nameSlot[i]), sourceMaterial);
+            skin.SetAttachment(slotIndex, nameSlot[i], attachment2);
         }
     }
 
+    private void OnMouseDown()
+    {
+        if (objCanAttck.activeInHierarchy)
+        {
+            BattleManager.instance.HeroAttack(gameObject.GetComponent<HeroManager>());
+        }
+    }
     public void ClearSkin(Skin _skinChange)
     {
-        anim.skeleton.SetSkin(_skinChange);
-        anim.skeleton.SetSlotsToSetupPose();
-        anim.Update(0);
+        skeletonMecanim.skeleton.SetSkin(_skinChange);
+        skeletonMecanim.skeleton.SetSlotsToSetupPose();
+        skeletonMecanim.Update();
         AtlasUtilities.ClearCache();
+    }
+    public void CheckAttack()
+    {
+
+    }
+    public void EndAttack()
+    {
+        BattleManager.instance.HeroEndAttack();
     }
 }
