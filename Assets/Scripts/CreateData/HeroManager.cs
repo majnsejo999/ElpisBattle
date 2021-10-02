@@ -23,8 +23,7 @@ public class HeroManager : MonoBehaviour
     public float sum_stats_body = 0;
     public int line;
     public BaseDataAll baseData;
-    public SkeletonMecanim skeletonMecanim;
-    public Animator animator;
+    public SkeletonAnimation skeletonAnimation;
     public GameObject objSelected, objCanAttck;
     public List<StatsSkillHero> listSkill;
     public bool isSkill;
@@ -33,19 +32,20 @@ public class HeroManager : MonoBehaviour
     [SpineSkin] public string DefaultSkinName = "skin_default";
     public void Init()
     {
-        if (isEnemy)
-        {
-            skeletonMecanim.GetComponent<MeshRenderer>().sortingOrder = line;
-        }
-        else
-        {
-            skeletonMecanim.GetComponent<MeshRenderer>().sortingOrder = line + 6;
-        }
         AddSkill();
         objSelected.SetActive(false);
         objCanAttck.SetActive(false);
         CalculateStatsHero(baseData.ListStatsBaseHeroe[idHero]);
         gameObject.SetActive(true);
+        if (isEnemy)
+        {
+            skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = line;
+        }
+        else
+        {
+            skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = line + 6;
+        }
+        skeletonAnimation.AnimationState.Event += HandleEvent;
     }
     public void AddSkill()
     {
@@ -89,7 +89,7 @@ public class HeroManager : MonoBehaviour
     }
     public void SumStatsBody()
     {
-        var _skin2 = skeletonMecanim.Skeleton.Skin;
+        var _skin2 = skeletonAnimation.Skeleton.Skin;
         for (int i = 0; i < listIdBody.Count; i++)
         {
             StatsBaseBody baseBody = baseData.ListStatsBaseBody[listIdBody[i]];
@@ -107,8 +107,8 @@ public class HeroManager : MonoBehaviour
     {
         for (int i = 0; i < nameSlot.Length; i++)
         {
-            int slotIndex = skeletonMecanim.skeletonDataAsset.GetSkeletonData(true).FindSlot(nameSlot[i]).Index;
-            Attachment attachment1 = skeletonMecanim.skeleton.GetAttachment(nameSlot[i], nameSlot[i]);
+            int slotIndex = skeletonAnimation.skeletonDataAsset.GetSkeletonData(true).FindSlot(nameSlot[i]).Index;
+            Attachment attachment1 = skeletonAnimation.skeleton.GetAttachment(nameSlot[i], nameSlot[i]);
             Attachment attachment2 = attachment1.GetRemappedClone(spriteAtlas.GetSprite(nameSlot[i]), sourceMaterial);
             skin.SetAttachment(slotIndex, nameSlot[i], attachment2);
         }
@@ -123,17 +123,18 @@ public class HeroManager : MonoBehaviour
     }
     public void ClearSkin(Skin _skinChange)
     {
-        skeletonMecanim.skeleton.SetSkin(_skinChange);
-        skeletonMecanim.skeleton.SetSlotsToSetupPose();
-        skeletonMecanim.Update();
+        skeletonAnimation.skeleton.SetSkin(_skinChange);
+        skeletonAnimation.skeleton.SetSlotsToSetupPose();
+        skeletonAnimation.Update(0);
         AtlasUtilities.ClearCache();
     }
-    public void CheckAttack()
+    [SpineEvent] public string footstepEventName = "attack";
+    void HandleEvent(TrackEntry trackEntry, Spine.Event e)
     {
-
-    }
-    public void EndAttack()
-    {
-        BattleManager.instance.HeroEndAttack();
+        // Play some sound if the event named "footstep" fired.
+        if (e.Data.Name == footstepEventName)
+        {
+            BattleManager.instance.Hit();
+        }
     }
 }

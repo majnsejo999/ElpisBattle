@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using DG.Tweening;
+using Spine.Unity;
 
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager instance;
     public List<HeroManager> list1, list2, listRound;
     public List<LineUp> lineHero, lineEnemy;
+    public HeroManager hero_beaten;
+    private int indexTurn;
     private void Awake()
     {
         if (instance == null)
@@ -41,8 +44,9 @@ public class BattleManager : MonoBehaviour
     public void CheckNewRound()
     {
         listRound = listRound.OrderByDescending(o => o.hero_speed).ToList();
-        listRound[0].objSelected.SetActive(true);
-        CheckCanAttack(listRound[0]);
+        indexTurn = 0;
+        listRound[indexTurn].objSelected.SetActive(true);
+        CheckCanAttack(listRound[indexTurn]);
     }
     public void CheckCanAttack(HeroManager _hero)
     {
@@ -77,7 +81,12 @@ public class BattleManager : MonoBehaviour
                 {
                     for (int i = 0; i < list2.Count; i++)
                     {
-                        if (!Physics.Linecast(_hero.transform.position, list2[i].transform.position))
+                        RaycastHit2D h = Physics2D.Linecast(_hero.transform.position, list2[i].transform.position);
+                        if (h.collider != null && h.collider.tag != "Hero")
+                        {
+                            Debug.Log(h.collider.gameObject.name);
+                        }
+                        else
                         {
                             list2[i].objCanAttck.SetActive(true);
                         }
@@ -87,8 +96,9 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void HeroAttack(HeroManager hero_beaten)
+    public void HeroAttack(HeroManager _hero)
     {
+        hero_beaten = _hero;
         Vector3 posEnd = new Vector3();
         if (hero_beaten.isEnemy)
         {
@@ -98,37 +108,58 @@ public class BattleManager : MonoBehaviour
         {
             posEnd = lineHero[hero_beaten.line].posAttack.position;
         }
-        listRound[0].transform.DOMove(posEnd, 0.5f, false).OnComplete(delegate
+        listRound[indexTurn].transform.DOMove(posEnd, 0.5f, false).OnComplete(delegate
         {
-            listRound[0].animator.Play(ConstData.AnimHeroAttack, 0, 0);
+            //  listRound[0].animator.Play(ConstData.AnimHeroAttack, 0, 0);
+            // StartCoroutine(Attack());
+            Attack();
         });
     }
-    public void HeroEndAttack()
+    public void Hit()
     {
-        listRound[0].animator.Play(ConstData.AnimHeroIdle, 0, 0);
-        Vector3 posEnd = new Vector3();
-        if (listRound[0].isEnemy)
+        hero_beaten.skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroHit, false).Complete += delegate
+         {
+             hero_beaten.skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroIdle, true);
+         };
+    }
+    public void Attack()
+    {
+        listRound[indexTurn].skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroAttack, false).Complete += delegate
         {
-            posEnd = lineEnemy[listRound[0].line].posHero.position;
-        }
-        else
-        {
-            posEnd = lineHero[listRound[0].line].posHero.position;
-        }
-        listRound[0].transform.DOMove(posEnd, 0.5f, false).OnComplete(delegate
-        {
-            for (int i = 0; i < list1.Count; i++)
+            listRound[indexTurn].skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroIdle, true);
+            Vector3 posEnd = new Vector3();
+            if (listRound[indexTurn].isEnemy)
             {
-                list1[i].objCanAttck.SetActive(false);
-                list1[i].objSelected.SetActive(false);
+                posEnd = lineEnemy[listRound[indexTurn].line].posHero.position;
             }
-            for (int i = 0; i < list2.Count; i++)
+            else
             {
-                list2[i].objCanAttck.SetActive(false);
-                list2[i].objSelected.SetActive(false);
+                posEnd = lineHero[listRound[indexTurn].line].posHero.position;
             }
-            listRound.Remove(listRound[0]);
-            CheckNewRound();
-        });
+            listRound[indexTurn].transform.DOMove(posEnd, 0.5f, false).OnComplete(delegate
+            {
+                for (int i = 0; i < list1.Count; i++)
+                {
+                    list1[i].objCanAttck.SetActive(false);
+                    list1[i].objSelected.SetActive(false);
+                }
+                for (int i = 0; i < list2.Count; i++)
+                {
+                    list2[i].objCanAttck.SetActive(false);
+                    list2[i].objSelected.SetActive(false);
+                }
+                indexTurn += 1;
+                if (indexTurn >= listRound.Count)
+                {
+                    indexTurn = 0;
+                    CheckNewRound();
+                }
+                else
+                {
+                    listRound[indexTurn].objSelected.SetActive(true);
+                    CheckCanAttack(listRound[indexTurn]);
+                }
+            });
+        };
     }
 }

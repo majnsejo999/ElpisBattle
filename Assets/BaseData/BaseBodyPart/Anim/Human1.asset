@@ -18,9 +18,11 @@ MonoBehaviour:
     - human_hair
   - nameSprite:
     - human_eyes_open
-    - human_eyesbrown
   - nameSprite:
+    - human_eyesbrown
     - human_beard
+  - nameSprite:
+    - human_weapon_l
   - nameSprite:
     - human_armor_a
     - human_armor_b
@@ -31,8 +33,6 @@ MonoBehaviour:
     - human_forearm_r
     - human_shoulder_l
     - human_shoulder_r
-  - nameSprite:
-    - human_weapon_l
   - nameSprite:
     - human_weapon_r_a
     - human_weapon_r_b

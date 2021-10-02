@@ -561,7 +561,7 @@ MonoBehaviour:
   skeletonJson: {fileID: 0}
   atlasText: {fileID: 0}
   textures:
-  - {fileID: 2800000, guid: f9ff820f0f8e4ba46a5014efab01f472, type: 3}
+  - {fileID: 0}
   materialPropertySource: {fileID: 2100000, guid: 949d6e7452b18e94595047f9eb87c2c8, type: 2}
 --- !u!4 &1100491635
 Transform:
