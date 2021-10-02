@@ -48,3 +48,8 @@ MonoBehaviour:
   spriteAtlas:
   - {fileID: 4343727234628468602, guid: 6fcf0be66f8ac054aac6480a2c73c6b9, type: 2}
   - {fileID: 4343727234628468602, guid: 8572f926e0e4fce488011690031309ed, type: 2}
+  skeletonJson: {fileID: 4900000, guid: f0e2be406b6c59249898a54b7c5fa8d5, type: 3}
+  atlasText: {fileID: 4900000, guid: ee8dc81ab1f53864b8de6fc1271dbf94, type: 3}
+  textures:
+  - {fileID: 2800000, guid: f9ff820f0f8e4ba46a5014efab01f472, type: 3}
+  materialPropertySource: {fileID: 2100000, guid: c0af0a625e28d994faec179e0ad4bdde, type: 2}

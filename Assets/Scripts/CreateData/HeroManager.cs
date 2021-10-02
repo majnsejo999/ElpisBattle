@@ -29,9 +29,9 @@ public class HeroManager : MonoBehaviour
     public bool isSkill;
     public bool isEnemy;
     public Material sourceMaterial;
-    [SpineSkin] public string DefaultSkinName = "skin_default";
     public void Init()
     {
+        CreateRuntimeAssetsAndGameObject();
         AddSkill();
         objSelected.SetActive(false);
         objCanAttck.SetActive(false);
@@ -46,6 +46,19 @@ public class HeroManager : MonoBehaviour
             skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = line + 6;
         }
         skeletonAnimation.AnimationState.Event += HandleEvent;
+    }
+    void CreateRuntimeAssetsAndGameObject()
+    {
+        sourceMaterial = baseData.baseBodyPartAnim[idHero].materialPropertySource;
+        SpineAtlasAsset runtimeAtlasAsset = SpineAtlasAsset.CreateRuntimeInstance(baseData.baseBodyPartAnim[idHero].atlasText, baseData.baseBodyPartAnim[idHero].textures, sourceMaterial, true);
+        SkeletonDataAsset runtimeSkeletonDataAsset = SkeletonDataAsset.CreateRuntimeInstance(baseData.baseBodyPartAnim[idHero].skeletonJson, runtimeAtlasAsset, true);
+        skeletonAnimation = SkeletonAnimation.NewSkeletonAnimationGameObject(runtimeSkeletonDataAsset);
+        skeletonAnimation.transform.parent = gameObject.transform;
+        skeletonAnimation.transform.localPosition = Vector3.zero;
+        skeletonAnimation.Skeleton.SetSkin("skin_default");
+        skeletonAnimation.AnimationState.SetAnimation(0, "idle", true);
+        skeletonAnimation.skeleton.SetToSetupPose();
+        skeletonAnimation.skeleton.Update(0);
     }
     public void AddSkill()
     {
