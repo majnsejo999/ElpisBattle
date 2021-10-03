@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1851b901fbaee5048b18b02f69d045bd, type: 3}
+  m_Name: Angel1
+  m_EditorClassIdentifier: 
+  id: 0
+  listBodyCharacter:
+  - nameSprite:
+    - angel_hair_a
+    - angel_hair_b
+  - nameSprite:
+    - angel_eyes_open_1
+  - nameSprite:
+    - angel_eyesbrown
+    - angel_earring
+  - nameSprite:
+    - angel_weapon_l1
+    - angel_weapon_l2
+  - nameSprite:
+    - angel_armor_a
+    - angel_armor_b
+  - nameSprite:
+    - angel_arm_l
+    - angel_arm_r
+    - angel_forearm_l
+    - angel_forearm_r
+    - angel_shoulder_l
+    - angel_shoulder_r
+    - angel_hand_l
+  - nameSprite:
+    - angel_wing1_l
+    - angel_wing1_r
+    - angel_wing2_l
+    - angel_wing2_r
+  - nameSprite:
+    - angel_belt_a
+    - angel_belt_b
+    - angel_pants_l
+    - angel_pants_r
+  - nameSprite:
+    - angel_shoes_l_a
+    - angel_shoes_l_b
+    - angel_shoes_r_a
+    - angel_shoes_r_b
+  spriteAtlas:
+  - {fileID: 4343727234628468602, guid: 6fcf0be66f8ac054aac6480a2c73c6b9, type: 2}
+  - {fileID: 4343727234628468602, guid: 8572f926e0e4fce488011690031309ed, type: 2}
+  skeletonJson: {fileID: 4900000, guid: db850f7524b14f442adf6c6896fd7521, type: 3}
+  atlasText: {fileID: 4900000, guid: b27d56e73392512448cbf78536adeb70, type: 3}
+  textures:
+  - {fileID: 2800000, guid: 5d5cc43158314494498e65f1d109bd8e, type: 3}
+  materialPropertySource: {fileID: 2100000, guid: 64bc56b7fb831c64c87dfd706b5702a6, type: 2}
