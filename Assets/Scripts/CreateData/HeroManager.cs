@@ -55,6 +55,9 @@ public class HeroManager : MonoBehaviour
         skeletonAnimation = SkeletonAnimation.NewSkeletonAnimationGameObject(runtimeSkeletonDataAsset);
         skeletonAnimation.transform.parent = gameObject.transform;
         skeletonAnimation.transform.localPosition = Vector3.zero;
+        skeletonAnimation.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+        if (isEnemy)
+            skeletonAnimation.skeleton.FlipX = true;
         skeletonAnimation.Skeleton.SetSkin("skin_default");
         skeletonAnimation.AnimationState.SetAnimation(0, "idle", true);
         skeletonAnimation.skeleton.SetToSetupPose();
@@ -111,19 +114,20 @@ public class HeroManager : MonoBehaviour
             hero_armour += baseBody.hp;
             hero_speed += baseBody.speed;
             sum_stats_body += (baseBody.attack + baseBody.hp + baseBody.hp + baseBody.speed);
-            ChangSkin(baseData.baseBodyPartAnim[0].listBodyCharacter[i].nameSprite, baseData.baseBodyPartAnim[0].spriteAtlas[listIdBody[i] % 2], _skin2);
+            ChangSkin(baseData.baseBodyPartAnim[idHero].listBodyCharacter[i], baseData.baseBodyPartAnim[idHero].spriteAtlas[listIdBody[i] % 2], _skin2);
         }
         rality = 1 + (float)Mathf.Clamp((int)(sum_stats_body / 12) - 1, 0, 5) / 10;
         ClearSkin(_skin2);
     }
-    public void ChangSkin(string[] nameSlot, SpriteAtlas spriteAtlas, Skin skin)
+    public void ChangSkin(EquipHook bodyParts, SpriteAtlas spriteAtlas, Skin skin)
     {
-        for (int i = 0; i < nameSlot.Length; i++)
+        for (int i = 0; i < bodyParts.nameSlot.Length; i++)
         {
-            int slotIndex = skeletonAnimation.skeletonDataAsset.GetSkeletonData(true).FindSlot(nameSlot[i]).Index;
-            Attachment attachment1 = skeletonAnimation.skeleton.GetAttachment(nameSlot[i], nameSlot[i]);
-            Attachment attachment2 = attachment1.GetRemappedClone(spriteAtlas.GetSprite(nameSlot[i]), sourceMaterial);
-            skin.SetAttachment(slotIndex, nameSlot[i], attachment2);
+            Debug.Log(bodyParts.nameSlot[i]);
+            int slotIndex = skeletonAnimation.skeletonDataAsset.GetSkeletonData(true).FindSlot(bodyParts.nameSlot[i]).Index;
+            Attachment attachment1 = skeletonAnimation.skeleton.GetAttachment(bodyParts.nameSlot[i], bodyParts.nameSlot[i]);
+            Attachment attachment2 = attachment1.GetRemappedClone(spriteAtlas.GetSprite(bodyParts.nameSprite[i]), sourceMaterial);
+            skin.SetAttachment(slotIndex, bodyParts.nameSlot[i], attachment2);
         }
     }
 

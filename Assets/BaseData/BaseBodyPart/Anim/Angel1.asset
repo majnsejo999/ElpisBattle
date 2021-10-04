@@ -12,23 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1851b901fbaee5048b18b02f69d045bd, type: 3}
   m_Name: Angel1
   m_EditorClassIdentifier: 
-  id: 0
   listBodyCharacter:
-  - nameSprite:
+  - nameSlot:
     - angel_hair_a
     - angel_hair_b
-  - nameSprite:
+    nameSprite:
+    - angel_hair_a
+    - angel_hair_b
+  - nameSlot:
     - angel_eyes_open_1
-  - nameSprite:
+    nameSprite:
+    - angel_eyes_open_1
+  - nameSlot:
     - angel_eyesbrown
     - angel_earring
-  - nameSprite:
-    - angel_weapon_l1
+    nameSprite:
+    - angel_eyesbrown
+    - angel_earring
+  - nameSlot:
+    - angel_weapon_l
     - angel_weapon_l2
-  - nameSprite:
+    - angel_weapon_l3
+    - angel_weapon_l4
+    nameSprite:
+    - angel_weapon_l
+    - angel_weapon_l
+    - angel_weapon_l
+    - angel_weapon_l
+  - nameSlot:
     - angel_armor_a
     - angel_armor_b
-  - nameSprite:
+    nameSprite:
+    - angel_armor_a
+    - angel_armor_b
+  - nameSlot:
     - angel_arm_l
     - angel_arm_r
     - angel_forearm_l
@@ -36,24 +53,47 @@ MonoBehaviour:
     - angel_shoulder_l
     - angel_shoulder_r
     - angel_hand_l
-  - nameSprite:
+    nameSprite:
+    - angel_arm_l
+    - angel_arm_r
+    - angel_forearm_l
+    - angel_forearm_r
+    - angel_shoulder_l
+    - angel_shoulder_r
+    - angel_hand_l
+  - nameSlot:
     - angel_wing1_l
     - angel_wing1_r
     - angel_wing2_l
     - angel_wing2_r
-  - nameSprite:
+    nameSprite:
+    - angel_wing1_l
+    - angel_wing1_r
+    - angel_wing2_l
+    - angel_wing2_r
+  - nameSlot:
     - angel_belt_a
     - angel_belt_b
     - angel_pants_l
     - angel_pants_r
-  - nameSprite:
+    nameSprite:
+    - angel_belt_a
+    - angel_belt_b
+    - angel_pants_l
+    - angel_pants_r
+  - nameSlot:
+    - angel_shoes_l_a
+    - angel_shoes_l_b
+    - angel_shoes_r_a
+    - angel_shoes_r_b
+    nameSprite:
     - angel_shoes_l_a
     - angel_shoes_l_b
     - angel_shoes_r_a
     - angel_shoes_r_b
   spriteAtlas:
-  - {fileID: 4343727234628468602, guid: 6fcf0be66f8ac054aac6480a2c73c6b9, type: 2}
-  - {fileID: 4343727234628468602, guid: 8572f926e0e4fce488011690031309ed, type: 2}
+  - {fileID: 4343727234628468602, guid: 85078e7aa3f438c4bb83afc379da9403, type: 2}
+  - {fileID: 4343727234628468602, guid: 85078e7aa3f438c4bb83afc379da9403, type: 2}
   skeletonJson: {fileID: 4900000, guid: db850f7524b14f442adf6c6896fd7521, type: 3}
   atlasText: {fileID: 4900000, guid: b27d56e73392512448cbf78536adeb70, type: 3}
   textures:

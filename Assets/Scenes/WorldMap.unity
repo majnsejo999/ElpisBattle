@@ -465,6 +465,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posHero: {fileID: 2068508728}
   posAttack: {fileID: 274595656}
+  PosX: 3
+  PosY: 2
 --- !u!4 &71703404
 Transform:
   m_ObjectHideFlags: 0
@@ -689,6 +691,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posHero: {fileID: 380593184}
   posAttack: {fileID: 716449166}
+  PosX: 3
+  PosY: 1
 --- !u!4 &113583728
 Transform:
   m_ObjectHideFlags: 0
@@ -1114,6 +1118,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posHero: {fileID: 1772152721}
   posAttack: {fileID: 2080720050}
+  PosX: 1
+  PosY: 3
 --- !u!4 &347235500
 Transform:
   m_ObjectHideFlags: 0
@@ -1240,6 +1246,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posHero: {fileID: 765330817}
   posAttack: {fileID: 1080202105}
+  PosX: 4
+  PosY: 3
 --- !u!4 &360536255
 Transform:
   m_ObjectHideFlags: 0
@@ -2735,6 +2743,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posHero: {fileID: 1212118170}
   posAttack: {fileID: 873844169}
+  PosX: 4
+  PosY: 1
 --- !u!4 &979663914
 Transform:
   m_ObjectHideFlags: 0
@@ -3669,6 +3679,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posHero: {fileID: 192820899}
   posAttack: {fileID: 1120131133}
+  PosX: 1
+  PosY: 2
 --- !u!4 &1508840653
 Transform:
   m_ObjectHideFlags: 0
@@ -4035,6 +4047,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posHero: {fileID: 1696826364}
   posAttack: {fileID: 1814729091}
+  PosX: 1
+  PosY: 1
 --- !u!4 &1780693555
 Transform:
   m_ObjectHideFlags: 0
@@ -4172,6 +4186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posHero: {fileID: 514412804}
   posAttack: {fileID: 189757844}
+  PosX: 3
+  PosY: 3
 --- !u!4 &1827835913
 Transform:
   m_ObjectHideFlags: 0
@@ -4301,6 +4317,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posHero: {fileID: 402189426}
   posAttack: {fileID: 1984854861}
+  PosX: 2
+  PosY: 3
 --- !u!4 &1848917732
 Transform:
   m_ObjectHideFlags: 0
@@ -4562,6 +4580,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posHero: {fileID: 1396562233}
   posAttack: {fileID: 1790531164}
+  PosX: 4
+  PosY: 2
 --- !u!4 &1945756821
 Transform:
   m_ObjectHideFlags: 0
@@ -4691,6 +4711,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posHero: {fileID: 1820979150}
   posAttack: {fileID: 431365710}
+  PosX: 2
+  PosY: 1
 --- !u!4 &1976072550
 Transform:
   m_ObjectHideFlags: 0
@@ -4945,6 +4967,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posHero: {fileID: 223176352}
   posAttack: {fileID: 543905295}
+  PosX: 2
+  PosY: 2
 --- !u!4 &2025811638
 Transform:
   m_ObjectHideFlags: 0

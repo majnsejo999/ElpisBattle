@@ -17,7 +17,7 @@ SpriteAtlas:
       textureCompression: 0
       filterMode: 1
       generateMipMaps: 0
-      readable: 0
+      readable: 1
       crunchedCompression: 0
       sRGB: 1
     platformSettings:
@@ -56,7 +56,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 84970a34ec253e5448b56608e804f9d8, type: 3}
   - {fileID: 21300000, guid: b18043b4c65e5cd438a03d43371e8b3f, type: 3}
   - {fileID: 21300000, guid: 58bb74c42ad231943865122f590da597, type: 3}
-  - {fileID: 21300000, guid: e6a71805fcdbb0041b69e15a7c1b1eb4, type: 3}
   - {fileID: 21300000, guid: 88bc5226858209441ba5c01751772d8d, type: 3}
   - {fileID: 21300000, guid: 193c7cc6ddf4773408a96906433a961b, type: 3}
   - {fileID: 21300000, guid: 392adee6e1ab0b24eb2d6af69479ae20, type: 3}
@@ -85,7 +84,6 @@ SpriteAtlas:
   - angel_forearm_r
   - angel_shoulder_r
   - angel_pants_l
-  - angel_weapon_l_2
   - angel_shoes_l_a
   - angel_earring
   - angel_armor_b
@@ -93,7 +91,7 @@ SpriteAtlas:
   - angel_armor_a
   - angel_eyesbrown
   - angel_shoulder_l
-  - angel_weapon_l_1 1
+  - angel_weapon_l
   - angel_shoes_r_b
   - angel_belt_a
   - angel_arm_r

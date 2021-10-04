@@ -12,35 +12,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1851b901fbaee5048b18b02f69d045bd, type: 3}
   m_Name: Human1
   m_EditorClassIdentifier: 
-  id: 0
   listBodyCharacter:
-  - nameSprite:
+  - nameSlot:
     - human_hair
-  - nameSprite:
+    nameSprite:
+    - human_hair
+  - nameSlot:
     - human_eyes_open
-  - nameSprite:
+    nameSprite:
+    - human_eyes_open
+  - nameSlot:
     - human_eyesbrown
     - human_beard
-  - nameSprite:
+    nameSprite:
+    - human_eyesbrown
+    - human_beard
+  - nameSlot:
     - human_weapon_l
-  - nameSprite:
+    nameSprite:
+    - human_weapon_l
+  - nameSlot:
     - human_armor_a
     - human_armor_b
-  - nameSprite:
+    nameSprite:
+    - human_armor_a
+    - human_armor_b
+  - nameSlot:
     - human_arm_l
     - human_arm_r
     - human_forearm_l
     - human_forearm_r
     - human_shoulder_l
     - human_shoulder_r
-  - nameSprite:
+    nameSprite:
+    - human_arm_l
+    - human_arm_r
+    - human_forearm_l
+    - human_forearm_r
+    - human_shoulder_l
+    - human_shoulder_r
+  - nameSlot:
     - human_weapon_r_a
     - human_weapon_r_b
-  - nameSprite:
+    nameSprite:
+    - human_weapon_r_a
+    - human_weapon_r_b
+  - nameSlot:
     - human_belt
     - human_pants_l
     - human_pants_r
-  - nameSprite:
+    nameSprite:
+    - human_belt
+    - human_pants_l
+    - human_pants_r
+  - nameSlot:
+    - human_shoes_l_a
+    - human_shoes_l_b
+    - human_shoes_r_a
+    - human_shoes_r_b
+    nameSprite:
     - human_shoes_l_a
     - human_shoes_l_b
     - human_shoes_r_a

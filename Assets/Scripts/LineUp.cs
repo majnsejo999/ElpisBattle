@@ -6,4 +6,5 @@ public class LineUp : MonoBehaviour
 {
     public Transform posHero;
     public Transform posAttack;
+    public int PosX, PosY;
 }
