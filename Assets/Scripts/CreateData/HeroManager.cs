@@ -123,7 +123,7 @@ public class HeroManager : MonoBehaviour
     {
         for (int i = 0; i < bodyParts.nameSlot.Length; i++)
         {
-            Debug.Log(bodyParts.nameSlot[i]);
+            //Debug.Log(bodyParts.nameSlot[i]);
             int slotIndex = skeletonAnimation.skeletonDataAsset.GetSkeletonData(true).FindSlot(bodyParts.nameSlot[i]).Index;
             Attachment attachment1 = skeletonAnimation.skeleton.GetAttachment(bodyParts.nameSlot[i], bodyParts.nameSlot[i]);
             Attachment attachment2 = attachment1.GetRemappedClone(spriteAtlas.GetSprite(bodyParts.nameSprite[i]), sourceMaterial);

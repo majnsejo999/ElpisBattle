@@ -64,38 +64,95 @@ public class BattleManager : MonoBehaviour
             {
                 if (_hero.isEnemy)
                 {
-                    for (int i = 0; i < list1.Count; i++)
+                    if (CheckEnemyStandFront(_hero))
                     {
-                        RaycastHit2D h = Physics2D.Linecast(_hero.transform.position, list1[i].transform.position);
-                        if (h.collider != null && h.collider.tag != "Enemy")
+                        _hero.objSelected.SetActive(false);
+                        NextTurn();
+                        return;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < list1.Count; i++)
                         {
-                            Debug.Log(h.collider.gameObject.name);
-                        }
-                        else
-                        {
-                            list1[i].objCanAttck.SetActive(true);
+                            if (!CheckHeroStandFront(list1[i]))
+                            {
+                                list1[i].objCanAttck.SetActive(true);
+                            }
                         }
                     }
                 }
                 else
                 {
-                    for (int i = 0; i < list2.Count; i++)
+                    if (CheckHeroStandFront(_hero))
                     {
-                        RaycastHit2D h = Physics2D.Linecast(_hero.transform.position, list2[i].transform.position);
-                        if (h.collider != null && h.collider.tag != "Hero")
+                        _hero.objSelected.SetActive(false);
+                        NextTurn();
+                        return;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < list2.Count; i++)
                         {
-                            Debug.Log(h.collider.gameObject.name);
-                        }
-                        else
-                        {
-                            list2[i].objCanAttck.SetActive(true);
+                            if (!CheckEnemyStandFront(list2[i]))
+                            {
+                                list2[i].objCanAttck.SetActive(true);
+                            }
                         }
                     }
                 }
             }
         }
     }
-
+    public void NextTurn()
+    {
+        indexTurn += 1;
+        if (indexTurn >= listRound.Count)
+        {
+            indexTurn = 0;
+            CheckNewRound();
+        }
+        else
+        {
+            listRound[indexTurn].objSelected.SetActive(true);
+            CheckCanAttack(listRound[indexTurn]);
+        }
+    }
+    public bool CheckHeroStandFront(HeroManager _hero)
+    {
+        if (lineHero[_hero.line].PosX == 2)
+        {
+            return false;
+        }
+        else
+        {
+            for (int i = 0; i < list1.Count; i++)
+            {
+                if (lineHero[list1[i].line].PosX == 2 && lineHero[list1[i].line].PosY == lineHero[_hero.line].PosY)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+    public bool CheckEnemyStandFront(HeroManager _hero)
+    {
+        if (lineEnemy[_hero.line].PosX == 3)
+        {
+            return false;
+        }
+        else
+        {
+            for (int i = 0; i < list2.Count; i++)
+            {
+                if (lineEnemy[list2[i].line].PosX == 3 && lineEnemy[list2[i].line].PosY == lineEnemy[_hero.line].PosY)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
     public void HeroAttack(HeroManager _hero)
     {
         hero_beaten = _hero;
@@ -148,17 +205,7 @@ public class BattleManager : MonoBehaviour
                     list2[i].objCanAttck.SetActive(false);
                     list2[i].objSelected.SetActive(false);
                 }
-                indexTurn += 1;
-                if (indexTurn >= listRound.Count)
-                {
-                    indexTurn = 0;
-                    CheckNewRound();
-                }
-                else
-                {
-                    listRound[indexTurn].objSelected.SetActive(true);
-                    CheckCanAttack(listRound[indexTurn]);
-                }
+                NextTurn();
             });
         };
     }

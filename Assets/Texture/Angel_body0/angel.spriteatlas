@@ -63,9 +63,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b076b687aec8acf4c8db2bfd7f424354, type: 3}
   - {fileID: 21300000, guid: 87a617a73a442f946b71aae11fcbf292, type: 3}
   - {fileID: 21300000, guid: cfafcce74f263c641a38176bd0c17c72, type: 3}
-  - {fileID: 21300000, guid: 48a5322891953894d86640463a9c9289, type: 3}
   - {fileID: 21300000, guid: a16c6fd80cd5e434dbf093402658515b, type: 3}
   - {fileID: 21300000, guid: 51cdc4a979f53394e97a9665901eeafc, type: 3}
+  - {fileID: 21300000, guid: 42c7a82a863fa704aa3c6f3e6876b862, type: 3}
   - {fileID: 21300000, guid: 6d5b135a31b1ea44394096bcf53562a4, type: 3}
   - {fileID: 21300000, guid: 287afaaae89780049ae1e2196cd04b90, type: 3}
   - {fileID: 21300000, guid: 52fbe3db893d5784ca8ec85dc261f8b7, type: 3}
@@ -91,9 +91,9 @@ SpriteAtlas:
   - angel_armor_a
   - angel_eyesbrown
   - angel_shoulder_l
-  - angel_weapon_l
   - angel_shoes_r_b
   - angel_belt_a
+  - angel_weapon_l
   - angel_arm_r
   - angel_wing1_l
   - angel_eyes_open_1
