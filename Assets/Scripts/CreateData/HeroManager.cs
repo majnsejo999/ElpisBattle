@@ -15,6 +15,7 @@ public class HeroManager : MonoBehaviour
     public float hero_hp;
     public float hero_armour;
     public float hero_speed;
+    public float max_hp;
     public float level;
     public float levelMax;
     public float index_evolution;
@@ -29,6 +30,9 @@ public class HeroManager : MonoBehaviour
     public bool isSkill;
     public bool isEnemy;
     public Material sourceMaterial;
+
+    public SpriteRenderer spriteHp;
+    public TMPro.TextMeshPro textMeshHp;
     public void Init()
     {
         CreateRuntimeAssetsAndGameObject();
@@ -82,6 +86,8 @@ public class HeroManager : MonoBehaviour
         hero_hp = statsBase.hp + statsBase.hp_lv * level + statsBase.hp_ev * index_evolution * rality;
         hero_armour = statsBase.armour + statsBase.armour_lv * level + statsBase.armour_ev * index_evolution * rality;
         hero_speed = statsBase.speed + statsBase.speed_lv * level + statsBase.speed_ev * index_evolution * rality;
+        textMeshHp.text = hero_hp.ToString();
+        max_hp = hero_hp;
         AddStatsSkill(listSkill[1]);
         AddStatsSkill(listSkill[2]);
     }
@@ -153,5 +159,15 @@ public class HeroManager : MonoBehaviour
         {
             BattleManager.instance.Hit();
         }
+    }
+    public void BurnHp(float damge)
+    {
+        hero_hp -= damge;
+        if (hero_hp <= 0)
+        {
+            hero_hp = 0;
+        }
+        spriteHp.size = new Vector2(hero_hp / max_hp * 3, 0.3f);
+        textMeshHp.text = hero_hp.ToString();
     }
 }

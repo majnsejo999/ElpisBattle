@@ -58,7 +58,16 @@ public class BattleManager : MonoBehaviour
         {
             if (_hero.listSkill[0].statsSkillNormals.require == "min_hp")
             {
-
+                if (_hero.isEnemy)
+                {
+                    List<HeroManager> heroClone = list1.OrderBy(o => o.hero_hp).ToList();
+                    heroClone[0].objCanAttck.SetActive(true);
+                }
+                else
+                {
+                    List<HeroManager> heroClone = list2.OrderBy(o => o.hero_hp).ToList();
+                    heroClone[0].objCanAttck.SetActive(true);
+                }
             }
             else
             {
@@ -174,6 +183,7 @@ public class BattleManager : MonoBehaviour
     }
     public void Hit()
     {
+        CheckDamge();
         hero_beaten.skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroHit, false).Complete += delegate
          {
              hero_beaten.skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroIdle, true);
@@ -208,5 +218,15 @@ public class BattleManager : MonoBehaviour
                 NextTurn();
             });
         };
+    }
+    public void CheckDamge()
+    {
+        float critDame = 1;
+        float blockDame = 0;
+        float armor = hero_beaten.hero_armour;
+        float armorMultiplier = 1 - (0.06f * armor / (1 + 0.06f * Mathf.Abs(armor)));
+        float damge = (listRound[indexTurn].hero_attack * critDame - blockDame) * armorMultiplier;
+        Debug.Log("damge : " + damge);
+        hero_beaten.BurnHp(damge);
     }
 }
