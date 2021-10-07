@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6a7d1e70ad09744829f1f9e5f1abf0, type: 3}
+  m_Name: Ultimate 2Skill167
+  m_EditorClassIdentifier: 
+  id: 0
+  skill_name: Master Taunt
+  rality: Legendary
+  type_skill: Ultimate 2
+  detail: '-Taunt a enemy next round
+
+    -Bonus HP 50% next round
+
+    -Bonus Armor
+    50% next round'
+  origin:
+  - Dwarf
+  - Human
+  - Orc
+  mana: 60
+  spriteSkill: {fileID: 0}
+  statsSkillNormals:
+    target:
+    - 1
+    - 1
+    - 4
+    require: none
+    type_damge: none
+    damge:
+    - 0
+    - 0
+    - 0
+    effectSkill:
+    - effect: taunt
+      rate:
+      - 1
+      - 1
+      - 4
+    - effect: hp
+      rate:
+      - 0.5
+      - 0.6
+      - 0.7
+    - effect: armor
+      rate:
+      - 0.5
+      - 0.6
+      - 0.7
+    round: 0
+    max_stack: 1
+    effect_dame:
+    - 0
+    - 0
+    - 0

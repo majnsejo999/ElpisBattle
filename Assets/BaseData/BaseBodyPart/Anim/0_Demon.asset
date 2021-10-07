@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1851b901fbaee5048b18b02f69d045bd, type: 3}
+  m_Name: 0_Demon
+  m_EditorClassIdentifier: 
+  listBodyCharacter:
+  - nameSlot:
+    - demon_hair
+    nameSprite:
+    - demon_hair
+  - nameSlot:
+    - demon_eyes_open
+    nameSprite:
+    - demon_eyes_open
+  - nameSlot:
+    - demon_eyesbrown
+    - demon_beard
+    nameSprite:
+    - demon_eyesbrown
+    - demon_beard
+  - nameSlot:
+    - demon_weapon_l
+    nameSprite:
+    - demon_weapon_l
+  - nameSlot:
+    - demon_armor_a
+    - demon_armor_b
+    nameSprite:
+    - demon_armor_a
+    - demon_armor_b
+  - nameSlot:
+    - demon_arm_l
+    - demon_arm_r
+    - demon_forearm_l
+    - demon_forearm_r
+    - demon_shoulder_l
+    - demon_shoulder_r
+    nameSprite:
+    - demon_arm_l
+    - demon_arm_r
+    - demon_forearm_l
+    - demon_forearm_r
+    - demon_shoulder_l
+    - demon_shoulder_r
+  - nameSlot:
+    - demon_wing_l
+    - demon_wing_r
+    - demon_tail
+    nameSprite:
+    - demon_wing_l
+    - demon_wing_r
+    - demon_tail
+  - nameSlot:
+    - demon_belt_a
+    - demon_belt_b
+    - demon_pants_l
+    - demon_pants_r
+    nameSprite:
+    - demon_belt_a
+    - demon_belt_b
+    - demon_pant_l
+    - demon_pant_r
+  - nameSlot:
+    - demon_shoes_a_l
+    - demon_shoes_b_l
+    - demon_shoes_c_l
+    - demon_shoes_a_r
+    - demon_shoes_b_r
+    - demon_shoes_c_r
+    nameSprite:
+    - demon_shoes_a_l
+    - demon_shoes_b_l
+    - demon_shoes_c_l
+    - demon_shoes_a_r
+    - demon_shoes_b_r
+    - demon_shoes_c_r
+  spriteAtlas:
+  - {fileID: 4343727234628468602, guid: 2e744ac9ddbdf874c90366816aff5482, type: 2}
+  - {fileID: 4343727234628468602, guid: 2e744ac9ddbdf874c90366816aff5482, type: 2}
+  skeletonJson: {fileID: 4900000, guid: ff6905e1f58928d43bcc8ac6c6d00325, type: 3}
+  atlasText: {fileID: 4900000, guid: b140c1b7ed202d144a8e077ad4f976c1, type: 3}
+  textures:
+  - {fileID: 2800000, guid: d90058b47e288394ea6498f3eb4979c9, type: 3}
+  materialPropertySource: {fileID: 2100000, guid: 2e8c9e025f1e64c44bc1c06d868bcf35, type: 2}

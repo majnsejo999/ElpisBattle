@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: NormalSkill7
   m_EditorClassIdentifier: 
   id: 0
-  skill_name: 8
-  rality: Rare
+  skill_name: Master Bash
+  rality: Legendary
   type_skill: Normal
-  detail: "-T\u1EA5n c\xF4ng 1 m\u1EE5c ti\xEAu\n-20% g\xE2y dame \u0111\u1ED1t trong
-    3 l\u01B0\u1EE3t\n-Dame \u0111\u1ED1t = 500 dame ph\xE9p\n-Kh\xF4ng stack"
+  detail: '-Attack a single target : 140% / 210% / 280%
+
+    -20% bash 1 round'
   origin:
   - All
   mana: 0
@@ -30,18 +31,18 @@ MonoBehaviour:
     require: none
     type_damge: attck
     damge:
-    - 1
-    - 1.2
-    - 1.5
+    - 1.4
+    - 2.1
+    - 2.8
     effectSkill:
-    - effect: burn
+    - effect: stun
       rate:
       - 0.2
-      - 0.25
-      - 0.3
+      - 0.2
+      - 0.2
     round: 0
     max_stack: 1
     effect_dame:
-    - 500
-    - 750
-    - 1000
+    - 0
+    - 0
+    - 0

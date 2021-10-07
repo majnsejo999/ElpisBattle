@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: NormalSkill3
   m_EditorClassIdentifier: 
   id: 0
-  skill_name: 4
+  skill_name: Master Slash
   rality: Legendary
   type_skill: Normal
-  detail: "-T\u1EA5n c\xF4ng 1 m\u1EE5c ti\xEAu"
+  detail: '-Attack a single target : 300% / 450% / 600%'
   origin:
   - All
   mana: 0

@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: NormalSkill11
   m_EditorClassIdentifier: 
   id: 0
-  skill_name: 12
-  rality: Rare
+  skill_name: Master Cold Feet
+  rality: Legendary
   type_skill: Normal
-  detail: "-T\u1EA5n c\xF4ng 1 m\u1EE5c ti\xEAu c\xF3 HP th\u1EA5p nh\u1EA5t"
+  detail: '-Attack a single target : 140% / 210% / 280%
+
+    -20% freeze 1 round'
   origin:
   - All
   mana: 0
@@ -26,20 +28,20 @@ MonoBehaviour:
     - 1
     - 1
     - 1
-    require: min_hp
+    require: none
     type_damge: attck
     damge:
-    - 1.5
-    - 2
-    - 2.5
+    - 1.4
+    - 2.1
+    - 2.8
     effectSkill:
-    - effect: none
+    - effect: frezee
       rate:
-      - 0
-      - 0
-      - 0
+      - 0.2
+      - 0.2
+      - 0.2
     round: 0
-    max_stack: 0
+    max_stack: 1
     effect_dame:
     - 0
     - 0

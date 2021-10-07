@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: NormalSkill8
   m_EditorClassIdentifier: 
   id: 0
-  skill_name: 9
-  rality: Rare
+  skill_name: Basic Cold Feet
+  rality: Common
   type_skill: Normal
-  detail: "-T\u1EA5n c\xF4ng 1 m\u1EE5c ti\xEAu\n-40% g\xE2y dame ch\u1EA3y m\xE1u
-    trong 3 l\u01B0\u1EE3t\n-Dame ch\u1EA3y m\xE1u = 250 dame ph\xE9p\n-\u0110\u01B0\u1EE3c
-    ph\xE9p stack 2 l\u1EA7n"
+  detail: '-Attack a single target : 80% / 120% / 160%
+
+    -20% freeze 1 round'
   origin:
   - All
   mana: 0
@@ -31,18 +31,18 @@ MonoBehaviour:
     require: none
     type_damge: attck
     damge:
-    - 1
+    - 0.8
     - 1.2
-    - 1.5
+    - 1.6
     effectSkill:
-    - effect: bleed
+    - effect: frezee
       rate:
-      - 0.4
-      - 0.5
-      - 0.6
+      - 0.2
+      - 0.2
+      - 0.2
     round: 0
-    max_stack: 2
+    max_stack: 1
     effect_dame:
-    - 250
-    - 375
-    - 500
+    - 0
+    - 0
+    - 0

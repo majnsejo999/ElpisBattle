@@ -11,11 +11,7 @@ public class HeroManager : MonoBehaviour
     public int idHero;
     public List<int> listIdBody;
     public string hero_origin;
-    public float hero_attack;
-    public float hero_hp;
-    public float hero_armour;
-    public float hero_speed;
-    public float max_hp;
+    public StatHero statHero;
     public float level;
     public float levelMax;
     public float index_evolution;
@@ -23,10 +19,10 @@ public class HeroManager : MonoBehaviour
     public float rality;
     public float sum_stats_body = 0;
     public int line;
-    public BaseDataAll baseData;
     public SkeletonAnimation skeletonAnimation;
     public GameObject objSelected, objCanAttck;
     public List<StatsSkillHero> listSkill;
+    public BaseDataAll baseData;
     public bool isSkill;
     public bool isEnemy;
     public Material sourceMaterial;
@@ -34,7 +30,7 @@ public class HeroManager : MonoBehaviour
     public SpriteRenderer spriteHp;
     public TMPro.TextMeshPro textMeshHp;
     public void Init()
-    {
+    {     
         CreateRuntimeAssetsAndGameObject();
         AddSkill();
         objSelected.SetActive(false);
@@ -53,6 +49,7 @@ public class HeroManager : MonoBehaviour
     }
     void CreateRuntimeAssetsAndGameObject()
     {
+        Debug.Log(idHero);
         sourceMaterial = baseData.baseBodyPartAnim[idHero].materialPropertySource;
         SpineAtlasAsset runtimeAtlasAsset = SpineAtlasAsset.CreateRuntimeInstance(baseData.baseBodyPartAnim[idHero].atlasText, baseData.baseBodyPartAnim[idHero].textures, sourceMaterial, true);
         SkeletonDataAsset runtimeSkeletonDataAsset = SkeletonDataAsset.CreateRuntimeInstance(baseData.baseBodyPartAnim[idHero].skeletonJson, runtimeAtlasAsset, true);
@@ -69,43 +66,78 @@ public class HeroManager : MonoBehaviour
     }
     public void AddSkill()
     {
-        int a1 = Random.Range(0, 12);
+        int a1 = Random.Range(0, 39);
         listSkill.Add(baseData.ListStatsSkillHero[a1]);
-        int a2 = Random.Range(13, 34);
+        int a2 = Random.Range(40, 83);
         listSkill.Add(baseData.ListStatsSkillHero[a2]);
-        int a3 = Random.Range(13, 34);
+        int a3 = Random.Range(84, 119);
         listSkill.Add(baseData.ListStatsSkillHero[a3]);
-        int a4 = Random.Range(34, 54);
+        int a4 = Random.Range(120, 184);
         listSkill.Add(baseData.ListStatsSkillHero[a4]);
     }
     public void CalculateStatsHero(StatsBaseHero statsBase)
     {
         hero_origin = statsBase.origin;
         SumStatsBody();
-        hero_attack = statsBase.attack + statsBase.attack_lv * level + statsBase.attack_ev * index_evolution * rality;
-        hero_hp = statsBase.hp + statsBase.hp_lv * level + statsBase.hp_ev * index_evolution * rality;
-        hero_armour = statsBase.armour + statsBase.armour_lv * level + statsBase.armour_ev * index_evolution * rality;
-        hero_speed = statsBase.speed + statsBase.speed_lv * level + statsBase.speed_ev * index_evolution * rality;
-        textMeshHp.text = hero_hp.ToString();
-        max_hp = hero_hp;
+        statHero.hero_attack = statsBase.attack + statsBase.attack_lv * level + statsBase.attack_ev * index_evolution * rality;
+        statHero.hero_hp = statsBase.hp + statsBase.hp_lv * level + statsBase.hp_ev * index_evolution * rality;
+        statHero.hero_armour = statsBase.armour + statsBase.armour_lv * level + statsBase.armour_ev * index_evolution * rality;
+        statHero.hero_speed = statsBase.speed + statsBase.speed_lv * level + statsBase.speed_ev * index_evolution * rality;
+        statHero.hero_attack *= ConstData.Bonus_Attack;
+        statHero.hero_hp *= ConstData.Bonus_Hp;
+        statHero.hero_armour *= ConstData.Bonus_Armor;
+        statHero.hero_speed *= ConstData.Bonus_Speed;
+        statHero.hero_mana = 0;
         AddStatsSkill(listSkill[1]);
-        AddStatsSkill(listSkill[2]);
+        statHero.max_hp = statHero.hero_hp;
+        statHero.max_mana = ConstData.Max_Mana;
+        textMeshHp.text = statHero.hero_hp.ToString();
     }
     public void AddStatsSkill(StatsSkillHero skill)
     {
         switch (skill.statsSkillNormals.effectSkill[0].effect)
         {
-            case "attck":
-                hero_attack = hero_attack + (hero_attack * skill.statsSkillNormals.effectSkill[0].rate[0]);
+            case "attack":
+                statHero.hero_attack += (statHero.hero_attack * skill.statsSkillNormals.effectSkill[0].rate[0]);
                 break;
             case "armor":
-                hero_armour = hero_armour + (hero_armour * skill.statsSkillNormals.effectSkill[0].rate[0]);
+                statHero.hero_armour += (statHero.hero_armour * skill.statsSkillNormals.effectSkill[0].rate[0]);
                 break;
             case "speed":
-                hero_speed = hero_speed + (hero_speed * skill.statsSkillNormals.effectSkill[0].rate[0]);
+                statHero.hero_speed += (statHero.hero_speed * skill.statsSkillNormals.effectSkill[0].rate[0]);
                 break;
             case "hp":
-                hero_hp = hero_hp + (hero_hp * skill.statsSkillNormals.effectSkill[0].rate[0]);
+                statHero.hero_hp += (statHero.hero_hp * skill.statsSkillNormals.effectSkill[0].rate[0]);
+                break;
+            case "crit_rate":
+                statHero.crit_rate += (statHero.crit_rate * skill.statsSkillNormals.effectSkill[0].rate[0]);
+                break;
+            case "crit_dame":
+                statHero.crit_dame = skill.statsSkillNormals.effectSkill[0].rate[0];
+                break;
+            case "pure_dame":
+                statHero.pure_dame = statHero.pure_dame * (1 + skill.statsSkillNormals.effectSkill[0].rate[0]);
+                break;
+            case "evasion":
+                statHero.evasion = skill.statsSkillNormals.effectSkill[0].rate[0];
+                break;
+            case "regen_hp":
+                statHero.regen_hp = skill.statsSkillNormals.effectSkill[0].rate[0];
+                break;
+            case "life_steal_enemy_hp":
+                statHero.life_steal_enemy_hp = skill.statsSkillNormals.effectSkill[0].rate[0];
+                break;
+            case "magic_resist":
+                statHero.magic_resist = skill.statsSkillNormals.effectSkill[0].rate[0];
+                break;
+            case "dame_reduction":
+                statHero.dame_reduction = skill.statsSkillNormals.effectSkill[0].rate[0];
+                break;
+            case "armor_reduction":
+                statHero.armor_reduction = skill.statsSkillNormals.effectSkill[0].rate[0];
+                break;
+            case "dodge_chance":
+                statHero.dodge_chance = skill.statsSkillNormals.effectSkill[0].rate[0];
                 break;
         }
     }
@@ -115,10 +147,10 @@ public class HeroManager : MonoBehaviour
         for (int i = 0; i < listIdBody.Count; i++)
         {
             StatsBaseBody baseBody = baseData.ListStatsBaseBody[listIdBody[i]];
-            hero_attack += baseBody.attack;
-            hero_hp += baseBody.hp;
-            hero_armour += baseBody.hp;
-            hero_speed += baseBody.speed;
+            statHero.hero_attack += baseBody.attack;
+            statHero.hero_hp += baseBody.hp;
+            statHero.hero_armour += baseBody.hp;
+            statHero.hero_speed += baseBody.speed;
             sum_stats_body += (baseBody.attack + baseBody.hp + baseBody.hp + baseBody.speed);
             ChangSkin(baseData.baseBodyPartAnim[idHero].listBodyCharacter[i], baseData.baseBodyPartAnim[idHero].spriteAtlas[listIdBody[i] % 2], _skin2);
         }
@@ -129,7 +161,7 @@ public class HeroManager : MonoBehaviour
     {
         for (int i = 0; i < bodyParts.nameSlot.Length; i++)
         {
-            //Debug.Log(bodyParts.nameSlot[i]);
+           //Debug.Log(bodyParts.nameSlot[i]);
             int slotIndex = skeletonAnimation.skeletonDataAsset.GetSkeletonData(true).FindSlot(bodyParts.nameSlot[i]).Index;
             Attachment attachment1 = skeletonAnimation.skeleton.GetAttachment(bodyParts.nameSlot[i], bodyParts.nameSlot[i]);
             Attachment attachment2 = attachment1.GetRemappedClone(spriteAtlas.GetSprite(bodyParts.nameSprite[i]), sourceMaterial);
@@ -162,12 +194,107 @@ public class HeroManager : MonoBehaviour
     }
     public void BurnHp(float damge)
     {
-        hero_hp -= damge;
-        if (hero_hp <= 0)
+        if (Checkdodge() || CheckEvasion())
         {
-            hero_hp = 0;
+            skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroIdle, true);
         }
-        spriteHp.size = new Vector2(hero_hp / max_hp * 3, 0.3f);
-        textMeshHp.text = hero_hp.ToString();
+        else
+        {
+            statHero.hero_hp -= damge;
+            if (statHero.hero_hp <= 0)
+            {
+                statHero.hero_hp = 0;
+                Die();
+            }
+            else
+            {
+                skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroHit, false).Complete += delegate
+                {
+                    skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroIdle, true);
+                };
+            }
+            spriteHp.size = new Vector2(statHero.hero_hp / statHero.max_hp * 3, 0.4f);
+            textMeshHp.text = statHero.hero_hp.ToString();
+        }
+    }
+    public void Die()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroDie, false).Complete += delegate
+        {
+            gameObject.SetActive(false);
+            BattleManager.instance.RemoveHero(this);
+        };
+    }
+
+    public bool CheckEvasion()
+    {
+        if (statHero.evasion == 0)
+            return false;
+        else
+        {
+            float a = Random.Range(0, 100);
+            if (a <= statHero.evasion * 100)
+            {
+                return true;
+            }
+            return false;
+        }
+    }
+    public bool Checkdodge()
+    {
+        if (statHero.dodge_chance == 0)
+            return false;
+        else
+        {
+            float a = Random.Range(0, 100);
+            if (a <= statHero.dodge_chance * 100)
+            {
+                return true;
+            }
+            return false;
+        }
+    }
+}
+[System.Serializable]
+public class StatHero
+{
+    public float hero_attack;
+    public float hero_hp;
+    public float hero_armour;
+    public float hero_speed;
+    public float hero_mana;
+    public float max_hp;
+    public float max_mana;
+    public float crit_rate;
+    public float crit_dame;
+    public float pure_dame;
+    public float evasion; // chỉ số né đánh thường
+    public float regen_hp;
+    public float life_steal_enemy_hp;
+    public float magic_resist;
+    public float dame_reduction;
+    public float armor_reduction;
+    public float dodge_chance; // chỉ số né cả skill lẫn đánh thường
+    public float block_dame;
+    public StatHero()
+    {
+        hero_attack = 0;
+        hero_hp = 0;
+        hero_armour = 0;
+        hero_speed = 0;
+        hero_mana = 0;
+        max_hp = 0;
+        max_mana = 0;
+        crit_rate = 0;
+        crit_dame = 1;
+        pure_dame = 100;
+        evasion = 0;
+        regen_hp = 0;
+        life_steal_enemy_hp = 0;
+        magic_resist = 0;
+        dame_reduction = 0;
+        armor_reduction = 0;
+        dodge_chance = 0;
+        block_dame = 0;
     }
 }

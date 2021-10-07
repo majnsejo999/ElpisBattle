@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: NormalSkill2
   m_EditorClassIdentifier: 
   id: 0
-  skill_name: 3
+  skill_name: Expert Slash
   rality: Epic
   type_skill: Normal
-  detail: "-T\u1EA5n c\xF4ng 1 m\u1EE5c ti\xEAu"
+  detail: '-Attack a single target : 250% / 375% / 500%'
   origin:
   - All
   mana: 0

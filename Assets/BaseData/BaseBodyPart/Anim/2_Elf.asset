@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1851b901fbaee5048b18b02f69d045bd, type: 3}
+  m_Name: 2_Elf
+  m_EditorClassIdentifier: 
+  listBodyCharacter:
+  - nameSlot:
+    - elf_hair_a
+    - elf_hair_b
+    nameSprite:
+    - elf_hair_a
+    - elf_hair_b
+  - nameSlot:
+    - elf_eyes_open
+    nameSprite:
+    - elf_eyes_open
+  - nameSlot:
+    - elf_eyesbrown
+    - elf_earring
+    nameSprite:
+    - elf_eyesbrown
+    - elf_earring
+  - nameSlot:
+    - elf_weapon_a_r
+    - elf_weapon_b_r
+    nameSprite:
+    - elf_weapon_a_r
+    - elf_weapon_b_r
+  - nameSlot:
+    - elf_ armor_a
+    - elf_ armor_b
+    - elf_armor_b
+    - elf_skirt
+    nameSprite:
+    - elf_ armor_a
+    - elf_ armor_b
+    - elf_armor_b
+    - elf_skirt
+  - nameSlot:
+    - elf_ forearm_l
+    - elf_ forearm_r_a
+    - elf_arm_l
+    - elf_arm_r
+    - elf_forearm_r_b
+    - elf_shoulder_r
+    nameSprite:
+    - elf_ forearm_l
+    - elf_ forearm_r_a
+    - elf_arm_l
+    - elf_arm_r
+    - elf_forearm_r_b
+    - elf_shoulder_r
+  - nameSlot: []
+    nameSprite: []
+  - nameSlot:
+    - elf_belt
+    - elf_pant_l
+    - elf_pants_r
+    nameSprite:
+    - elf_belt
+    - elf_pant_l
+    - elf_pants_r
+  - nameSlot:
+    - elf_shoes_l_a
+    - elf_shoes_l_b
+    - elf_shoes_r_a
+    - elf_shoes_r_b
+    nameSprite:
+    - elf_shoes_l_a
+    - elf_shoes_l_b
+    - elf_shoes_r_a
+    - elf_shoes_r_b
+  spriteAtlas:
+  - {fileID: 4343727234628468602, guid: 99c60f1295d7842438c75c8005b086a0, type: 2}
+  - {fileID: 4343727234628468602, guid: 99c60f1295d7842438c75c8005b086a0, type: 2}
+  skeletonJson: {fileID: 4900000, guid: d546dd715537a8c4ca743945ef073847, type: 3}
+  atlasText: {fileID: 4900000, guid: 2c739f4555bb7044aab36e3b5ef8d57c, type: 3}
+  textures:
+  - {fileID: 2800000, guid: 56050c905e3f25545a082d19f6f76529, type: 3}
+  materialPropertySource: {fileID: 2100000, guid: a775e38dd46209542a8207d1e1c8f8d6, type: 2}

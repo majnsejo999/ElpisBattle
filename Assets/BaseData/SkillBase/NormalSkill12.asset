@@ -13,34 +13,41 @@ MonoBehaviour:
   m_Name: NormalSkill12
   m_EditorClassIdentifier: 
   id: 0
-  skill_name: 13
-  rality: Rare
+  skill_name: Basic Poison Touch
+  rality: Common
   type_skill: Normal
-  detail: "-T\u1EA5n c\xF4ng to\xE0n b\u1ED9 c\xE1c m\u1EE5c ti\xEAu"
+  detail: '-Attack a single target : 80% / 120% / 160%
+
+    -20% poison enemy, dame
+    until enemy die
+
+    -Poison Dame = 150/225/300 Magic Dame
+
+    -No stack'
   origin:
   - All
   mana: 0
   spriteSkill: {fileID: 0}
   statsSkillNormals:
     target:
-    - 4
-    - 4
-    - 4
+    - 1
+    - 1
+    - 1
     require: none
     type_damge: attck
     damge:
-    - 0.5
-    - 0.75
-    - 1
+    - 0.8
+    - 1.2
+    - 1.6
     effectSkill:
-    - effect: none
+    - effect: poison
       rate:
-      - 0
-      - 0
-      - 0
+      - 0.2
+      - 0.2
+      - 0.2
     round: 0
-    max_stack: 0
+    max_stack: 1
     effect_dame:
-    - 0
-    - 0
-    - 0
+    - 150
+    - 225
+    - 300

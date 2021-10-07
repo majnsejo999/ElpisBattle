@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: NormalSkill0
   m_EditorClassIdentifier: 
   id: 0
-  skill_name: 1
+  skill_name: Basic Slash
   rality: Common
   type_skill: Normal
-  detail: "-T\u1EA5n c\xF4ng 1 m\u1EE5c ti\xEAu"
+  detail: '-Attack a single target : 150% / 225% / 300%'
   origin:
   - All
   mana: 0

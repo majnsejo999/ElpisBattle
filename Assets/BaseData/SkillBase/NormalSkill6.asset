@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: NormalSkill6
   m_EditorClassIdentifier: 
   id: 0
-  skill_name: 7
-  rality: Rare
+  skill_name: Expert Bash
+  rality: Epic
   type_skill: Normal
-  detail: "-T\u1EA5n c\xF4ng 1 m\u1EE5c ti\xEAu\n-20% g\xE2y dame \u0111\u1ED9c \u0111\u1EBFn
-    khi m\u1EE5c ti\xEAu ch\u1EBFt\n-Dame \u0111\u1ED9c = 200 dame ph\xE9p\n-Kh\xF4ng
-    stack"
+  detail: '-Attack a single target : 120% / 180% / 240%
+
+    -20% bash 1 round'
   origin:
   - All
   mana: 0
@@ -31,18 +31,18 @@ MonoBehaviour:
     require: none
     type_damge: attck
     damge:
-    - 1
     - 1.2
-    - 1.5
+    - 1.8
+    - 2.4
     effectSkill:
-    - effect: poison
+    - effect: stun
       rate:
       - 0.2
-      - 0.25
-      - 0.3
+      - 0.2
+      - 0.2
     round: 0
     max_stack: 1
     effect_dame:
-    - 200
-    - 300
-    - 400
+    - 0
+    - 0
+    - 0

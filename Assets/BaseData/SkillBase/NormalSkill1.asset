@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: NormalSkill1
   m_EditorClassIdentifier: 
   id: 0
-  skill_name: 2
+  skill_name: Advanced Slash
   rality: Rare
   type_skill: Normal
-  detail: "-T\u1EA5n c\xF4ng 1 m\u1EE5c ti\xEAu"
+  detail: '-Attack a single target : 200% / 300% / 400%'
   origin:
   - All
   mana: 0

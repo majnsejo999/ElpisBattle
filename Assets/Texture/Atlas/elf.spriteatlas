@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: elf
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 1
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 3eec828774944f242a8748efb3f62b48, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d6defd7063f9e464a9e9d813511b95cc, type: 3}
+  - {fileID: 21300000, guid: 781ec703d6e0c834f8a790fc12c1c998, type: 3}
+  - {fileID: 21300000, guid: a6a77d23c2b7d3d4685583fbf649c324, type: 3}
+  - {fileID: 21300000, guid: b67528332cb58cb409db51a19a5a04a5, type: 3}
+  - {fileID: 21300000, guid: 1896c183794b3d341bff76e766855052, type: 3}
+  - {fileID: 21300000, guid: 115b555471e862440baf62cd140bdffe, type: 3}
+  - {fileID: 21300000, guid: 24540a5526f463347bfa824da853c3ca, type: 3}
+  - {fileID: 21300000, guid: db10e375bdfa0974fbd770600d7d464e, type: 3}
+  - {fileID: 21300000, guid: 09ceb9d5b571fa147912f6203b828873, type: 3}
+  - {fileID: 21300000, guid: 3d6eeb266ac758e45afc1e4834011955, type: 3}
+  - {fileID: 21300000, guid: 21131269d69b60f42a290cd161c1e15e, type: 3}
+  - {fileID: 21300000, guid: 1c07e1b99d29a514e85a7a214fafc6a4, type: 3}
+  - {fileID: 21300000, guid: fabf1df954017054889244315a7fc35d, type: 3}
+  - {fileID: 21300000, guid: 029dd69ab52d97d44bc9a3a10d404789, type: 3}
+  - {fileID: 21300000, guid: e852810b26f8e464cb68715ceb7bdebd, type: 3}
+  - {fileID: 21300000, guid: e9ec6c6b98891ab4fb7be6c2808e36bd, type: 3}
+  - {fileID: 21300000, guid: f25007ab5259e404ab7b12a00f9303a0, type: 3}
+  - {fileID: 21300000, guid: 4f6b842c835d12e4083cd35645052c66, type: 3}
+  - {fileID: 21300000, guid: bb0d873c6c55f61449a254b5eb14967c, type: 3}
+  - {fileID: 21300000, guid: 689fddcce40a80042b88e0b391b65a57, type: 3}
+  - {fileID: 21300000, guid: 89d57f0d962abb94d9b1382f5aef6a10, type: 3}
+  - {fileID: 21300000, guid: 16e921ae06264bd4f8dc3f7714a90c53, type: 3}
+  - {fileID: 21300000, guid: ccbae19f1dcf4674796f02dc78b4d5d8, type: 3}
+  - {fileID: 21300000, guid: f787a4efa37d66c47b0206baacaa89d7, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - elf_shoes_r_a
+  - elf_ forearm_l
+  - elf_pants_r
+  - elf_shoes_l_a
+  - elf_shoes_l_b
+  - elf_shoes_r_b
+  - elf_eyes_open
+  - elf_eyesbrown
+  - elf_hair_b
+  - elf_arm_r
+  - elf_shoulder_r
+  - elf_armor_b
+  - elf_ armor_b
+  - elf_skirt
+  - elf_pant_l
+  - elf_hair_a
+  - elf_earring
+  - elf_ armor_a
+  - elf_ forearm_r_a
+  - elf_forearm_r_b
+  - elf_belt
+  - elf_arm_l
+  - elf_weapon_b_r
+  - elf_weapon_a_r
+  m_RenderDataMap: {}
+  m_Tag: elf
+  m_IsVariant: 0
