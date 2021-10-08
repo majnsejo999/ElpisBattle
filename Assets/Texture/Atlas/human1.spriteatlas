@@ -63,16 +63,13 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 753309b019214fe41af9d9648b7ca499, type: 3}
   - {fileID: 21300000, guid: 1763596176b2d8649a8de1f57c951bd8, type: 3}
-  - {fileID: 21300000, guid: 6ee81a717e469184fa914737175b8a11, type: 3}
   - {fileID: 21300000, guid: 797ae7a116dae3f4097cc14fbf0b379a, type: 3}
   - {fileID: 21300000, guid: d0ffb6b11dc31fa4fbf0b55ec5426d47, type: 3}
   - {fileID: 21300000, guid: 722cd4b2a9e9c2d40a353583a4040203, type: 3}
   - {fileID: 21300000, guid: 60b072d2e8ca70a45aeac29956a95ba5, type: 3}
   - {fileID: 21300000, guid: aaf40115c744741498db5600de8995a4, type: 3}
   - {fileID: 21300000, guid: 8a37bf6513ee2bb479088d3d9ea39fcf, type: 3}
-  - {fileID: 21300000, guid: 1c1c3a96acaf24c4396e77d79c3902af, type: 3}
   - {fileID: 21300000, guid: 70df19e692c2a3f47bf0672cac4dbe6d, type: 3}
-  - {fileID: 21300000, guid: 294c93d95fb5f5d4ba37e515299a1d5b, type: 3}
   - {fileID: 21300000, guid: fe11ddaa44fc2bf41891e5dd6839683b, type: 3}
   - {fileID: 21300000, guid: 041640daa9fd0464fad812bc85e3a1fb, type: 3}
   - {fileID: 21300000, guid: ad32bb3c4af72794786dd316b8122d60, type: 3}
@@ -82,20 +79,16 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e6bb974db963c31408db7e4cd4aa92e0, type: 3}
   - {fileID: 21300000, guid: 976df87eb6235b64685d3b321978c712, type: 3}
   - {fileID: 21300000, guid: 4eb5b16fc4da65c4e9048b2b80d409be, type: 3}
-  - {fileID: 21300000, guid: 872e19dfb66f9e14fb2a528efeb905b3, type: 3}
   m_PackedSpriteNamesToIndex:
   - human_weapon_r_b
   - human_armor_b
-  - human_pants_l
-  - human_eyesbrown
+  - human_eyebrow
   - human_forearm_r
   - human_shoes_r_a
   - human_hair
   - human_shoes_l_b
   - human_forearm_l
-  - human_arm_r
   - human_weapon_l
-  - human_pants_r
   - human_armor_a
   - human_weapon_r_a
   - human_beard
@@ -103,9 +96,8 @@ SpriteAtlas:
   - human_shoes_l_a
   - human_shoulder_l
   - human_belt
-  - human_eyes_open
+  - human_eye_open
   - human_shoulder_r
-  - human_arm_l
   m_RenderDataMap: {}
   m_Tag: human1
   m_IsVariant: 0

@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: demon1
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 1
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: c7c284bf3dd99484ab83c18efc5b3b58, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 57636f606d4ff724bb4cb1e8a9a33dc6, type: 3}
+  - {fileID: 21300000, guid: 149935d0d8a0a3442bd763f2587ca712, type: 3}
+  - {fileID: 21300000, guid: 5475ee012909d1741ae6c1ec229bb973, type: 3}
+  - {fileID: 21300000, guid: a3e4033142cd74c4f90bbfa91a444f72, type: 3}
+  - {fileID: 21300000, guid: 4aff3c811d3d48f4384e75f2b7e47be0, type: 3}
+  - {fileID: 21300000, guid: 652bf0b1010ac814bb25e0198e1f5581, type: 3}
+  - {fileID: 21300000, guid: d94504f125be90a4889233a0369a3cbf, type: 3}
+  - {fileID: 21300000, guid: 5abc288296ee5764aa24c6765efb5ebd, type: 3}
+  - {fileID: 21300000, guid: e8d83492b1cd89c40850c52eba787da4, type: 3}
+  - {fileID: 21300000, guid: 027022c25d5d0ed47a2467a2686ba278, type: 3}
+  - {fileID: 21300000, guid: 03a2879311da86945842cabd798003e0, type: 3}
+  - {fileID: 21300000, guid: 3846e4142d41bac4db90a0a021df8734, type: 3}
+  - {fileID: 21300000, guid: b46f9724cb2e3a746bae58658248cfff, type: 3}
+  - {fileID: 21300000, guid: 7b919034234675144819a3e335e9aebe, type: 3}
+  - {fileID: 21300000, guid: 34ed5d74ea0d5ba41ae1b49dd35fdfa2, type: 3}
+  - {fileID: 21300000, guid: 0a3b6c84f90391b4aaea745fa669d7a2, type: 3}
+  - {fileID: 21300000, guid: bb22e0a48d05ffb458889842ea5fe0be, type: 3}
+  - {fileID: 21300000, guid: 30e10c0543c31424f9308a682d62dcd8, type: 3}
+  - {fileID: 21300000, guid: a02ad575d50f7c145b205880505ce540, type: 3}
+  - {fileID: 21300000, guid: 8754e156551380c4881ebfed7597c7aa, type: 3}
+  - {fileID: 21300000, guid: c5108b96195467949a52712c496d5243, type: 3}
+  - {fileID: 21300000, guid: 91be92488bc1dcb45a274c9a342ece07, type: 3}
+  - {fileID: 21300000, guid: 2e0ad64985a21aa4abdd0dc1a6e3b5f0, type: 3}
+  - {fileID: 21300000, guid: b02af4da2fa6a904c9e22fc582830d55, type: 3}
+  - {fileID: 21300000, guid: 2df1ea0bbb40bfc4e87594290b793a4c, type: 3}
+  - {fileID: 21300000, guid: 89127fcbe18a3d64891ae77fe32ba255, type: 3}
+  - {fileID: 21300000, guid: 28669feb564449543a4953186f14d1d2, type: 3}
+  - {fileID: 21300000, guid: ad295b3dae88ecf439b4f6aee61efe70, type: 3}
+  - {fileID: 21300000, guid: 36dbb33f685bb9849ba65ca9a2af2dcf, type: 3}
+  - {fileID: 21300000, guid: bf44db5faa1b1d3419efe99226f89d70, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - demon_pant_l
+  - demon_forearm_l
+  - demon_hand_l_b
+  - demon_tail
+  - demon_hair_b
+  - demon_shoulder_r
+  - demon_wing_r
+  - demon_hair_a
+  - demon_forearm_r
+  - demon_weapon_l
+  - demon_armor_b
+  - demon_eye_open
+  - demon_horn_a
+  - demon_pant_r
+  - demon_shoe_r_b
+  - demon_armor_a
+  - demon_eyebrow
+  - demon_belt_b
+  - demon_horn_b
+  - demon_beard
+  - demon_shoe_l_a
+  - s
+  - demon_wing_l
+  - demon_shoe_l_b
+  - demon_hand_l_a
+  - demon_shoe_r_c
+  - demon_hand_r
+  - demon_shoe_r_a
+  - demon_belt_a
+  - demon_shoulder_l
+  m_RenderDataMap: {}
+  m_Tag: demon1
+  m_IsVariant: 0

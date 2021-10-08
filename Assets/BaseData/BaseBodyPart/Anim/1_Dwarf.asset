@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1851b901fbaee5048b18b02f69d045bd, type: 3}
+  m_Name: 1_Dwarf
+  m_EditorClassIdentifier: 
+  listBodyCharacter:
+  - nameSlot:
+    - dwarf_helmet
+    nameSprite:
+    - dwarf_helmet
+  - nameSlot:
+    - drawf_eye_open
+    nameSprite:
+    - drawf_eye_open
+  - nameSlot:
+    - 'dwarf_eyebrow '
+    - dwarf_beard_a
+    - dwarf_beard_b
+    nameSprite:
+    - 'dwarf_eyebrow '
+    - dwarf_beard_a
+    - dwarf_beard_b
+  - nameSlot:
+    - dwarf_weapon
+    nameSprite:
+    - dwarf_weapon
+  - nameSlot:
+    - human_armor_a
+    - human_armor_b
+    nameSprite:
+    - human_armor_a
+    - human_armor_b
+  - nameSlot:
+    - human_arm_l
+    - human_arm_r
+    - human_forearm_l
+    - human_forearm_r
+    - human_shoulder_l
+    - human_shoulder_r
+    nameSprite:
+    - human_arm_l
+    - human_arm_r
+    - human_forearm_l
+    - human_forearm_r
+    - human_shoulder_l
+    - human_shoulder_r
+  - nameSlot:
+    - human_weapon_r_a
+    - human_weapon_r_b
+    nameSprite:
+    - human_weapon_r_a
+    - human_weapon_r_b
+  - nameSlot:
+    - human_belt
+    - human_pants_l
+    - human_pants_r
+    nameSprite:
+    - human_belt
+    - human_pants_l
+    - human_pants_r
+  - nameSlot:
+    - human_shoes_l_a
+    - human_shoes_l_b
+    - human_shoes_r_a
+    - human_shoes_r_b
+    nameSprite:
+    - human_shoes_l_a
+    - human_shoes_l_b
+    - human_shoes_r_a
+    - human_shoes_r_b
+  spriteAtlas:
+  - {fileID: 4343727234628468602, guid: 28849e8fa6a7e4b408361c55a1efe0e5, type: 2}
+  - {fileID: 4343727234628468602, guid: 28849e8fa6a7e4b408361c55a1efe0e5, type: 2}
+  skeletonJson: {fileID: 4900000, guid: 3cd632cfb2aacbe47baf6635481f92bd, type: 3}
+  atlasText: {fileID: 4900000, guid: eb7c8cfcba272c341b696bccac84c900, type: 3}
+  textures:
+  - {fileID: 2800000, guid: db2b5afe854336844bb29f9a699edbec, type: 3}
+  materialPropertySource: {fileID: 2100000, guid: 9993e410d231da4419e2e8285702349e, type: 2}

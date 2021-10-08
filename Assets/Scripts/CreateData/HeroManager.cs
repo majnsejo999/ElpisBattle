@@ -20,17 +20,17 @@ public class HeroManager : MonoBehaviour
     public float sum_stats_body = 0;
     public int line;
     public SkeletonAnimation skeletonAnimation;
-    public GameObject objSelected, objCanAttck;
+    public GameObject objSelected, objCanAttck,posAva;
     public List<StatsSkillHero> listSkill;
     public BaseDataAll baseData;
     public bool isSkill;
     public bool isEnemy;
     public Material sourceMaterial;
-
+    public Sprite sprAva;
     public SpriteRenderer spriteHp;
     public TMPro.TextMeshPro textMeshHp;
     public void Init()
-    {     
+    {
         CreateRuntimeAssetsAndGameObject();
         AddSkill();
         objSelected.SetActive(false);
@@ -49,7 +49,7 @@ public class HeroManager : MonoBehaviour
     }
     void CreateRuntimeAssetsAndGameObject()
     {
-        Debug.Log(idHero);
+       // Debug.Log(idHero);
         sourceMaterial = baseData.baseBodyPartAnim[idHero].materialPropertySource;
         SpineAtlasAsset runtimeAtlasAsset = SpineAtlasAsset.CreateRuntimeInstance(baseData.baseBodyPartAnim[idHero].atlasText, baseData.baseBodyPartAnim[idHero].textures, sourceMaterial, true);
         SkeletonDataAsset runtimeSkeletonDataAsset = SkeletonDataAsset.CreateRuntimeInstance(baseData.baseBodyPartAnim[idHero].skeletonJson, runtimeAtlasAsset, true);
@@ -161,7 +161,7 @@ public class HeroManager : MonoBehaviour
     {
         for (int i = 0; i < bodyParts.nameSlot.Length; i++)
         {
-           //Debug.Log(bodyParts.nameSlot[i]);
+            Debug.Log(bodyParts.nameSlot[i]);
             int slotIndex = skeletonAnimation.skeletonDataAsset.GetSkeletonData(true).FindSlot(bodyParts.nameSlot[i]).Index;
             Attachment attachment1 = skeletonAnimation.skeleton.GetAttachment(bodyParts.nameSlot[i], bodyParts.nameSlot[i]);
             Attachment attachment2 = attachment1.GetRemappedClone(spriteAtlas.GetSprite(bodyParts.nameSprite[i]), sourceMaterial);
@@ -192,7 +192,7 @@ public class HeroManager : MonoBehaviour
             BattleManager.instance.Hit();
         }
     }
-    public void BurnHp(float damge)
+    public void BurnHp(float damge, string effectSkill = "", float effectdame = 0)
     {
         if (Checkdodge() || CheckEvasion())
         {
@@ -213,7 +213,7 @@ public class HeroManager : MonoBehaviour
                     skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroIdle, true);
                 };
             }
-            spriteHp.size = new Vector2(statHero.hero_hp / statHero.max_hp * 3, 0.4f);
+            spriteHp.size = new Vector2(statHero.hero_hp / statHero.max_hp * 2.5f, 0.2f);
             textMeshHp.text = statHero.hero_hp.ToString();
         }
     }
