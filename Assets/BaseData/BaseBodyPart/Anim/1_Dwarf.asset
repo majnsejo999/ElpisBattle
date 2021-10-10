@@ -18,15 +18,15 @@ MonoBehaviour:
     nameSprite:
     - dwarf_helmet
   - nameSlot:
-    - drawf_eye_open
+    - dwarf_eye
     nameSprite:
-    - drawf_eye_open
+    - dwarf_eye
   - nameSlot:
-    - 'dwarf_eyebrow '
-    - dwarf_beard_a
+    - dwarf_eyebrow
+    - dwarf_bread_a
     - dwarf_beard_b
     nameSprite:
-    - 'dwarf_eyebrow '
+    - dwarf_eyebrow
     - dwarf_beard_a
     - dwarf_beard_b
   - nameSlot:
@@ -34,49 +34,43 @@ MonoBehaviour:
     nameSprite:
     - dwarf_weapon
   - nameSlot:
-    - human_armor_a
-    - human_armor_b
+    - dwarf_body
     nameSprite:
-    - human_armor_a
-    - human_armor_b
+    - dwarf_armor
   - nameSlot:
-    - human_arm_l
-    - human_arm_r
-    - human_forearm_l
-    - human_forearm_r
-    - human_shoulder_l
-    - human_shoulder_r
+    - dwarf_arm_l
+    - dwarf_arm_r
+    - dwarf_forearm_l
+    - dwarf_forearm_r
+    - dwarf_shoulder_l
+    - dwarf_shoulder_r
     nameSprite:
-    - human_arm_l
-    - human_arm_r
-    - human_forearm_l
-    - human_forearm_r
-    - human_shoulder_l
-    - human_shoulder_r
+    - dwarf_arm_l
+    - dwarf_arm_r
+    - dwarf_forearm_l
+    - dwarf_forearm_r
+    - dwarf_shoulder_l
+    - dwarf_shoulder_r
   - nameSlot:
-    - human_weapon_r_a
-    - human_weapon_r_b
+    - dwarf_hand_l
+    - dwarf_hand_r
     nameSprite:
-    - human_weapon_r_a
-    - human_weapon_r_b
+    - dwarf_hand_l
+    - dwarf_hand_r
   - nameSlot:
-    - human_belt
-    - human_pants_l
-    - human_pants_r
+    - dwarf_belt
+    - dwarf_pant_l
+    - dwarf_pant_r
     nameSprite:
-    - human_belt
-    - human_pants_l
-    - human_pants_r
+    - dwarf_belt
+    - dwarf_pant_l
+    - dwarf_pant_r
   - nameSlot:
-    - human_shoes_l_a
-    - human_shoes_l_b
-    - human_shoes_r_a
-    - human_shoes_r_b
+    - dwarf_shoes_l
+    - dwarf_shoes_r
     nameSprite:
-    - human_shoes_l_a
-    - human_shoes_l_b
-    - human_shoes_r_a
-    - human_shoes_r_b
+    - dwarf_shoes_l
+    - dwarf_shoes_r
   spriteAtlas:
   - {fileID: 4343727234628468602, guid: 28849e8fa6a7e4b408361c55a1efe0e5, type: 2}
   - {fileID: 4343727234628468602, guid: 28849e8fa6a7e4b408361c55a1efe0e5, type: 2}

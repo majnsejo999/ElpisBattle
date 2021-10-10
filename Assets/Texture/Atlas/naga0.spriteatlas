@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: naga0
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 1
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 79a3e61ce5c171345bfadcc1fd19c9da, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: efe367e12ad6cdb408c4d0f82788086b, type: 3}
+  - {fileID: 21300000, guid: 984b2be16288290469f58298d4fcf57d, type: 3}
+  - {fileID: 21300000, guid: 2b366142ccc8cb44494ef1381696e339, type: 3}
+  - {fileID: 21300000, guid: a1d47d62dfac7be4a96c1f592795ad58, type: 3}
+  - {fileID: 21300000, guid: 638b0c234100cfc468364e6f7cb796fb, type: 3}
+  - {fileID: 21300000, guid: 68360933738bc17469ac2ff51266d0eb, type: 3}
+  - {fileID: 21300000, guid: fbdbf155ede3b4e4a8675f3944cd22f8, type: 3}
+  - {fileID: 21300000, guid: 1d36939622e972048aee55b925c73fea, type: 3}
+  - {fileID: 21300000, guid: d31ee437d478cbf4d84bec76f7766128, type: 3}
+  - {fileID: 21300000, guid: faf2635763ecdc8468e2e2aeb0ed0f1a, type: 3}
+  - {fileID: 21300000, guid: 57fc0957a8f6622478f2e606ae250b67, type: 3}
+  - {fileID: 21300000, guid: f9741a877b2858341a70969cec22f78f, type: 3}
+  - {fileID: 21300000, guid: bcc45008047fd404baea17a610c1b712, type: 3}
+  - {fileID: 21300000, guid: 238dee78108d4a84e9123278152405f8, type: 3}
+  - {fileID: 21300000, guid: c39c12b8799b077439c86fa7c9ca21d3, type: 3}
+  - {fileID: 21300000, guid: 93b6ac0a16c199f42b0b7012090ad92c, type: 3}
+  - {fileID: 21300000, guid: acd8c5bbf2b7e1b4bb6c853bc1d8db5f, type: 3}
+  - {fileID: 21300000, guid: a775779c7fe1f624a85b217e613b9f5f, type: 3}
+  - {fileID: 21300000, guid: fdb8021ef26e8254cab1e5a3a872607f, type: 3}
+  - {fileID: 21300000, guid: fc12634e2f748b941a9dd62bf3134a81, type: 3}
+  - {fileID: 21300000, guid: ab43659e307da76448e82e1c658bbaf2, type: 3}
+  - {fileID: 21300000, guid: e7f7d7dead1a31a42aaa1170d2dbe062, type: 3}
+  - {fileID: 21300000, guid: e602f7ff59303ff4f8cbcae5e7e98f93, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - naga_mouth
+  - naga_hair
+  - naga_arm_r
+  - naga_hair_d
+  - naga_armor
+  - naga_weapon_r
+  - naga_tail_a
+  - naga_eye_open
+  - naga_tail_b
+  - naga_hair_e
+  - naga_belt
+  - naga_arm_l
+  - naga_weapon_l
+  - naga_hair_c
+  - naga_forearm_r
+  - naga_hair_b
+  - naga_shoulder_l
+  - naga_forearm_l
+  - naga_hair_a
+  - naga_hair_f
+  - naga_eyebrow
+  - naga_shoulder_r
+  - naga_helmet
+  m_RenderDataMap: {}
+  m_Tag: naga0
+  m_IsVariant: 0

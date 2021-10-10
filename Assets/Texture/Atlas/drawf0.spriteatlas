@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: drawf0
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 1
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 4a43986aa330fda4685d3c332bca22b1, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: c038bed068150d24cad1446cd73dc027, type: 3}
+  - {fileID: 21300000, guid: aaf9db91f3c95154f8c97098d41f8743, type: 3}
+  - {fileID: 21300000, guid: c8f21ae2c2fabc049aabd46b259bb6b6, type: 3}
+  - {fileID: 21300000, guid: f08f1c43ae1a0d34b84a4fba37dea974, type: 3}
+  - {fileID: 21300000, guid: b2eebb93969c9694bb93dcdc5137cf95, type: 3}
+  - {fileID: 21300000, guid: 3fae8e56a3aa34c4a85048d1046e2544, type: 3}
+  - {fileID: 21300000, guid: 2a4b7dc6375fd1e44bcbc779e642cca4, type: 3}
+  - {fileID: 21300000, guid: 04930b17a3b60a0449f2c6ba057015bb, type: 3}
+  - {fileID: 21300000, guid: 5efd6997c8bcc9d41b8a6a30c24cab2e, type: 3}
+  - {fileID: 21300000, guid: f53228281aec0cc429b8a042150a9eae, type: 3}
+  - {fileID: 21300000, guid: 1275e098dc6a3d348a661511a867c46a, type: 3}
+  - {fileID: 21300000, guid: 2413c2590b68ee445adbf7ec0ea4d6c7, type: 3}
+  - {fileID: 21300000, guid: cee4c5c986f05a44a9adab712cc9746c, type: 3}
+  - {fileID: 21300000, guid: c47488f9c167c724488762b00cadce5d, type: 3}
+  - {fileID: 21300000, guid: 3da4090a03d3c2b4aa784e1a9707a458, type: 3}
+  - {fileID: 21300000, guid: de6a155a3e6951b4caa848641afa3397, type: 3}
+  - {fileID: 21300000, guid: 8ca0fd7cdaf57d848bbc26c3ea62ee00, type: 3}
+  - {fileID: 21300000, guid: c60eb79dd8a24834ca972fbb382c5ec5, type: 3}
+  - {fileID: 21300000, guid: 78b62b5eb09f25d4c93afba3899be07b, type: 3}
+  - {fileID: 21300000, guid: 9556be5e18291224483f568ba7baa704, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - dwarf_hand_r
+  - dwarf_shoulder_r
+  - dwarf_eye
+  - dwarf_beard_b
+  - dwarf_shoes_r
+  - dwarf_shoulder_l
+  - dwarf_forearm_r
+  - dwarf_arm_r
+  - dwarf_pant_r
+  - dwarf_armor
+  - dwarf_weapon
+  - dwarf_arm_l
+  - dwarf_eyebrow
+  - dwarf_hand_l
+  - dwarf_forearm_l
+  - dwarf_beard_a
+  - dwarf_pant_l
+  - dwarf_belt
+  - dwarf_shoes_l
+  - dwarf_helmet
+  m_RenderDataMap: {}
+  m_Tag: drawf0
+  m_IsVariant: 0

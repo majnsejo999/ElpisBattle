@@ -18,14 +18,14 @@ MonoBehaviour:
     nameSprite:
     - human_hair
   - nameSlot:
-    - human_eyes_open
+    - human_eye_open
     nameSprite:
-    - human_eyes_open
+    - human_eye_open
   - nameSlot:
-    - human_eyesbrown
+    - human_eyebrow
     - human_beard
     nameSprite:
-    - human_eyesbrown
+    - human_eyebrow
     - human_beard
   - nameSlot:
     - human_weapon_l
@@ -38,15 +38,11 @@ MonoBehaviour:
     - human_armor_a
     - human_armor_b
   - nameSlot:
-    - human_arm_l
-    - human_arm_r
     - human_forearm_l
     - human_forearm_r
     - human_shoulder_l
     - human_shoulder_r
     nameSprite:
-    - human_arm_l
-    - human_arm_r
     - human_forearm_l
     - human_forearm_r
     - human_shoulder_l

@@ -20,15 +20,15 @@ public class HeroManager : MonoBehaviour
     public float sum_stats_body = 0;
     public int line;
     public SkeletonAnimation skeletonAnimation;
-    public GameObject objSelected, objCanAttck,posAva;
+    public GameObject objSelected, objCanAttck, posAva;
     public List<StatsSkillHero> listSkill;
     public BaseDataAll baseData;
     public bool isSkill;
     public bool isEnemy;
     public Material sourceMaterial;
     public Sprite sprAva;
-    public SpriteRenderer spriteHp;
-    public TMPro.TextMeshPro textMeshHp;
+    public SpriteRenderer spriteHp, spriteMana;
+    public TMPro.TextMeshPro textMeshHp, txtMeshMana;
     public void Init()
     {
         CreateRuntimeAssetsAndGameObject();
@@ -49,7 +49,7 @@ public class HeroManager : MonoBehaviour
     }
     void CreateRuntimeAssetsAndGameObject()
     {
-       // Debug.Log(idHero);
+        // Debug.Log(idHero);
         sourceMaterial = baseData.baseBodyPartAnim[idHero].materialPropertySource;
         SpineAtlasAsset runtimeAtlasAsset = SpineAtlasAsset.CreateRuntimeInstance(baseData.baseBodyPartAnim[idHero].atlasText, baseData.baseBodyPartAnim[idHero].textures, sourceMaterial, true);
         SkeletonDataAsset runtimeSkeletonDataAsset = SkeletonDataAsset.CreateRuntimeInstance(baseData.baseBodyPartAnim[idHero].skeletonJson, runtimeAtlasAsset, true);
@@ -89,9 +89,11 @@ public class HeroManager : MonoBehaviour
         statHero.hero_speed *= ConstData.Bonus_Speed;
         statHero.hero_mana = 0;
         AddStatsSkill(listSkill[1]);
+        AddStatsSkill(listSkill[2]);
         statHero.max_hp = statHero.hero_hp;
         statHero.max_mana = ConstData.Max_Mana;
         textMeshHp.text = statHero.hero_hp.ToString();
+        ChangeMana(0);
     }
     public void AddStatsSkill(StatsSkillHero skill)
     {
@@ -138,6 +140,9 @@ public class HeroManager : MonoBehaviour
                 break;
             case "dodge_chance":
                 statHero.dodge_chance = skill.statsSkillNormals.effectSkill[0].rate[0];
+                break;
+            case "mana_start":
+                statHero.hero_mana += skill.statsSkillNormals.effectSkill[0].rate[0];
                 break;
         }
     }
@@ -201,6 +206,7 @@ public class HeroManager : MonoBehaviour
         else
         {
             statHero.hero_hp -= damge;
+            ChangeMana(10);
             if (statHero.hero_hp <= 0)
             {
                 statHero.hero_hp = 0;
@@ -213,7 +219,8 @@ public class HeroManager : MonoBehaviour
                     skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroIdle, true);
                 };
             }
-            spriteHp.size = new Vector2(statHero.hero_hp / statHero.max_hp * 2.5f, 0.2f);
+
+            spriteHp.size = new Vector2(statHero.hero_hp / statHero.max_hp * 2f, 0.2f);
             textMeshHp.text = statHero.hero_hp.ToString();
         }
     }
@@ -225,7 +232,12 @@ public class HeroManager : MonoBehaviour
             BattleManager.instance.RemoveHero(this);
         };
     }
-
+    public void ChangeMana(float _mana)
+    {
+        statHero.hero_mana += _mana; 
+        spriteMana.size = new Vector2(statHero.hero_mana / statHero.max_mana * 2f, 0.2f);
+        txtMeshMana.text = statHero.hero_mana.ToString();
+    }
     public bool CheckEvasion()
     {
         if (statHero.evasion == 0)

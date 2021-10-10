@@ -18,14 +18,14 @@ MonoBehaviour:
     nameSprite:
     - demon_hair
   - nameSlot:
-    - demon_eyes_open
+    - demon_eye_open
     nameSprite:
-    - demon_eyes_open
+    - demon_eye_open
   - nameSlot:
-    - demon_eyesbrown
+    - demon_eyebrow
     - demon_beard
     nameSprite:
-    - demon_eyesbrown
+    - demon_eyebrow
     - demon_beard
   - nameSlot:
     - demon_weapon_l
@@ -38,19 +38,21 @@ MonoBehaviour:
     - demon_armor_a
     - demon_armor_b
   - nameSlot:
-    - demon_arm_l
-    - demon_arm_r
     - demon_forearm_l
     - demon_forearm_r
     - demon_shoulder_l
     - demon_shoulder_r
+    - demon_hand_l_a
+    - demon_hand_l_b
+    - demon_hand_r
     nameSprite:
-    - demon_arm_l
-    - demon_arm_r
     - demon_forearm_l
     - demon_forearm_r
     - demon_shoulder_l
     - demon_shoulder_r
+    - demon_hand_l_a
+    - demon_hand_l_b
+    - demon_hand_r
   - nameSlot:
     - demon_wing_l
     - demon_wing_r
@@ -62,8 +64,8 @@ MonoBehaviour:
   - nameSlot:
     - demon_belt_a
     - demon_belt_b
-    - demon_pants_l
-    - demon_pants_r
+    - demon_pant_l
+    - demon_pant_r
     nameSprite:
     - demon_belt_a
     - demon_belt_b
@@ -77,12 +79,12 @@ MonoBehaviour:
     - demon_shoes_b_r
     - demon_shoes_c_r
     nameSprite:
-    - demon_shoes_a_l
-    - demon_shoes_b_l
-    - demon_shoes_c_l
-    - demon_shoes_a_r
-    - demon_shoes_b_r
-    - demon_shoes_c_r
+    - demon_shoe_a_l
+    - demon_shoe_b_l
+    - demon_shoe_c_l
+    - demon_shoe_a_r
+    - demon_shoe_b_r
+    - demon_shoe_c_r
   spriteAtlas:
   - {fileID: 4343727234628468602, guid: 2e744ac9ddbdf874c90366816aff5482, type: 2}
   - {fileID: 4343727234628468602, guid: 2e744ac9ddbdf874c90366816aff5482, type: 2}

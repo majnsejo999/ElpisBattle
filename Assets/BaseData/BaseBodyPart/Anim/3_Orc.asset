@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1851b901fbaee5048b18b02f69d045bd, type: 3}
+  m_Name: 3_Orc
+  m_EditorClassIdentifier: 
+  listBodyCharacter:
+  - nameSlot:
+    - orc_hair
+    nameSprite:
+    - orc_hair
+  - nameSlot:
+    - orc_eye_open
+    nameSprite:
+    - orc_eye_open
+  - nameSlot:
+    - orc_eyebrow
+    - orc_beard
+    nameSprite:
+    - orc_eyebrow
+    - orc_beard
+  - nameSlot:
+    - orc_weapon_l
+    nameSprite:
+    - orc_weapon_l
+  - nameSlot:
+    - orc_armor
+    nameSprite:
+    - orc_armor
+  - nameSlot:
+    - orc_arm_l
+    - orc_arm_r
+    - orc_forearm_l
+    - orc_forearm_r
+    - orc_shoulder_l
+    nameSprite:
+    - orc_arm_l
+    - orc_arm_r
+    - orc_forearm_l
+    - orc_forearm_r
+    - orc_shoulder_l
+  - nameSlot:
+    - orc_weapon_r
+    nameSprite:
+    - orc_weapon_r
+  - nameSlot:
+    - orc_belt
+    - orc_pant_l
+    - orc_pant_r_a
+    nameSprite:
+    - orc_belt
+    - orc_pant_l
+    - orc_pant_r_a
+  - nameSlot:
+    - orc_shoe_l_a
+    - orc_shoe_l_b
+    - orc_shoe_r_a
+    - orc_shoe_r_b
+    nameSprite:
+    - orc_shoe_l_a
+    - orc_shoe_l_b
+    - orc_shoe_r_a
+    - orc_shoe_r_b
+  spriteAtlas:
+  - {fileID: 4343727234628468602, guid: 5ab97bd1015924343a0f0c024ab5fbe2, type: 2}
+  - {fileID: 4343727234628468602, guid: 5ab97bd1015924343a0f0c024ab5fbe2, type: 2}
+  skeletonJson: {fileID: 4900000, guid: dd0936884fb44124dbead54bc781780a, type: 3}
+  atlasText: {fileID: 4900000, guid: 688d6701ae4afd844ba1d7187d7d063a, type: 3}
+  textures:
+  - {fileID: 2800000, guid: ce83e0c359981214c954d51d40cca080, type: 3}
+  materialPropertySource: {fileID: 2100000, guid: f14b225488344684f8f2ed87e33f444e, type: 2}

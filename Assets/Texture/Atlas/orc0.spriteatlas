@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: orc0
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 1
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 8a21c98dc68a16442ac5f80b3805ec8f, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 27360880acb7230489a64027b59f1f27, type: 3}
+  - {fileID: 21300000, guid: 4e8ef9a0bf6a13946b939386bee90ab3, type: 3}
+  - {fileID: 21300000, guid: 327cc1c03fa76b848896f885c0fed1aa, type: 3}
+  - {fileID: 21300000, guid: c9e54c15835e9514aabd1f8af6fe34b9, type: 3}
+  - {fileID: 21300000, guid: b5cd8395f0867404ea1b43edf1b62756, type: 3}
+  - {fileID: 21300000, guid: 06d6b5d5143869044837bd371a9a1e96, type: 3}
+  - {fileID: 21300000, guid: 845cba760ee87dc48ae2f5ffe8aa9549, type: 3}
+  - {fileID: 21300000, guid: a83ae9861e475124e8453b3532e660eb, type: 3}
+  - {fileID: 21300000, guid: a4299fe6ce5eea542a62cb94206934ca, type: 3}
+  - {fileID: 21300000, guid: 7ef308b7f5cc6d94fa56de6b3bb21579, type: 3}
+  - {fileID: 21300000, guid: bb4966c76c27b66459da024734283fe3, type: 3}
+  - {fileID: 21300000, guid: aa46525959f386e4fae7cde162931569, type: 3}
+  - {fileID: 21300000, guid: 0b0ffe89b65b5bd4fbc6a03a16a999a9, type: 3}
+  - {fileID: 21300000, guid: 0b54eefa063354d418a04a6f9bffc94e, type: 3}
+  - {fileID: 21300000, guid: b25fceac41be66e419de2a94875b8c25, type: 3}
+  - {fileID: 21300000, guid: a76c9c0df3575b04480ad16d3245f125, type: 3}
+  - {fileID: 21300000, guid: 321d5aed88bf2c94788246647da6f0fd, type: 3}
+  - {fileID: 21300000, guid: e408d8ae8627c9042a102570b8823b82, type: 3}
+  - {fileID: 21300000, guid: c96957be84a398344b7eeaae0936b3f2, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - orc_pant_r_a
+  - orc_pant_l
+  - orc_shoulder_l
+  - orc_arm_r
+  - orc_beard
+  - orc_forearm_l
+  - orc_shoe_l_a
+  - orc_belt
+  - orc_armor
+  - orc_eyebrow
+  - orc_shoe_r_a
+  - orc_weapon_r
+  - orc_shoe_r_b
+  - orc_hair
+  - orc_weapon_l
+  - orc_eye_open
+  - orc_forearm_r
+  - orc_arm_l
+  - orc_shoe_l_b
+  m_RenderDataMap: {}
+  m_Tag: orc0
+  m_IsVariant: 0

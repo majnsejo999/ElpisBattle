@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1851b901fbaee5048b18b02f69d045bd, type: 3}
+  m_Name: 5_Naga
+  m_EditorClassIdentifier: 
+  listBodyCharacter:
+  - nameSlot:
+    - naga_hair
+    - naga_hair_a
+    - naga_hair_b
+    - naga_hair_c
+    - naga_hair_d
+    - naga_hair_e
+    - naga_hair_f
+    nameSprite:
+    - naga_hair
+    - naga_hair_a
+    - naga_hair_b
+    - naga_hair_c
+    - naga_hair_d
+    - naga_hair_e
+    - naga_hair_f
+  - nameSlot:
+    - naga_eye_open
+    nameSprite:
+    - naga_eye_open
+  - nameSlot:
+    - naga_eyebrow
+    nameSprite:
+    - naga_eyebrow
+  - nameSlot:
+    - naga_weapon_l
+    - naga_weapon_r
+    nameSprite:
+    - naga_weapon_l
+    - naga_weapon_r
+  - nameSlot:
+    - naga_armor
+    nameSprite:
+    - naga_armor
+  - nameSlot:
+    - naga_arm_l
+    - naga_arm_r
+    - naga_forearm_l
+    - naga_forearm_r
+    - naga_shoulder_l
+    - naga_shoulder_r
+    nameSprite:
+    - naga_arm_l
+    - naga_arm_r
+    - naga_forearm_l
+    - naga_forearm_r
+    - naga_shoulder_l
+    - naga_shoulder_r
+  - nameSlot:
+    - naga_helmet
+    - naga_mouth
+    nameSprite:
+    - naga_helmet
+    - naga_mouth
+  - nameSlot:
+    - naga_belt
+    nameSprite:
+    - naga_belt
+  - nameSlot:
+    - naga_tail_a
+    - naga_tail_b
+    nameSprite:
+    - naga_tail_a
+    - naga_tail_b
+  spriteAtlas:
+  - {fileID: 4343727234628468602, guid: 80e11baf7cc6b9a4a84460e838279a9c, type: 2}
+  - {fileID: 4343727234628468602, guid: 80e11baf7cc6b9a4a84460e838279a9c, type: 2}
+  skeletonJson: {fileID: 4900000, guid: 4ebd31470c1a4c14b8aa24b77e6a0b4c, type: 3}
+  atlasText: {fileID: 4900000, guid: fae8143ac7dcad94f9759e49851406f9, type: 3}
+  textures:
+  - {fileID: 2800000, guid: a4d1a4f59e529b24c9099ff1334cdbfe, type: 3}
+  materialPropertySource: {fileID: 2100000, guid: ccfc5f4f57ae2e248a58421fceacfc3b, type: 2}

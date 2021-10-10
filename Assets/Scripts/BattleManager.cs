@@ -75,10 +75,16 @@ public class BattleManager : MonoBehaviour
                 listRound[i].skeletonAnimation.gameObject.layer = 7;
             else
                 listRound[i].skeletonAnimation.gameObject.layer = 6;
+
+            if (!uIManager.imgAva[i].gameObject.activeInHierarchy)
+            {
+                uIManager.imgAva[i].gameObject.SetActive(true);
+            }
         }
     }
     public void CheckCanAttack(HeroManager _hero)
     {
+        uIManager.ChangeUIAttack(_hero);
         if (_hero.isSkill)
         {
 
@@ -143,6 +149,7 @@ public class BattleManager : MonoBehaviour
     }
     public void NextTurn()
     {
+        uIManager.imgAva[indexTurn].gameObject.SetActive(false);
         indexTurn += 1;
         if (indexTurn >= listRound.Count)
         {
@@ -216,6 +223,7 @@ public class BattleManager : MonoBehaviour
     }
     public void Attack()
     {
+        listRound[indexTurn].ChangeMana(30);
         listRound[indexTurn].skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroAttack, false).Complete += delegate
         {
             listRound[indexTurn].skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroIdle, true);
@@ -307,6 +315,39 @@ public class BattleManager : MonoBehaviour
                 return true;
             }
             return false;
+        }
+    }
+
+    public void SwapAttackSkill(bool useSkill)
+    {
+        if (useSkill)
+        {
+            if (listRound[indexTurn].statHero.hero_mana < listRound[indexTurn].listSkill[0].mana)
+                return;
+            if (listRound[indexTurn].isSkill)
+                return;
+            else
+            {
+                uIManager.img_skill1.color = Color.red;
+                uIManager.img_attack.color = Color.white;
+                listRound[indexTurn].isSkill = true;
+                CheckCanAttack(listRound[indexTurn]);
+            }
+        }
+        else
+        {
+            if (listRound[indexTurn].statHero.hero_mana >= listRound[indexTurn].listSkill[0].mana)
+            {
+                uIManager.img_attack.color = Color.red;
+                uIManager.img_skill1.color = Color.blue;
+            }
+            else
+            {
+                uIManager.img_skill1.color = Color.white;
+                uIManager.img_attack.color = Color.red;
+            }
+            listRound[indexTurn].isSkill = false;
+            CheckCanAttack(listRound[indexTurn]);
         }
     }
 }
