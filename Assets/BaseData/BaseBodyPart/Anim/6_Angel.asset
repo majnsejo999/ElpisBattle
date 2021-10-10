@@ -99,3 +99,4 @@ MonoBehaviour:
   textures:
   - {fileID: 2800000, guid: 5d5cc43158314494498e65f1d109bd8e, type: 3}
   materialPropertySource: {fileID: 2100000, guid: 64bc56b7fb831c64c87dfd706b5702a6, type: 2}
+  icon: {fileID: 21300000, guid: 7d28c899ce84a4b4893c414a03df3b64, type: 3}

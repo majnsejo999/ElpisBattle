@@ -5,6 +5,10 @@ using Spine.Unity;
 using Spine;
 using Spine.Unity.AttachmentTools;
 using UnityEngine.U2D;
+using TMPro.Examples;
+using TMPro;
+using DG.Tweening;
+
 public class HeroManager : MonoBehaviour
 {
     [Header("Stats Hero")]
@@ -28,7 +32,7 @@ public class HeroManager : MonoBehaviour
     public Material sourceMaterial;
     public Sprite sprAva;
     public SpriteRenderer spriteHp, spriteMana;
-    public TMPro.TextMeshPro textMeshHp, txtMeshMana;
+    public TextMeshPro textMeshHp, txtMeshMana;
     public void Init()
     {
         CreateRuntimeAssetsAndGameObject();
@@ -166,7 +170,7 @@ public class HeroManager : MonoBehaviour
     {
         for (int i = 0; i < bodyParts.nameSlot.Length; i++)
         {
-            Debug.Log(bodyParts.nameSlot[i]);
+            // Debug.Log(bodyParts.nameSlot[i]);
             int slotIndex = skeletonAnimation.skeletonDataAsset.GetSkeletonData(true).FindSlot(bodyParts.nameSlot[i]).Index;
             Attachment attachment1 = skeletonAnimation.skeleton.GetAttachment(bodyParts.nameSlot[i], bodyParts.nameSlot[i]);
             Attachment attachment2 = attachment1.GetRemappedClone(spriteAtlas.GetSprite(bodyParts.nameSprite[i]), sourceMaterial);
@@ -206,6 +210,7 @@ public class HeroManager : MonoBehaviour
         else
         {
             statHero.hero_hp -= damge;
+            ShowTextDame(damge);
             ChangeMana(10);
             if (statHero.hero_hp <= 0)
             {
@@ -234,7 +239,11 @@ public class HeroManager : MonoBehaviour
     }
     public void ChangeMana(float _mana)
     {
-        statHero.hero_mana += _mana; 
+        statHero.hero_mana += _mana;
+        if (statHero.hero_mana >= 100)
+        {
+            statHero.hero_mana = 100;
+        }
         spriteMana.size = new Vector2(statHero.hero_mana / statHero.max_mana * 2f, 0.2f);
         txtMeshMana.text = statHero.hero_mana.ToString();
     }
@@ -265,6 +274,27 @@ public class HeroManager : MonoBehaviour
             }
             return false;
         }
+    }
+    public void ShowTextDame(float dame)
+    {
+        GameObject go = BattleManager.instance.Pool(BattleManager.instance.txtClone, BattleManager.instance.transform);
+        go.transform.position = transform.position;
+        TextMeshPro textMeshPro = go.GetComponent<TextMeshPro>();
+        textMeshPro.text = ((int)dame).ToString();
+     //   textMeshPro.autoSizeTextContainer = true;
+        textMeshPro.rectTransform.pivot = new Vector2(0.5f, 0);
+
+        textMeshPro.alignment = TextAlignmentOptions.Bottom;
+        textMeshPro.fontSize = 7;
+        textMeshPro.enableKerning = false;
+        textMeshPro.sortingOrder = 50;
+        textMeshPro.color = new Color32(255, 255, 0, 255);
+        Vector3 posEnd = new Vector3(go.transform.position.x, go.transform.position.y + 4, go.transform.position.z);
+        go.transform.DOMove(posEnd, 1f, false).OnComplete(delegate
+         {
+          //   textMeshPro.autoSizeTextContainer = false;
+             BattleManager.instance.DePool(go);
+         });
     }
 }
 [System.Serializable]

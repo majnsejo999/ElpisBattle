@@ -6,7 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public Image[] imgAva;
     public Image img_attack, img_skill1;
-    public Text txtAttack;
+    public Text txtAttack, txtRound;
 
     public void SetAva(Sprite _sprite, int id)
     {
@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangeUIAttack(HeroManager hero)
     {
-        if(hero.listSkill[0].statsSkillNormals.effectSkill[0].effect == "min_hp")
+        if (hero.listSkill[0].statsSkillNormals.require == "min_hp")
         {
             txtAttack.text = "Attack min_hp";
         }

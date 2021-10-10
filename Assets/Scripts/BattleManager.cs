@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using DG.Tweening;
 using Spine.Unity;
+using TMPro;
 
 public class BattleManager : MonoBehaviour
 {
@@ -12,10 +13,12 @@ public class BattleManager : MonoBehaviour
     public List<HeroManager> list1, list2, listRound;
     public List<LineUp> lineHero, lineEnemy;
     public HeroManager hero_beaten;
-    private int indexTurn;
+    private int indexTurn, indexRound = 1;
     public BaseDataAll baseData;
     public GetAvatar getAvatar;
     public UIManager uIManager;
+    public Dictionary<string, List<GameObject>> listPool;
+    public GameObject txtClone;
     private void Awake()
     {
         if (instance == null)
@@ -25,6 +28,9 @@ public class BattleManager : MonoBehaviour
     }
     private void Start()
     {
+        listPool = new Dictionary<string, List<GameObject>>();
+        indexRound = 0;
+        uIManager.txtRound.text = "Round : " + indexRound;
         listRound = new List<HeroManager>();
         for (int i = 0; i < 8; i++)
         {
@@ -61,21 +67,31 @@ public class BattleManager : MonoBehaviour
     }
     public void CheckNewRound()
     {
+        indexRound += 1;
+        uIManager.txtRound.text = "Round : " + indexRound;
         listRound = listRound.OrderByDescending(o => o.statHero.hero_speed).ToList();
         indexTurn = 0;
         listRound[indexTurn].objSelected.SetActive(true);
         CheckCanAttack(listRound[indexTurn]);
+        //for (int i = 0; i < listRound.Count; i++)
+        //{
+        //    listRound[i].skeletonAnimation.gameObject.layer = 8;
+        //    getAvatar.gameObject.transform.position = listRound[i].posAva.transform.position;
+        //    listRound[i].sprAva = getAvatar.Avatar("hero" + i);
+        //    uIManager.SetAva(listRound[i].sprAva, i);
+        //    if (listRound[i].isEnemy)
+        //        listRound[i].skeletonAnimation.gameObject.layer = 7;
+        //    else
+        //        listRound[i].skeletonAnimation.gameObject.layer = 6;
+
+        //    if (!uIManager.imgAva[i].gameObject.activeInHierarchy)
+        //    {
+        //        uIManager.imgAva[i].gameObject.SetActive(true);
+        //    }
+        //}
         for (int i = 0; i < listRound.Count; i++)
         {
-            listRound[i].skeletonAnimation.gameObject.layer = 8;
-            getAvatar.gameObject.transform.position = listRound[i].posAva.transform.position;
-            listRound[i].sprAva = getAvatar.Avatar("hero" + i);
-            uIManager.SetAva(listRound[i].sprAva, i);
-            if (listRound[i].isEnemy)
-                listRound[i].skeletonAnimation.gameObject.layer = 7;
-            else
-                listRound[i].skeletonAnimation.gameObject.layer = 6;
-
+            uIManager.SetAva(baseData.baseBodyPartAnim[listRound[i].idHero].icon, i);
             if (!uIManager.imgAva[i].gameObject.activeInHierarchy)
             {
                 uIManager.imgAva[i].gameObject.SetActive(true);
@@ -110,8 +126,7 @@ public class BattleManager : MonoBehaviour
                 {
                     if (CheckEnemyStandFront(_hero))
                     {
-                        _hero.objSelected.SetActive(false);
-                        NextTurn();
+                        Invoke("ShowTextEndTurn", 1f);
                         return;
                     }
                     else
@@ -129,8 +144,7 @@ public class BattleManager : MonoBehaviour
                 {
                     if (CheckHeroStandFront(_hero))
                     {
-                        _hero.objSelected.SetActive(false);
-                        NextTurn();
+                        Invoke("ShowTextEndTurn", 1f);
                         return;
                     }
                     else
@@ -201,14 +215,31 @@ public class BattleManager : MonoBehaviour
     public void HeroAttack(HeroManager _hero)
     {
         hero_beaten = _hero;
-        Vector3 posEnd = new Vector3();
-        if (hero_beaten.isEnemy)
+        for (int i = 0; i < list1.Count; i++)
         {
-            posEnd = lineEnemy[hero_beaten.line].posAttack.position;
+            list1[i].objCanAttck.SetActive(false);
+            list1[i].objSelected.SetActive(false);
+        }
+        for (int i = 0; i < list2.Count; i++)
+        {
+            list2[i].objCanAttck.SetActive(false);
+            list2[i].objSelected.SetActive(false);
+        }
+        Vector3 posEnd = new Vector3();
+        if (listRound[indexTurn].hero_origin == "Elf" || listRound[indexTurn].hero_origin == "Dwarf")
+        {
+            posEnd = listRound[indexTurn].gameObject.transform.position;
         }
         else
         {
-            posEnd = lineHero[hero_beaten.line].posAttack.position;
+            if (hero_beaten.isEnemy)
+            {
+                posEnd = lineEnemy[hero_beaten.line].posAttack.position;
+            }
+            else
+            {
+                posEnd = lineHero[hero_beaten.line].posAttack.position;
+            }
         }
         listRound[indexTurn].transform.DOMove(posEnd, 0.2f, false).OnComplete(delegate
         {
@@ -224,10 +255,12 @@ public class BattleManager : MonoBehaviour
     public void Attack()
     {
         listRound[indexTurn].ChangeMana(30);
-        listRound[indexTurn].skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroAttack, false).Complete += delegate
+        string animAttack = listRound[indexTurn].hero_origin != "Naga" ? "attack" : "skill";
+        listRound[indexTurn].skeletonAnimation.AnimationState.SetAnimation(0, animAttack, false).Complete += delegate
         {
             listRound[indexTurn].skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroIdle, true);
             Vector3 posEnd = new Vector3();
+
             if (listRound[indexTurn].isEnemy)
             {
                 posEnd = lineEnemy[listRound[indexTurn].line].posHero.position;
@@ -238,16 +271,6 @@ public class BattleManager : MonoBehaviour
             }
             listRound[indexTurn].transform.DOMove(posEnd, 0.3f, false).OnComplete(delegate
             {
-                for (int i = 0; i < list1.Count; i++)
-                {
-                    list1[i].objCanAttck.SetActive(false);
-                    list1[i].objSelected.SetActive(false);
-                }
-                for (int i = 0; i < list2.Count; i++)
-                {
-                    list2[i].objCanAttck.SetActive(false);
-                    list2[i].objSelected.SetActive(false);
-                }
                 NextTurn();
             });
         };
@@ -295,7 +318,7 @@ public class BattleManager : MonoBehaviour
         {
             list1.Remove(heroDie);
         }
-        if (indexTurn < k)
+        if (indexTurn >= k)
         {
             indexTurn -= 1;
         }
@@ -348,6 +371,79 @@ public class BattleManager : MonoBehaviour
             }
             listRound[indexTurn].isSkill = false;
             CheckCanAttack(listRound[indexTurn]);
+        }
+    }
+    public void ShowTextEndTurn()
+    {
+        GameObject go = Pool(txtClone, transform);
+        TextMeshPro textMeshPro = go.GetComponent<TextMeshPro>();
+        go.transform.position = Vector3.zero;
+        textMeshPro.text = "Hero can't attack";
+        //textMeshPro.autoSizeTextContainer = true;
+        textMeshPro.rectTransform.pivot = new Vector2(0.5f, 0);
+
+        textMeshPro.alignment = TextAlignmentOptions.Bottom;
+        textMeshPro.fontSize = 15;
+        textMeshPro.enableKerning = false;
+        textMeshPro.sortingOrder = 50;
+        textMeshPro.color = new Color32(255, 255, 0, 255);
+
+        Vector3 posEnd = new Vector3(go.transform.position.x, go.transform.position.y + 2, go.transform.position.z);
+        go.transform.DOMove(posEnd, 1f, false).OnComplete(delegate
+        {
+            listRound[indexTurn].objSelected.SetActive(false);
+            NextTurn ();
+            //textMeshPro.autoSizeTextContainer = false;
+            DePool(go);
+        });
+    }
+    public GameObject Pool(GameObject obj, Transform trs)
+    {
+        GameObject objReturn;
+
+        if (listPool.ContainsKey(obj.name))
+        {
+            if (listPool[obj.name].Count > 0)
+            {
+                objReturn = listPool[obj.name][0];
+                objReturn.transform.SetParent(trs);
+                objReturn.SetActive(true);
+                listPool[obj.name].RemoveAt(0);
+            }
+            else
+            {
+                objReturn = Instantiate(obj, trs);
+                objReturn.name = obj.name;
+            }
+        }
+        else
+        {
+            objReturn = Instantiate(obj, trs);
+            objReturn.name = obj.name;
+        }
+
+        if (!objReturn.activeSelf)
+        {
+            obj.SetActive(true);
+        }
+
+        return objReturn;
+    }
+
+    public void DePool(GameObject obj)
+    {
+        if (obj.activeSelf)
+        {
+            if (listPool.ContainsKey(obj.name))
+            {
+                listPool[obj.name].Add(obj);
+            }
+            else
+            {
+                listPool.Add(obj.name, new List<GameObject> { obj });
+            }
+
+            obj.SetActive(false);
         }
     }
 }

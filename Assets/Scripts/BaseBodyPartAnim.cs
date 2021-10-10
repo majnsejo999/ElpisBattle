@@ -9,6 +9,7 @@ public class BaseBodyPartAnim : ScriptableObject
     public TextAsset atlasText;
     public Texture2D[] textures;
     public Material materialPropertySource;
+    public Sprite icon;
 }
 [System.Serializable]
 public class EquipHook

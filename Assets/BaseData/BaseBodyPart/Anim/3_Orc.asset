@@ -77,3 +77,4 @@ MonoBehaviour:
   textures:
   - {fileID: 2800000, guid: ce83e0c359981214c954d51d40cca080, type: 3}
   materialPropertySource: {fileID: 2100000, guid: f14b225488344684f8f2ed87e33f444e, type: 2}
+  icon: {fileID: 21300000, guid: f588ecc2da84bb349a8baf871753c8f8, type: 3}

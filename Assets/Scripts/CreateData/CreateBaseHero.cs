@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static GoogleSheetsForUnity.SpreadsheetsExample;
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 public class CreateBaseHero : MonoBehaviour
 {
     public string _tableName = "basedata";
@@ -93,9 +95,11 @@ public class CreateBaseHero : MonoBehaviour
                         statsBaseHero.hp_ev = _heroData[i].hp_ev;
                         statsBaseHero.armour_ev = _heroData[i].armour_ev;
                         statsBaseHero.speed_ev = _heroData[i].speed_ev;
-                        UnityEditor.AssetDatabase.CreateAsset(statsBaseHero, "Assets/BaseData/StatsBase/" + _heroData[i].id + "_" + _heroData[i].origin + ".asset");
-                        UnityEditor.AssetDatabase.SaveAssets();
-                        UnityEditor.AssetDatabase.Refresh();
+#if UNITY_EDITOR
+                        AssetDatabase.CreateAsset(statsBaseHero, "Assets/BaseData/StatsBase/" + _heroData[i].id + "_" + _heroData[i].origin + ".asset");
+                        AssetDatabase.SaveAssets();
+                        AssetDatabase.Refresh();
+#endif
                     }
                     Debug.Log(logMsg);
                 }
@@ -134,14 +138,16 @@ public class CreateBaseHero : MonoBehaviour
                         }
                         for (int j = 0; j < listEffect.Count; j++)
                         {
-                            StatsEffectSkill effectSkill = new StatsEffectSkill();                           
+                            StatsEffectSkill effectSkill = new StatsEffectSkill();
                             effectSkill.effect = listEffect[j];
                             effectSkill.rate = StringToListFloat(listRate[j].Split('/').ToList());
                             statsSkill.statsSkillNormals.effectSkill.Add(effectSkill);
                         }
-                        UnityEditor.AssetDatabase.CreateAsset(statsSkill, "Assets/BaseData/SkillBase/" + statsSkill.type_skill + "Skill" + i + ".asset");
-                        UnityEditor.AssetDatabase.SaveAssets();
-                        UnityEditor.AssetDatabase.Refresh();
+#if UNITY_EDITOR
+                        AssetDatabase.CreateAsset(statsSkill, "Assets/BaseData/SkillBase/" + statsSkill.type_skill + "Skill" + i + ".asset");
+                        AssetDatabase.SaveAssets();
+                        AssetDatabase.Refresh();
+#endif
                     }
                     Debug.Log(logMsg);
                 }
