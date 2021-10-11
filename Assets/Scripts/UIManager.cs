@@ -5,13 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
-    public Image[] imgAva;
+    public List<Image> imgAva;
     public Image img_attack, img_skill1;
     public Text txtAttack, txtRound;
 
     public void SetAva(Sprite _sprite, int id)
     {
         imgAva[id].sprite = _sprite;
+        imgAva[id].gameObject.SetActive(true);
     }
 
     public void ChangeUIAttack(HeroManager hero, StatsSkillHero attack, StatsSkillHero skill)

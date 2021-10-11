@@ -9,9 +9,11 @@ public class UserData : MonoBehaviour
     public BaseDataAll baseData;
     public List<UserDataHero> data_hero;
     public LineUpController lineUpController;
+    public int leaderHero, leaderEnemy;
+
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -78,7 +80,7 @@ public class UserData : MonoBehaviour
         skillDataHero4.levelSkill = 1;
         listSkill.Add(skillDataHero4);
     }
-    public void SwapLine(int index , int newline)
+    public void SwapLine(int index, int newline)
     {
         data_hero[index].line = newline;
     }

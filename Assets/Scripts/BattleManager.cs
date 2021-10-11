@@ -41,6 +41,8 @@ public class BattleManager : MonoBehaviour
                 heroClone.baseData = baseData;
                 list1.Add(heroClone);
                 listRound.Add(heroClone);
+                if (i == userData.leaderHero)
+                    heroClone.isLeader = true;
                 heroClone.Init(userData.data_hero[i]);
                 heroClone.transform.position = lineHero[heroClone.dataHero.line].posHero.position;
             }
@@ -89,10 +91,6 @@ public class BattleManager : MonoBehaviour
         for (int i = 0; i < listRound.Count; i++)
         {
             uIManager.SetAva(baseData.baseBodyPartAnim[listRound[i].dataHero.idHero].icon, i);
-            if (!uIManager.imgAva[i].gameObject.activeInHierarchy)
-            {
-                uIManager.imgAva[i].gameObject.SetActive(true);
-            }
         }
     }
     public void CheckCanAttack(HeroManager _hero)
@@ -100,7 +98,7 @@ public class BattleManager : MonoBehaviour
         uIManager.ChangeUIAttack(_hero, baseData.ListStatsSkillHero[_hero.dataHero.skillDataHeroes[0].idSkill], baseData.ListStatsSkillHero[_hero.dataHero.skillDataHeroes[3].idSkill]);
         if (_hero.isSkill)
         {
-           
+
         }
         else
         {
@@ -119,14 +117,9 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                if (_hero.isEnemy)
+                if (_hero.isLeader)
                 {
-                    if (CheckEnemyStandFront(_hero))
-                    {
-                        Invoke("ShowTextEndTurn", 1f);
-                        return;
-                    }
-                    else
+                    if (_hero.isEnemy)
                     {
                         for (int i = 0; i < list1.Count; i++)
                         {
@@ -136,14 +129,6 @@ public class BattleManager : MonoBehaviour
                             }
                         }
                     }
-                }
-                else
-                {
-                    if (CheckHeroStandFront(_hero))
-                    {
-                        Invoke("ShowTextEndTurn", 1f);
-                        return;
-                    }
                     else
                     {
                         for (int i = 0; i < list2.Count; i++)
@@ -151,6 +136,45 @@ public class BattleManager : MonoBehaviour
                             if (!CheckEnemyStandFront(list2[i]))
                             {
                                 list2[i].objCanAttck.SetActive(true);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (_hero.isEnemy)
+                    {
+                        if (CheckEnemyStandFront(_hero))
+                        {
+                            Invoke("ShowTextEndTurn", 1f);
+                            return;
+                        }
+                        else
+                        {
+                            for (int i = 0; i < list1.Count; i++)
+                            {
+                                if (!CheckHeroStandFront(list1[i]))
+                                {
+                                    list1[i].objCanAttck.SetActive(true);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (CheckHeroStandFront(_hero))
+                        {
+                            Invoke("ShowTextEndTurn", 1f);
+                            return;
+                        }
+                        else
+                        {
+                            for (int i = 0; i < list2.Count; i++)
+                            {
+                                if (!CheckEnemyStandFront(list2[i]))
+                                {
+                                    list2[i].objCanAttck.SetActive(true);
+                                }
                             }
                         }
                     }
@@ -267,7 +291,7 @@ public class BattleManager : MonoBehaviour
             }
             listRound[indexTurn].transform.DOMove(posEnd, 0.3f, false).OnComplete(delegate
             {
-                NextTurn();
+                Invoke("NextTurn", 1f);
             });
         };
     }
@@ -320,6 +344,8 @@ public class BattleManager : MonoBehaviour
     public void RemoveHero(HeroManager heroDie)
     {
         int k = listRound.FindIndex(x => x == heroDie);
+        uIManager.imgAva[k].gameObject.SetActive(false);
+        uIManager.imgAva.RemoveAt(k);
         listRound.Remove(heroDie);
         if (heroDie.isEnemy)
         {

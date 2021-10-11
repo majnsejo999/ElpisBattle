@@ -17,10 +17,11 @@ public class HeroManager : MonoBehaviour
     public float rality;
     public float sum_stats_body = 0;
     public SkeletonAnimation skeletonAnimation;
-    public GameObject objSelected, objCanAttck, posAva;
+    public GameObject objSelected, objCanAttck, posAva, img_leader;
     public BaseDataAll baseData;
     public bool isSkill;
     public bool isEnemy;
+    public bool isLeader;
     public Material sourceMaterial;
     public Sprite sprAva;
     public SpriteRenderer spriteHp, spriteMana;
@@ -43,6 +44,10 @@ public class HeroManager : MonoBehaviour
             skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = dataHero.line + 6;
         }
         skeletonAnimation.AnimationState.Event += HandleEvent;
+        if (isLeader)
+            img_leader.SetActive(true);
+        else
+            img_leader.SetActive(false);
     }
     void CreateRuntimeAssetsAndGameObject()
     {
@@ -199,6 +204,7 @@ public class HeroManager : MonoBehaviour
             if (statHero.hero_hp <= 0)
             {
                 statHero.hero_hp = 0;
+                BattleManager.instance.RemoveHero(this);
                 Die();
             }
             else
@@ -221,7 +227,6 @@ public class HeroManager : MonoBehaviour
         skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroDie, false).Complete += delegate
         {
             gameObject.SetActive(false);
-            BattleManager.instance.RemoveHero(this);
         };
     }
     public void ChangeMana(float _mana)
