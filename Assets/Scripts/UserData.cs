@@ -32,11 +32,12 @@ public class UserData : MonoBehaviour
         data1.idHero = Random.Range(0, 6);
         for (int i = 0; i < 9; i++)
         {
-            int k = Random.Range(0, 9);
+            int k = Random.Range(0, 7);
             data1.listIdBody.Add(k);
         }
         data1.hero_origin = baseData.ListStatsBaseHeroe[data1.idHero].origin;
         data1.line = index;
+        AddSkill(data1.skillDataHeroes);
         data_hero.Add(data1);
     }
     public void CreatNewDataEnemy(int index)
@@ -45,15 +46,38 @@ public class UserData : MonoBehaviour
         data1.idHero = Random.Range(0, 6);
         for (int i = 0; i < 9; i++)
         {
-            int k = Random.Range(0, 9);
+            int k = Random.Range(0, 7);
             data1.listIdBody.Add(k);
         }
         data1.hero_origin = baseData.ListStatsBaseHeroe[data1.idHero].origin;
         data1.line = index;
         data1.isEnemy = true;
+        AddSkill(data1.skillDataHeroes);
         data_hero.Add(data1);
     }
-
+    public void AddSkill(List<SkillDataHero> listSkill)
+    {
+        int a1 = Random.Range(0, 39);
+        SkillDataHero skillDataHero1 = new SkillDataHero();
+        skillDataHero1.idSkill = baseData.ListStatsSkillHero[a1].id;
+        skillDataHero1.levelSkill = 1;
+        listSkill.Add(skillDataHero1);
+        int a2 = Random.Range(40, 83);
+        SkillDataHero skillDataHero2 = new SkillDataHero();
+        skillDataHero2.idSkill = baseData.ListStatsSkillHero[a2].id;
+        skillDataHero2.levelSkill = 1;
+        listSkill.Add(skillDataHero2);
+        int a3 = Random.Range(84, 119);
+        SkillDataHero skillDataHero3 = new SkillDataHero();
+        skillDataHero3.idSkill = baseData.ListStatsSkillHero[a3].id;
+        skillDataHero3.levelSkill = 1;
+        listSkill.Add(skillDataHero3);
+        int a4 = Random.Range(120, 184);
+        SkillDataHero skillDataHero4 = new SkillDataHero();
+        skillDataHero4.idSkill = baseData.ListStatsSkillHero[a4].id;
+        skillDataHero4.levelSkill = 1;
+        listSkill.Add(skillDataHero4);
+    }
     public void SwapLine(int index , int newline)
     {
         data_hero[index].line = newline;
@@ -71,6 +95,7 @@ public class UserDataHero
     public float exp;
     public int line;
     public bool isEnemy;
+    public List<SkillDataHero> skillDataHeroes;
     public UserDataHero()
     {
         idHero = 0;
@@ -82,5 +107,17 @@ public class UserDataHero
         index_evolution = 2;
         exp = 1000;
         line = 0;
+        skillDataHeroes = new List<SkillDataHero>();
+    }
+}
+[System.Serializable]
+public class SkillDataHero
+{
+    public int idSkill;
+    public int levelSkill;
+    public SkillDataHero()
+    {
+        idSkill = 0;
+        levelSkill = 1;
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6a7d1e70ad09744829f1f9e5f1abf0, type: 3}
   m_Name: Ultimate 1Skill147
   m_EditorClassIdentifier: 
-  id: 0
+  id: 147
   skill_name: Master Crippling Fear
   rality: Legendary
   type_skill: Ultimate 1
@@ -40,7 +40,7 @@ MonoBehaviour:
       - 0.5
       - 0.5
       - 0.5
-    round: 0
+    round: 2
     max_stack: 1
     effect_dame:
     - 0

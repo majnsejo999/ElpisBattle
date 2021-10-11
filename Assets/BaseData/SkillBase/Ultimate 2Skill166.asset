@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6a7d1e70ad09744829f1f9e5f1abf0, type: 3}
   m_Name: Ultimate 2Skill166
   m_EditorClassIdentifier: 
-  id: 0
+  id: 166
   skill_name: Expert Taunt
   rality: Epic
   type_skill: Ultimate 2
@@ -55,7 +55,7 @@ MonoBehaviour:
       - 0.45
       - 0.55
       - 0.65
-    round: 0
+    round: 1
     max_stack: 1
     effect_dame:
     - 0

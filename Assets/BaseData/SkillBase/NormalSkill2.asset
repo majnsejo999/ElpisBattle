@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6a7d1e70ad09744829f1f9e5f1abf0, type: 3}
   m_Name: NormalSkill2
   m_EditorClassIdentifier: 
-  id: 0
+  id: 2
   skill_name: Expert Slash
   rality: Epic
   type_skill: Normal
@@ -27,7 +27,7 @@ MonoBehaviour:
     - 1
     - 1
     require: none
-    type_damge: attck
+    type_damge: attack
     damge:
     - 2.5
     - 3.75

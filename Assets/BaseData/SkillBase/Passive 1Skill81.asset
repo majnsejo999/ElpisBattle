@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6a7d1e70ad09744829f1f9e5f1abf0, type: 3}
   m_Name: Passive 1Skill81
   m_EditorClassIdentifier: 
-  id: 0
+  id: 81
   skill_name: Advanced Stone Skin
   rality: Rare
   type_skill: Passive 1

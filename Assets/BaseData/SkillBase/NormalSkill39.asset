@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6a7d1e70ad09744829f1f9e5f1abf0, type: 3}
   m_Name: NormalSkill39
   m_EditorClassIdentifier: 
-  id: 0
+  id: 39
   skill_name: Master Omnislash
   rality: Legendary
   type_skill: Normal
@@ -27,7 +27,7 @@ MonoBehaviour:
     - 4
     - 4
     require: none
-    type_damge: attck
+    type_damge: attack
     damge:
     - 1
     - 1.5

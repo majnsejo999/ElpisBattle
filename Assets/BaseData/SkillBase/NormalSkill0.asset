@@ -27,7 +27,7 @@ MonoBehaviour:
     - 1
     - 1
     require: none
-    type_damge: attck
+    type_damge: attack
     damge:
     - 1.5
     - 2.25

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6a7d1e70ad09744829f1f9e5f1abf0, type: 3}
   m_Name: Ultimate 2Skill170
   m_EditorClassIdentifier: 
-  id: 0
+  id: 170
   skill_name: Expert Shield Break
   rality: Epic
   type_skill: Ultimate 2
@@ -53,7 +53,7 @@ MonoBehaviour:
       - -0.15
       - -0.25
       - -0.25
-    round: 0
+    round: 2
     max_stack: 1
     effect_dame:
     - 0

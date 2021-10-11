@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6a7d1e70ad09744829f1f9e5f1abf0, type: 3}
   m_Name: Ultimate 2Skill180
   m_EditorClassIdentifier: 
-  id: 0
+  id: 180
   skill_name: Advanced Shadow Wave
   rality: Rare
   type_skill: Ultimate 2
@@ -38,7 +38,7 @@ MonoBehaviour:
       - 0.25
       - 0.35
       - 0.45
-    round: 0
+    round: 1
     max_stack: 0
     effect_dame:
     - 0

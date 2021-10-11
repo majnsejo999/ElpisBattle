@@ -17,7 +17,7 @@ public class DragHandle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         startParent = transform.parent;
         GetComponent<CanvasGroup>().blocksRaycasts = false;
         skeletonGraphic = GetComponent<SkeletonGraphic>();
-        indexDrag = transform.parent.GetSiblingIndex();
+        indexDrag = transform.parent.GetComponent<HeroInLine>().indexHero;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -25,7 +25,7 @@ public class DragHandle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         Vector3 newPos = GetComponentInParent<Canvas>().worldCamera.ScreenToWorldPoint(eventData.position);
         newPos.z = 0;
         transform.position = newPos;
-        if(skeletonGraphic.color == new Color32(255, 255, 255, 255))
+        if (skeletonGraphic.color == new Color32(255, 255, 255, 255))
         {
             skeletonGraphic.color = new Color32(255, 255, 255, 100);
         }
@@ -36,13 +36,6 @@ public class DragHandle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         itemBeginDragged = null;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         skeletonGraphic.color = new Color32(255, 255, 255, 255);
-        if (transform.parent != startParent)
-        {
-            transform.position = startPosition;
-        }
-        else
-        {
-            transform.position = startPosition;
-        }
+        transform.position = startPosition;
     }
 }

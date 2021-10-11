@@ -35,6 +35,13 @@ public class LineUpController : MonoBehaviour
         skeletonGraphic.gameObject.AddComponent<DragHandle>();
         HeroInLine handle = skeletonGraphic.transform.parent.GetComponent<HeroInLine>();
         handle.isEnemy = isEnemy;
+        handle.indexHero = index;
         skeletonGraphic.gameObject.AddComponent<CanvasGroup>();
+    }
+
+    public void Battle()
+    {
+        BattleManager.instance.InitBattle();
+        gameObject.SetActive(false);
     }
 }

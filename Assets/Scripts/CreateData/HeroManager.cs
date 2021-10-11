@@ -12,51 +12,44 @@ using DG.Tweening;
 public class HeroManager : MonoBehaviour
 {
     [Header("Stats Hero")]
-    public int idHero;
-    public List<int> listIdBody;
-    public string hero_origin;
+    public UserDataHero dataHero;
     public StatHero statHero;
-    public float level;
-    public float levelMax;
-    public float index_evolution;
-    public float exp;
     public float rality;
     public float sum_stats_body = 0;
-    public int line;
     public SkeletonAnimation skeletonAnimation;
     public GameObject objSelected, objCanAttck, posAva;
-    public List<StatsSkillHero> listSkill;
     public BaseDataAll baseData;
     public bool isSkill;
     public bool isEnemy;
     public Material sourceMaterial;
     public Sprite sprAva;
     public SpriteRenderer spriteHp, spriteMana;
-    public TextMeshPro textMeshHp, txtMeshMana;
-    public void Init()
+    public List<EffectHit> effectHit;
+    public void Init(UserDataHero _dataHero)
     {
+        dataHero = _dataHero;
+        effectHit = new List<EffectHit>();
         CreateRuntimeAssetsAndGameObject();
-        AddSkill();
         objSelected.SetActive(false);
         objCanAttck.SetActive(false);
-        CalculateStatsHero(baseData.ListStatsBaseHeroe[idHero]);
+        CalculateStatsHero(baseData.ListStatsBaseHeroe[dataHero.idHero]);
         gameObject.SetActive(true);
         if (isEnemy)
         {
-            skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = line;
+            skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = dataHero.line;
         }
         else
         {
-            skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = line + 6;
+            skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = dataHero.line + 6;
         }
         skeletonAnimation.AnimationState.Event += HandleEvent;
     }
     void CreateRuntimeAssetsAndGameObject()
     {
         // Debug.Log(idHero);
-        sourceMaterial = baseData.baseBodyPartAnim[idHero].materialPropertySource;
-        SpineAtlasAsset runtimeAtlasAsset = SpineAtlasAsset.CreateRuntimeInstance(baseData.baseBodyPartAnim[idHero].atlasText, baseData.baseBodyPartAnim[idHero].textures, sourceMaterial, true);
-        SkeletonDataAsset runtimeSkeletonDataAsset = SkeletonDataAsset.CreateRuntimeInstance(baseData.baseBodyPartAnim[idHero].skeletonJson, runtimeAtlasAsset, true);
+        sourceMaterial = baseData.baseBodyPartAnim[dataHero.idHero].materialPropertySource;
+        SpineAtlasAsset runtimeAtlasAsset = SpineAtlasAsset.CreateRuntimeInstance(baseData.baseBodyPartAnim[dataHero.idHero].atlasText, baseData.baseBodyPartAnim[dataHero.idHero].textures, sourceMaterial, true);
+        SkeletonDataAsset runtimeSkeletonDataAsset = SkeletonDataAsset.CreateRuntimeInstance(baseData.baseBodyPartAnim[dataHero.idHero].skeletonJson, runtimeAtlasAsset, true);
         skeletonAnimation = SkeletonAnimation.NewSkeletonAnimationGameObject(runtimeSkeletonDataAsset);
         skeletonAnimation.transform.parent = gameObject.transform;
         skeletonAnimation.transform.localPosition = Vector3.zero;
@@ -68,35 +61,24 @@ public class HeroManager : MonoBehaviour
         skeletonAnimation.skeleton.SetToSetupPose();
         skeletonAnimation.skeleton.Update(0);
     }
-    public void AddSkill()
-    {
-        int a1 = Random.Range(0, 39);
-        listSkill.Add(baseData.ListStatsSkillHero[a1]);
-        int a2 = Random.Range(40, 83);
-        listSkill.Add(baseData.ListStatsSkillHero[a2]);
-        int a3 = Random.Range(84, 119);
-        listSkill.Add(baseData.ListStatsSkillHero[a3]);
-        int a4 = Random.Range(120, 184);
-        listSkill.Add(baseData.ListStatsSkillHero[a4]);
-    }
+
     public void CalculateStatsHero(StatsBaseHero statsBase)
     {
-        hero_origin = statsBase.origin;
+        dataHero.hero_origin = statsBase.origin;
         SumStatsBody();
-        statHero.hero_attack = statsBase.attack + statsBase.attack_lv * level + statsBase.attack_ev * index_evolution * rality;
-        statHero.hero_hp = statsBase.hp + statsBase.hp_lv * level + statsBase.hp_ev * index_evolution * rality;
-        statHero.hero_armour = statsBase.armour + statsBase.armour_lv * level + statsBase.armour_ev * index_evolution * rality;
-        statHero.hero_speed = statsBase.speed + statsBase.speed_lv * level + statsBase.speed_ev * index_evolution * rality;
+        statHero.hero_attack = statsBase.attack + statsBase.attack_lv * dataHero.level + statsBase.attack_ev * dataHero.index_evolution * rality;
+        statHero.hero_hp = statsBase.hp + statsBase.hp_lv * dataHero.level + statsBase.hp_ev * dataHero.index_evolution * rality;
+        statHero.hero_armour = statsBase.armour + statsBase.armour_lv * dataHero.level + statsBase.armour_ev * dataHero.index_evolution * rality;
+        statHero.hero_speed = statsBase.speed + statsBase.speed_lv * dataHero.level + statsBase.speed_ev * dataHero.index_evolution * rality;
         statHero.hero_attack *= ConstData.Bonus_Attack;
         statHero.hero_hp *= ConstData.Bonus_Hp;
         statHero.hero_armour *= ConstData.Bonus_Armor;
         statHero.hero_speed *= ConstData.Bonus_Speed;
         statHero.hero_mana = 0;
-        AddStatsSkill(listSkill[1]);
-        AddStatsSkill(listSkill[2]);
+        AddStatsSkill(baseData.ListStatsSkillHero[dataHero.skillDataHeroes[1].idSkill]);
+        AddStatsSkill(baseData.ListStatsSkillHero[dataHero.skillDataHeroes[2].idSkill]);
         statHero.max_hp = statHero.hero_hp;
         statHero.max_mana = ConstData.Max_Mana;
-        textMeshHp.text = statHero.hero_hp.ToString();
         ChangeMana(0);
     }
     public void AddStatsSkill(StatsSkillHero skill)
@@ -153,15 +135,18 @@ public class HeroManager : MonoBehaviour
     public void SumStatsBody()
     {
         var _skin2 = skeletonAnimation.Skeleton.Skin;
-        for (int i = 0; i < listIdBody.Count; i++)
+        for (int i = 0; i < dataHero.listIdBody.Count; i++)
         {
-            StatsBaseBody baseBody = baseData.ListStatsBaseBody[listIdBody[i]];
-            statHero.hero_attack += baseBody.attack;
-            statHero.hero_hp += baseBody.hp;
-            statHero.hero_armour += baseBody.hp;
-            statHero.hero_speed += baseBody.speed;
-            sum_stats_body += (baseBody.attack + baseBody.hp + baseBody.hp + baseBody.speed);
-            ChangSkin(baseData.baseBodyPartAnim[idHero].listBodyCharacter[i], baseData.baseBodyPartAnim[idHero].spriteAtlas[listIdBody[i] % 2], _skin2);
+            if (i >= 3)
+            {
+                StatsBaseBody baseBody = baseData.ListStatsBaseBody[dataHero.listIdBody[i]];
+                statHero.hero_attack += baseBody.attack;
+                statHero.hero_hp += baseBody.hp;
+                statHero.hero_armour += baseBody.hp;
+                statHero.hero_speed += baseBody.speed;
+                sum_stats_body += (baseBody.attack + baseBody.hp + baseBody.hp + baseBody.speed);
+            }
+            ChangSkin(baseData.baseBodyPartAnim[dataHero.idHero].listBodyCharacter[i], baseData.baseBodyPartAnim[dataHero.idHero].spriteAtlas[dataHero.listIdBody[i] % 2], _skin2);
         }
         rality = 1 + (float)Mathf.Clamp((int)(sum_stats_body / 12) - 1, 0, 5) / 10;
         ClearSkin(_skin2);
@@ -192,16 +177,15 @@ public class HeroManager : MonoBehaviour
         skeletonAnimation.Update(0);
         AtlasUtilities.ClearCache();
     }
-    [SpineEvent] public string footstepEventName = "attack";
+    [SpineEvent] public string EventName = "attack";
     void HandleEvent(TrackEntry trackEntry, Spine.Event e)
     {
-        // Play some sound if the event named "footstep" fired.
-        if (e.Data.Name == footstepEventName)
+        if (e.Data.Name == EventName)
         {
             BattleManager.instance.Hit();
         }
     }
-    public void BurnHp(float damge, string effectSkill = "", float effectdame = 0)
+    public void BurnHp(float damge, EffectHit effectSkill)
     {
         if (Checkdodge() || CheckEvasion())
         {
@@ -219,14 +203,17 @@ public class HeroManager : MonoBehaviour
             }
             else
             {
+                if (!string.IsNullOrEmpty(effectSkill.nameEffect))
+                {
+                    effectHit.Add(effectSkill);
+                    Debug.Log(effectSkill.nameEffect);
+                }
                 skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroHit, false).Complete += delegate
                 {
-                    skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroIdle, true);
+                   skeletonAnimation.AnimationState.SetAnimation(0, (effectSkill.nameEffect == "stun" || effectSkill.nameEffect == "frezee") ? ConstData.AnimHeroStun : ConstData.AnimHeroIdle, true);
                 };
             }
-
-            spriteHp.size = new Vector2(statHero.hero_hp / statHero.max_hp * 2f, 0.2f);
-            textMeshHp.text = statHero.hero_hp.ToString();
+            spriteHp.size = new Vector2(statHero.hero_hp / statHero.max_hp * 1.5f, 0.15f);
         }
     }
     public void Die()
@@ -244,8 +231,7 @@ public class HeroManager : MonoBehaviour
         {
             statHero.hero_mana = 100;
         }
-        spriteMana.size = new Vector2(statHero.hero_mana / statHero.max_mana * 2f, 0.2f);
-        txtMeshMana.text = statHero.hero_mana.ToString();
+        spriteMana.size = new Vector2(statHero.hero_mana / statHero.max_mana * 1.5f, 0.08f);
     }
     public bool CheckEvasion()
     {
@@ -281,7 +267,7 @@ public class HeroManager : MonoBehaviour
         go.transform.position = transform.position;
         TextMeshPro textMeshPro = go.GetComponent<TextMeshPro>();
         textMeshPro.text = ((int)dame).ToString();
-     //   textMeshPro.autoSizeTextContainer = true;
+        //   textMeshPro.autoSizeTextContainer = true;
         textMeshPro.rectTransform.pivot = new Vector2(0.5f, 0);
 
         textMeshPro.alignment = TextAlignmentOptions.Bottom;
@@ -292,7 +278,7 @@ public class HeroManager : MonoBehaviour
         Vector3 posEnd = new Vector3(go.transform.position.x, go.transform.position.y + 4, go.transform.position.z);
         go.transform.DOMove(posEnd, 1f, false).OnComplete(delegate
          {
-          //   textMeshPro.autoSizeTextContainer = false;
+             //   textMeshPro.autoSizeTextContainer = false;
              BattleManager.instance.DePool(go);
          });
     }
@@ -338,5 +324,20 @@ public class StatHero
         armor_reduction = 0;
         dodge_chance = 0;
         block_dame = 0;
+    }
+}
+[System.Serializable]
+public class EffectHit
+{
+    public string nameEffect;
+    public float dameEffect;
+    public float round;
+    public float stack;
+    public EffectHit()
+    {
+        nameEffect = string.Empty;
+        dameEffect = 0;
+        round = 0;
+        stack = 0;
     }
 }

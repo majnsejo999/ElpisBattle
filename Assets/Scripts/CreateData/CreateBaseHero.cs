@@ -110,6 +110,7 @@ public class CreateBaseHero : MonoBehaviour
                     for (int i = 0; i < _skillData.Length; i++)
                     {
                         StatsSkillHero statsSkill = ScriptableObject.CreateInstance<StatsSkillHero>();
+                        statsSkill.id = i;
                         statsSkill.skill_name = _skillData[i].skill_name;
                         statsSkill.rality = _skillData[i].rality;
                         statsSkill.mana = _skillData[i].mana;
@@ -179,9 +180,7 @@ public class CreateBaseHero : MonoBehaviour
         List<float> list1 = new List<float>();
         for (int i = 0; i < listString.Count; i++)
         {
-            Debug.Log(listString[i]);
             list1.Add(float.Parse(listString[i]));
-            Debug.Log(list1[i]);
         }
         return list1;
     }

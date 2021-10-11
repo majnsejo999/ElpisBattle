@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public Image[] imgAva;
@@ -13,18 +14,22 @@ public class UIManager : MonoBehaviour
         imgAva[id].sprite = _sprite;
     }
 
-    public void ChangeUIAttack(HeroManager hero)
+    public void ChangeUIAttack(HeroManager hero, StatsSkillHero attack, StatsSkillHero skill)
     {
-        if (hero.listSkill[0].statsSkillNormals.require == "min_hp")
+        if (attack.statsSkillNormals.require == "min_hp")
         {
-            txtAttack.text = "Attack min_hp";
+            txtAttack.text = "Attack min_hp" +"\n" +attack.rality;
+        }
+        else if (attack.statsSkillNormals.effectSkill[0].effect != "none")
+        {
+            txtAttack.text = "Attack " + "\n" + attack.statsSkillNormals.effectSkill[0].effect + "\n" + attack.rality;
         }
         else
         {
-            txtAttack.text = "Attack";
+            txtAttack.text = "Attack" + "\n" + attack.rality;
         }
 
-        if (hero.statHero.hero_mana >= hero.listSkill[3].mana)
+        if (hero.statHero.hero_mana >= skill.mana)
         {
             if (hero.isSkill)
             {
@@ -43,5 +48,10 @@ public class UIManager : MonoBehaviour
             img_skill1.color = Color.white;
             img_attack.color = Color.red;
         }
+    }
+
+    public void Replay()
+    {
+        SceneManager.LoadScene("WorldMap");
     }
 }

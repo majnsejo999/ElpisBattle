@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6a7d1e70ad09744829f1f9e5f1abf0, type: 3}
   m_Name: Ultimate 2Skill184
   m_EditorClassIdentifier: 
-  id: 0
+  id: 184
   skill_name: Reborn
   rality: Legendary
   type_skill: Ultimate 2
@@ -41,7 +41,7 @@ MonoBehaviour:
       - 0.6
       - 0.8
       - 1
-    round: 0
+    round: 1
     max_stack: 0
     effect_dame:
     - 0
