@@ -25,10 +25,10 @@ public class BattleManager : MonoBehaviour
         {
             instance = this;
         }
-    }
-    private void Start()
-    {
         listPool = new Dictionary<string, List<GameObject>>();
+    }
+    public void InitBattle()
+    {
         indexRound = 0;
         uIManager.txtRound.text = "Round : " + indexRound;
         listRound = new List<HeroManager>();
