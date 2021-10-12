@@ -13,14 +13,12 @@ MonoBehaviour:
   m_Name: Passive 2Skill108
   m_EditorClassIdentifier: 
   id: 108
-  skill_name: Basic Pot of Mana
+  skill_name: Basic Life Steal
   rality: Common
   type_skill: Passive 2
-  detail: -Start battle with 5/10/15 Mana
+  detail: -Lifesteal 2%/3%/4% Enemy HP
   origin:
-  - Elf
-  - Naga
-  - Human
+  - All
   mana: 0
   spriteSkill: {fileID: 0}
   statsSkillNormals:
@@ -35,11 +33,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: mana_start
+    - effect: life_steal_enemy_hp
       rate:
-      - 5
-      - 10
-      - 15
+      - 0.02
+      - 0.03
+      - 0.04
     round: 0
     max_stack: 0
     effect_dame:

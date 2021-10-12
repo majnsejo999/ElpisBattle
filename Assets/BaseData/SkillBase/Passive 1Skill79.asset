@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Passive 1Skill79
   m_EditorClassIdentifier: 
   id: 79
-  skill_name: Master Magic Skin
+  skill_name: Master Stone Skin
   rality: Legendary
   type_skill: Passive 1
-  detail: -Magic Resistance 40%/45%/50%
+  detail: -Dame Reduction 20%/30%/40%
   origin:
   - All
   mana: 0
@@ -33,11 +33,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: magic_resist
+    - effect: dame_reduction
       rate:
+      - 0.2
+      - 0.3
       - 0.4
-      - 0.45
-      - 0.5
     round: 0
     max_stack: 0
     effect_dame:

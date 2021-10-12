@@ -13,26 +13,19 @@ MonoBehaviour:
   m_Name: Passive 2Skill105
   m_EditorClassIdentifier: 
   id: 105
-  skill_name: Advanced Shallow Grave
+  skill_name: Advanced Blood Dragon
   rality: Rare
   type_skill: Passive 2
-  detail: '-When HP = 0, stay at battle one more round
-
-    -Buff all teammate 10%
-    HP next 3 rounds
-
-    -Trigger one'
+  detail: -Regen 7.5/11.25/15% Max HP each round
   origin:
-  - Dwarf
-  - Elf
-  - Demon
+  - All
   mana: 0
   spriteSkill: {fileID: 0}
   statsSkillNormals:
     target:
-    - 4
-    - 4
-    - 4
+    - 1
+    - 1
+    - 1
     require: none
     type_damge: none
     damge:
@@ -40,18 +33,13 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: immortal
-      rate:
-      - 1
-      - 1
-      - 1
     - effect: regen_hp
       rate:
-      - 0.1
+      - 0.75
+      - 0.1125
       - 0.15
-      - 0.2
-    round: 3
-    max_stack: 1
+    round: 0
+    max_stack: 0
     effect_dame:
     - 0
     - 0

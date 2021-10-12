@@ -8,6 +8,7 @@ using UnityEngine.U2D;
 using TMPro.Examples;
 using TMPro;
 using DG.Tweening;
+using System.Linq;
 
 public class HeroManager : MonoBehaviour
 {
@@ -25,11 +26,12 @@ public class HeroManager : MonoBehaviour
     public Material sourceMaterial;
     public Sprite sprAva;
     public SpriteRenderer spriteHp, spriteMana;
-    public List<EffectHit> effectHit;
+    public List<EffectHit> effectHit,effectHits_start;
     public void Init(UserDataHero _dataHero)
     {
         dataHero = _dataHero;
         effectHit = new List<EffectHit>();
+        effectHits_start = new List<EffectHit>();
         CreateRuntimeAssetsAndGameObject();
         objSelected.SetActive(false);
         objCanAttck.SetActive(false);
@@ -80,61 +82,66 @@ public class HeroManager : MonoBehaviour
         statHero.hero_armour *= ConstData.Bonus_Armor;
         statHero.hero_speed *= ConstData.Bonus_Speed;
         statHero.hero_mana = 0;
-        AddStatsSkill(baseData.ListStatsSkillHero[dataHero.skillDataHeroes[1].idSkill]);
-        AddStatsSkill(baseData.ListStatsSkillHero[dataHero.skillDataHeroes[2].idSkill]);
+        AddStatsSkill1(baseData.ListStatsSkillHero[dataHero.skillDataHeroes[1].idSkill]);
+        AddStatsSkill2(baseData.ListStatsSkillHero[dataHero.skillDataHeroes[2].idSkill]);
         statHero.max_hp = statHero.hero_hp;
         statHero.max_mana = ConstData.Max_Mana;
         ChangeMana(0);
     }
-    public void AddStatsSkill(StatsSkillHero skill)
+    public void AddStatsSkill1(StatsSkillHero skill)
     {
+        int level_skill = dataHero.skillDataHeroes[1].levelSkill;
         switch (skill.statsSkillNormals.effectSkill[0].effect)
         {
             case "attack":
-                statHero.hero_attack += (statHero.hero_attack * skill.statsSkillNormals.effectSkill[0].rate[0]);
+                statHero.hero_attack = statHero.hero_attack *(1+ skill.statsSkillNormals.effectSkill[0].rate[level_skill]);
                 break;
             case "armor":
-                statHero.hero_armour += (statHero.hero_armour * skill.statsSkillNormals.effectSkill[0].rate[0]);
+                statHero.hero_armour = statHero.hero_armour * (1 + skill.statsSkillNormals.effectSkill[0].rate[level_skill]);
                 break;
             case "speed":
-                statHero.hero_speed += (statHero.hero_speed * skill.statsSkillNormals.effectSkill[0].rate[0]);
+                statHero.hero_speed = statHero.hero_speed*(1 + skill.statsSkillNormals.effectSkill[0].rate[level_skill]);
                 break;
             case "hp":
-                statHero.hero_hp += (statHero.hero_hp * skill.statsSkillNormals.effectSkill[0].rate[0]);
+                statHero.hero_hp = statHero.hero_hp * (1 + skill.statsSkillNormals.effectSkill[0].rate[level_skill]);
                 break;
             case "crit_rate":
-                statHero.crit_rate += (statHero.crit_rate * skill.statsSkillNormals.effectSkill[0].rate[0]);
-                break;
-            case "crit_dame":
-                statHero.crit_dame = skill.statsSkillNormals.effectSkill[0].rate[0];
+                statHero.crit_rate+= statHero.crit_rate * (1 + skill.statsSkillNormals.effectSkill[0].rate[level_skill]);
+                statHero.crit_dame = skill.statsSkillNormals.effectSkill[1].rate[level_skill];
                 break;
             case "pure_dame":
-                statHero.pure_dame = statHero.pure_dame * (1 + skill.statsSkillNormals.effectSkill[0].rate[0]);
+                statHero.pure_dame = statHero.pure_dame * (1 + skill.statsSkillNormals.effectSkill[0].rate[level_skill]);
                 break;
             case "evasion":
-                statHero.evasion = skill.statsSkillNormals.effectSkill[0].rate[0];
-                break;
-            case "regen_hp":
-                statHero.regen_hp = skill.statsSkillNormals.effectSkill[0].rate[0];
-                break;
-            case "life_steal_enemy_hp":
-                statHero.life_steal_enemy_hp = skill.statsSkillNormals.effectSkill[0].rate[0];
+                statHero.evasion = skill.statsSkillNormals.effectSkill[0].rate[level_skill];
                 break;
             case "magic_resist":
-                statHero.magic_resist = skill.statsSkillNormals.effectSkill[0].rate[0];
+                statHero.magic_resist = skill.statsSkillNormals.effectSkill[0].rate[level_skill];
                 break;
             case "dame_reduction":
-                statHero.dame_reduction = skill.statsSkillNormals.effectSkill[0].rate[0];
+                statHero.dame_reduction = skill.statsSkillNormals.effectSkill[0].rate[level_skill];
                 break;
             case "armor_reduction":
-                statHero.armor_reduction = skill.statsSkillNormals.effectSkill[0].rate[0];
+                statHero.armor_reduction = skill.statsSkillNormals.effectSkill[0].rate[level_skill];
                 break;
             case "dodge_chance":
-                statHero.dodge_chance = skill.statsSkillNormals.effectSkill[0].rate[0];
+                statHero.dodge_chance = skill.statsSkillNormals.effectSkill[0].rate[level_skill];
                 break;
             case "mana_start":
-                statHero.hero_mana += skill.statsSkillNormals.effectSkill[0].rate[0];
+                statHero.hero_mana = skill.statsSkillNormals.effectSkill[0].rate[level_skill];
                 break;
+        }
+    }
+    public void AddStatsSkill2(StatsSkillHero skill)
+    {
+        int level_skill = dataHero.skillDataHeroes[2].levelSkill;
+        for(int i = 0; i < skill.statsSkillNormals.effectSkill.Count; i++)
+        {
+            EffectHit effectHitClone = new EffectHit();
+            effectHitClone.nameEffect = skill.statsSkillNormals.effectSkill[i].effect;
+            effectHitClone.dameEffect = skill.statsSkillNormals.effectSkill[i].rate[level_skill];
+            effectHitClone.round = skill.statsSkillNormals.round;
+            effectHits_start.Add(effectHitClone);
         }
     }
     public void SumStatsBody()
@@ -172,7 +179,9 @@ public class HeroManager : MonoBehaviour
     {
         if (objCanAttck.activeInHierarchy)
         {
-            BattleManager.instance.HeroAttack(gameObject.GetComponent<HeroManager>());
+            List<HeroManager> list_hero = new List<HeroManager>();
+            list_hero.Add(gameObject.GetComponent<HeroManager>());
+            BattleManager.instance.HeroAttack(list_hero);
         }
     }
     public void ClearSkin(Skin _skinChange)
@@ -187,7 +196,7 @@ public class HeroManager : MonoBehaviour
     {
         if (e.Data.Name == EventName)
         {
-            BattleManager.instance.Hit();
+            BattleManager.instance.CheckDamge();
         }
     }
     public void BurnHp(float damge, EffectHit effectSkill)
@@ -201,6 +210,7 @@ public class HeroManager : MonoBehaviour
             statHero.hero_hp -= damge;
             ShowTextDame(damge);
             ChangeMana(10);
+            CheckEffectHit();
             if (statHero.hero_hp <= 0)
             {
                 statHero.hero_hp = 0;
@@ -266,6 +276,26 @@ public class HeroManager : MonoBehaviour
             return false;
         }
     }
+    public void CheckEffectHit()
+    {
+        switch (effectHits_start[0].nameEffect)
+        {
+            case "return_dame":
+                break;
+            case "counter_dame":
+                break;
+            case "revive":
+                break;
+            case "importal":
+                break;
+            case "regen_hp":
+                break;
+            case "attack_hp":
+                break;
+            case "reflect_magic_dame":
+                break;
+        }
+    }
     public void ShowTextDame(float dame)
     {
         GameObject go = BattleManager.instance.Pool(BattleManager.instance.txtClone, BattleManager.instance.transform);
@@ -302,13 +332,12 @@ public class StatHero
     public float crit_dame;
     public float pure_dame;
     public float evasion; // chỉ số né đánh thường
-    public float regen_hp;
-    public float life_steal_enemy_hp;
     public float magic_resist;
     public float dame_reduction;
     public float armor_reduction;
     public float dodge_chance; // chỉ số né cả skill lẫn đánh thường
-    public float block_dame;
+    public float return_dame;
+    public float counter_dame;
     public StatHero()
     {
         hero_attack = 0;
@@ -322,13 +351,10 @@ public class StatHero
         crit_dame = 1;
         pure_dame = 100;
         evasion = 0;
-        regen_hp = 0;
-        life_steal_enemy_hp = 0;
         magic_resist = 0;
         dame_reduction = 0;
         armor_reduction = 0;
         dodge_chance = 0;
-        block_dame = 0;
     }
 }
 [System.Serializable]

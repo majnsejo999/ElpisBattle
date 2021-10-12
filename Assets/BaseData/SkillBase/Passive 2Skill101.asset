@@ -13,24 +13,26 @@ MonoBehaviour:
   m_Name: Passive 2Skill101
   m_EditorClassIdentifier: 
   id: 101
-  skill_name: Advanced Reincarnation
+  skill_name: Advanced Shallow Grave
   rality: Rare
   type_skill: Passive 2
-  detail: '-Revive with 40%/50%/6-% of HP after death
+  detail: '-When HP = 0, stay at battle one more round
+
+    -Buff all teammate 10%
+    HP next 3 rounds
 
     -Trigger one'
   origin:
+  - Dwarf
   - Elf
   - Demon
-  - Angel
-  - Naga
   mana: 0
   spriteSkill: {fileID: 0}
   statsSkillNormals:
     target:
-    - 1
-    - 1
-    - 1
+    - 4
+    - 4
+    - 4
     require: none
     type_damge: none
     damge:
@@ -38,13 +40,18 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: revive
+    - effect: immortal
       rate:
-      - 0.4
-      - 0.5
-      - 0.6
-    round: 0
-    max_stack: 0
+      - 1
+      - 1
+      - 1
+    - effect: bonus_max_hp
+      rate:
+      - 0.1
+      - 0.15
+      - 0.2
+    round: 3
+    max_stack: 1
     effect_dame:
     - 0
     - 0

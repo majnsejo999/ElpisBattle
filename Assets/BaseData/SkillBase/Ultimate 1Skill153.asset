@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ultimate 1Skill153
   m_EditorClassIdentifier: 
   id: 153
-  skill_name: Advanced Spectral Dagger
+  skill_name: Advanced Meteor
   rality: Rare
   type_skill: Ultimate 1
   detail: -Attack all enemy

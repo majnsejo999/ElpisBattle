@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Passive 1Skill78
   m_EditorClassIdentifier: 
   id: 78
-  skill_name: Expert Magic Skin
+  skill_name: Expert Stone Skin
   rality: Epic
   type_skill: Passive 1
-  detail: -Magic Resistance 35%/40%/45%
+  detail: -Dame Reduction 15%/20%/25%
   origin:
   - All
   mana: 0
@@ -33,11 +33,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: magic_resist
+    - effect: dame_reduction
       rate:
-      - 0.35
-      - 0.4
-      - 0.45
+      - 0.15
+      - 0.2
+      - 0.25
     round: 0
     max_stack: 0
     effect_dame:

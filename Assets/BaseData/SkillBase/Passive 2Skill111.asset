@@ -13,14 +13,12 @@ MonoBehaviour:
   m_Name: Passive 2Skill111
   m_EditorClassIdentifier: 
   id: 111
-  skill_name: Master Pot of Mana
+  skill_name: Master Life Steal
   rality: Legendary
   type_skill: Passive 2
-  detail: -Start battle with 20/25/30 Mana
+  detail: -Lifesteal 5%/7.5%/10% Enemy HP
   origin:
-  - Elf
-  - Naga
-  - Human
+  - All
   mana: 0
   spriteSkill: {fileID: 0}
   statsSkillNormals:
@@ -35,11 +33,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: mana_start
+    - effect: life_steal_enemy_hp
       rate:
-      - 20
-      - 25
-      - 30
+      - 0.05
+      - 0.075
+      - 0.1
     round: 0
     max_stack: 0
     effect_dame:

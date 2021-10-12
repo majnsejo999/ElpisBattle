@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,9 +10,8 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager instance;
     public HeroManager heroPrefabs;
-    public List<HeroManager> list1, list2, listRound;
+    public List<HeroManager> list1, list2, listRound, hero_beaten;
     public List<LineUp> lineHero, lineEnemy;
-    public HeroManager hero_beaten;
     private int indexTurn, indexRound = 1;
     public BaseDataAll baseData;
     public UserData userData;
@@ -20,6 +19,10 @@ public class BattleManager : MonoBehaviour
     public UIManager uIManager;
     public Dictionary<string, List<GameObject>> listPool;
     public GameObject txtClone;
+    public enum BattleStats
+    {
+        None, Auto, Pause, End, Wait
+    }
     private void Awake()
     {
         if (instance == null)
@@ -60,10 +63,121 @@ public class BattleManager : MonoBehaviour
         Invoke("CheckNewRound", 0.1f);
         // CheckNewRound();
     }
-    public enum BattleStats
+    public void HeroAttack(List<HeroManager> _list_hero)
     {
-        None, Auto, Pause, End, Wait
+        hero_beaten = _list_hero;
+        if (_list_hero.Count == 1)
+        {
+            if (listRound[indexTurn].isEnemy)
+            {
+                for (int i = 0; i < list1.Count; i++)
+                {
+                    list1[i].objCanAttck.SetActive(false);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < list2.Count; i++)
+                {
+                    list2[i].objCanAttck.SetActive(false);
+                }
+            }
+            Vector3 posEnd = new Vector3();
+            if (listRound[indexTurn].dataHero.hero_origin == "Elf" || listRound[indexTurn].dataHero.hero_origin == "Dwarf")
+            {
+                posEnd = listRound[indexTurn].gameObject.transform.position;
+            }
+            else
+            {
+                if (hero_beaten[0].isEnemy)
+                {
+                    posEnd = lineEnemy[hero_beaten[0].dataHero.line].posAttack.position;
+                }
+                else
+                {
+                    posEnd = lineHero[hero_beaten[0].dataHero.line].posAttack.position;
+                }
+            }
+            listRound[indexTurn].transform.DOMove(posEnd, 0.2f, false).OnComplete(delegate
+            {
+                //  listRound[0].animator.Play(ConstData.AnimHeroAttack, 0, 0);
+                // StartCoroutine(Attack());
+                listRound[indexTurn].skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = -1;
+                Attack();
+                listRound[indexTurn].objSelected.SetActive(false);
+            });
+        }
+        else
+        {
+            Attack();
+        }
     }
+    public void Attack()
+    {
+        listRound[indexTurn].ChangeMana(30);
+        listRound[indexTurn].skeletonAnimation.AnimationState.SetAnimation(0, listRound[indexTurn].isSkill ? ConstData.AnimHeroSkill : ConstData.AnimHeroAttack, false).Complete += delegate
+        {
+            listRound[indexTurn].skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroIdle, true);
+            Vector3 posEnd = new Vector3();
+
+            if (listRound[indexTurn].isEnemy)
+            {
+                posEnd = lineEnemy[listRound[indexTurn].dataHero.line].posHero.position;
+            }
+            else
+            {
+                posEnd = lineHero[listRound[indexTurn].dataHero.line].posHero.position;
+            }
+            listRound[indexTurn].transform.DOMove(posEnd, 0.3f, false).OnComplete(delegate
+            {
+                listRound[indexTurn].objSelected.SetActive(false);
+                if (listRound[indexTurn].isEnemy)
+                {
+                    listRound[indexTurn].skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = listRound[indexTurn].dataHero.line;
+                }
+                else
+                {
+                    listRound[indexTurn].skeletonAnimation.GetComponent<MeshRenderer>().sortingOrder = listRound[indexTurn].dataHero.line + 6;
+                }
+                Invoke("NextTurn", 1f);
+            });
+
+        };
+    }
+    public void SwapAttackSkill(bool useSkill)
+    {
+        if (useSkill)
+        {
+            if (listRound[indexTurn].statHero.hero_mana < baseData.ListStatsSkillHero[listRound[indexTurn].dataHero.skillDataHeroes[3].idSkill].mana)
+                return;
+            if (listRound[indexTurn].isSkill)
+                return;
+            else
+            {
+                uIManager.img_skill[3].color = Color.red;
+                uIManager.img_skill[0].color = Color.white;
+                listRound[indexTurn].isSkill = true;
+                CheckCanAttack(listRound[indexTurn]);
+            }
+        }
+        else
+        {
+            if (listRound[indexTurn].statHero.hero_mana >= baseData.ListStatsSkillHero[listRound[indexTurn].dataHero.skillDataHeroes[3].idSkill].mana)
+            {
+                uIManager.img_skill[0].color = Color.red;
+                uIManager.img_skill[3].color = Color.blue;
+            }
+            else
+            {
+                uIManager.img_skill[3].color = Color.white;
+                uIManager.img_skill[0].color = Color.red;
+            }
+            listRound[indexTurn].isSkill = false;
+            CheckCanAttack(listRound[indexTurn]);
+        }
+    }
+
+    #region Turn Base
     public void CheckNewRound()
     {
         indexRound += 1;
@@ -93,9 +207,69 @@ public class BattleManager : MonoBehaviour
             uIManager.SetAva(baseData.baseBodyPartAnim[listRound[i].dataHero.idHero].icon, i);
         }
     }
+    public void NextTurn()
+    {
+        uIManager.imgAva[indexTurn].gameObject.SetActive(false);
+        indexTurn += 1;
+        if (indexTurn >= listRound.Count)
+        {
+            indexTurn = 0;
+            CheckNewRound();
+        }
+        else
+        {
+            listRound[indexTurn].objSelected.SetActive(true);
+            CheckCanAttack(listRound[indexTurn]);
+        }
+    }
+    public void ShowTextEndTurn()
+    {
+        GameObject go = Pool(txtClone, transform);
+        TextMeshPro textMeshPro = go.GetComponent<TextMeshPro>();
+        go.transform.position = Vector3.zero;
+        textMeshPro.text = "Hero can't attack";
+        //textMeshPro.autoSizeTextContainer = true;
+        textMeshPro.rectTransform.pivot = new Vector2(0.5f, 0);
+
+        textMeshPro.alignment = TextAlignmentOptions.Bottom;
+        textMeshPro.fontSize = 15;
+        textMeshPro.enableKerning = false;
+        textMeshPro.sortingOrder = 50;
+        textMeshPro.color = new Color32(255, 255, 0, 255);
+
+        Vector3 posEnd = new Vector3(go.transform.position.x, go.transform.position.y + 2, go.transform.position.z);
+        go.transform.DOMove(posEnd, 1f, false).OnComplete(delegate
+        {
+            listRound[indexTurn].objSelected.SetActive(false);
+            NextTurn();
+            //textMeshPro.autoSizeTextContainer = false;
+            DePool(go);
+        });
+    }
+    public void RemoveHero(HeroManager heroDie)
+    {
+        int k = listRound.FindIndex(x => x == heroDie);
+        uIManager.imgAva[k].gameObject.SetActive(false);
+        uIManager.imgAva.RemoveAt(k);
+        listRound.Remove(heroDie);
+        if (heroDie.isEnemy)
+        {
+            list2.Remove(heroDie);
+        }
+        else
+        {
+            list1.Remove(heroDie);
+        }
+        if (indexTurn >= k)
+        {
+            indexTurn -= 1;
+        }
+    }
+    #endregion
+    #region Mode Battle
     public void CheckCanAttack(HeroManager _hero)
     {
-        uIManager.ChangeUIAttack(_hero, baseData.ListStatsSkillHero[_hero.dataHero.skillDataHeroes[0].idSkill], baseData.ListStatsSkillHero[_hero.dataHero.skillDataHeroes[3].idSkill]);
+        uIManager.ChangeUIAttack(_hero);
         if (_hero.isSkill)
         {
 
@@ -115,11 +289,23 @@ public class BattleManager : MonoBehaviour
                     heroClone[0].objCanAttck.SetActive(true);
                 }
             }
+            if (baseData.ListStatsSkillHero[_hero.dataHero.skillDataHeroes[0].idSkill].statsSkillNormals.target[_hero.dataHero.skillDataHeroes[0].levelSkill] == 4)
+            {
+                if (_hero.isEnemy)
+                    HeroAttack(list1);
+                else
+                    HeroAttack(list2);
+            }
             else
             {
-                if (_hero.isLeader)
+                if (_hero.isEnemy)
                 {
-                    if (_hero.isEnemy)
+                    if (CheckEnemyStandFront(_hero) && !_hero.isLeader)
+                    {
+                        Invoke("ShowTextEndTurn", 1f);
+                        return;
+                    }
+                    else
                     {
                         for (int i = 0; i < list1.Count; i++)
                         {
@@ -128,6 +314,14 @@ public class BattleManager : MonoBehaviour
                                 list1[i].objCanAttck.SetActive(true);
                             }
                         }
+                    }
+                }
+                else
+                {
+                    if (CheckHeroStandFront(_hero) && !_hero.isLeader)
+                    {
+                        Invoke("ShowTextEndTurn", 1f);
+                        return;
                     }
                     else
                     {
@@ -140,61 +334,7 @@ public class BattleManager : MonoBehaviour
                         }
                     }
                 }
-                else
-                {
-                    if (_hero.isEnemy)
-                    {
-                        if (CheckEnemyStandFront(_hero))
-                        {
-                            Invoke("ShowTextEndTurn", 1f);
-                            return;
-                        }
-                        else
-                        {
-                            for (int i = 0; i < list1.Count; i++)
-                            {
-                                if (!CheckHeroStandFront(list1[i]))
-                                {
-                                    list1[i].objCanAttck.SetActive(true);
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (CheckHeroStandFront(_hero))
-                        {
-                            Invoke("ShowTextEndTurn", 1f);
-                            return;
-                        }
-                        else
-                        {
-                            for (int i = 0; i < list2.Count; i++)
-                            {
-                                if (!CheckEnemyStandFront(list2[i]))
-                                {
-                                    list2[i].objCanAttck.SetActive(true);
-                                }
-                            }
-                        }
-                    }
-                }
             }
-        }
-    }
-    public void NextTurn()
-    {
-        uIManager.imgAva[indexTurn].gameObject.SetActive(false);
-        indexTurn += 1;
-        if (indexTurn >= listRound.Count)
-        {
-            indexTurn = 0;
-            CheckNewRound();
-        }
-        else
-        {
-            listRound[indexTurn].objSelected.SetActive(true);
-            CheckCanAttack(listRound[indexTurn]);
         }
     }
     public bool CheckHeroStandFront(HeroManager _hero)
@@ -233,94 +373,54 @@ public class BattleManager : MonoBehaviour
             return false;
         }
     }
-    public void HeroAttack(HeroManager _hero)
+    public bool CheckEffectDame()
     {
-        hero_beaten = _hero;
-        for (int i = 0; i < list1.Count; i++)
+        int _idSkill = listRound[indexTurn].dataHero.skillDataHeroes[0].idSkill;
+        int _levelSkill = listRound[indexTurn].dataHero.skillDataHeroes[0].levelSkill;
+        float effectDameRate = baseData.ListStatsSkillHero[_idSkill].statsSkillNormals.effectSkill[0].rate[_levelSkill] * 100;
+        if (effectDameRate == 0)
         {
-            list1[i].objCanAttck.SetActive(false);
-            list1[i].objSelected.SetActive(false);
-        }
-        for (int i = 0; i < list2.Count; i++)
-        {
-            list2[i].objCanAttck.SetActive(false);
-            list2[i].objSelected.SetActive(false);
-        }
-        Vector3 posEnd = new Vector3();
-        if (listRound[indexTurn].dataHero.hero_origin == "Elf" || listRound[indexTurn].dataHero.hero_origin == "Dwarf")
-        {
-            posEnd = listRound[indexTurn].gameObject.transform.position;
+            return false;
         }
         else
         {
-            if (hero_beaten.isEnemy)
+            float a = Random.Range(0, 100);
+            if (a <= effectDameRate)
             {
-                posEnd = lineEnemy[hero_beaten.dataHero.line].posAttack.position;
+                return true;
             }
-            else
-            {
-                posEnd = lineHero[hero_beaten.dataHero.line].posAttack.position;
-            }
+            return false;
         }
-        listRound[indexTurn].transform.DOMove(posEnd, 0.2f, false).OnComplete(delegate
-        {
-            //  listRound[0].animator.Play(ConstData.AnimHeroAttack, 0, 0);
-            // StartCoroutine(Attack());
-            Attack();
-        });
-    }
-    public void Hit()
-    {
-        CheckDamge();
-    }
-    public void Attack()
-    {
-        listRound[indexTurn].ChangeMana(30);
-        listRound[indexTurn].skeletonAnimation.AnimationState.SetAnimation(0, listRound[indexTurn].isSkill ? ConstData.AnimHeroSkill : ConstData.AnimHeroAttack, false).Complete += delegate
-        {
-            listRound[indexTurn].skeletonAnimation.AnimationState.SetAnimation(0, ConstData.AnimHeroIdle, true);
-            Vector3 posEnd = new Vector3();
-
-            if (listRound[indexTurn].isEnemy)
-            {
-                posEnd = lineEnemy[listRound[indexTurn].dataHero.line].posHero.position;
-            }
-            else
-            {
-                posEnd = lineHero[listRound[indexTurn].dataHero.line].posHero.position;
-            }
-            listRound[indexTurn].transform.DOMove(posEnd, 0.3f, false).OnComplete(delegate
-            {
-                Invoke("NextTurn", 1f);
-            });
-        };
     }
     public void CheckDamge()
     {
-        if (!listRound[indexTurn].isSkill)
+        for (int i = 0; i < hero_beaten.Count; i++)
         {
-            float critDame = CheckCrit() ? listRound[indexTurn].statHero.crit_dame : 1;
-            float dameReduction = hero_beaten.statHero.dame_reduction * listRound[indexTurn].statHero.hero_attack;
-            float armor = hero_beaten.statHero.hero_armour;
-            float armorMultiplier = 1 - (ConstData.Dame_rate * armor / (1 + ConstData.Dame_rate * Mathf.Abs(armor)));
-            float damge = (listRound[indexTurn].statHero.hero_attack * critDame - dameReduction) * armorMultiplier;
-
-            if (!CheckEffectDame())
-                hero_beaten.BurnHp(damge, new EffectHit());
-            else
+            if (!listRound[indexTurn].isSkill)
             {
-                EffectHit effectSkill = new EffectHit();
-                int _idSkill = listRound[indexTurn].dataHero.skillDataHeroes[0].idSkill;
-                int _levelSkill = listRound[indexTurn].dataHero.skillDataHeroes[0].levelSkill;
-                effectSkill.nameEffect = baseData.ListStatsSkillHero[_idSkill].statsSkillNormals.effectSkill[0].effect;
-                effectSkill.dameEffect = baseData.ListStatsSkillHero[_idSkill].statsSkillNormals.effect_dame[_levelSkill];
-                effectSkill.round = baseData.ListStatsSkillHero[_idSkill].statsSkillNormals.round;
-                effectSkill.stack += 1;
-                if (effectSkill.stack >= baseData.ListStatsSkillHero[_idSkill].statsSkillNormals.max_stack)
+                float critDame = CheckCrit() ? listRound[indexTurn].statHero.crit_dame : 1;
+                float dameReduction = hero_beaten[i].statHero.dame_reduction * listRound[indexTurn].statHero.hero_attack;
+                float armor = hero_beaten[i].statHero.hero_armour;
+                float armorMultiplier = 1 - (ConstData.Dame_rate * armor / (1 + ConstData.Dame_rate * Mathf.Abs(armor)));
+                float damge = (listRound[indexTurn].statHero.hero_attack * critDame - dameReduction) * armorMultiplier;
+
+                if (!CheckEffectDame())
+                    hero_beaten[i].BurnHp(damge, new EffectHit());
+                else
                 {
-                    effectSkill.stack = baseData.ListStatsSkillHero[_idSkill].statsSkillNormals.max_stack;
+                    EffectHit effectSkill = new EffectHit();
+                    int _idSkill = listRound[indexTurn].dataHero.skillDataHeroes[0].idSkill;
+                    int _levelSkill = listRound[indexTurn].dataHero.skillDataHeroes[0].levelSkill;
+                    effectSkill.nameEffect = baseData.ListStatsSkillHero[_idSkill].statsSkillNormals.effectSkill[0].effect;
+                    effectSkill.dameEffect = baseData.ListStatsSkillHero[_idSkill].statsSkillNormals.effect_dame[_levelSkill];
+                    effectSkill.round = baseData.ListStatsSkillHero[_idSkill].statsSkillNormals.round;
+                    effectSkill.stack += 1;
+                    if (effectSkill.stack >= baseData.ListStatsSkillHero[_idSkill].statsSkillNormals.max_stack)
+                    {
+                        effectSkill.stack = baseData.ListStatsSkillHero[_idSkill].statsSkillNormals.max_stack;
+                    }
+                    hero_beaten[i].BurnHp(damge, effectSkill);
                 }
-                hero_beaten.BurnHp(damge, effectSkill);
             }
         }
     }
@@ -341,101 +441,8 @@ public class BattleManager : MonoBehaviour
             return false;
         }
     }
-    public void RemoveHero(HeroManager heroDie)
-    {
-        int k = listRound.FindIndex(x => x == heroDie);
-        uIManager.imgAva[k].gameObject.SetActive(false);
-        uIManager.imgAva.RemoveAt(k);
-        listRound.Remove(heroDie);
-        if (heroDie.isEnemy)
-        {
-            list2.Remove(heroDie);
-        }
-        else
-        {
-            list1.Remove(heroDie);
-        }
-        if (indexTurn >= k)
-        {
-            indexTurn -= 1;
-        }
-    }
-    public bool CheckEffectDame()
-    {
-        int _idSkill = listRound[indexTurn].dataHero.skillDataHeroes[0].idSkill;
-        int _levelSkill = listRound[indexTurn].dataHero.skillDataHeroes[0].levelSkill;
-        float effectDameRate = baseData.ListStatsSkillHero[_idSkill].statsSkillNormals.effectSkill[0].rate[_levelSkill] * 100;
-        if (effectDameRate == 0)
-        {
-            return false;
-        }
-        else
-        {
-            float a = Random.Range(0, 100);
-            if (a <= effectDameRate)
-            {
-                return true;
-            }
-            return false;
-        }
-    }
-
-    public void SwapAttackSkill(bool useSkill)
-    {
-        if (useSkill)
-        {
-            if (listRound[indexTurn].statHero.hero_mana < baseData.ListStatsSkillHero[listRound[indexTurn].dataHero.skillDataHeroes[3].idSkill].mana)
-                return;
-            if (listRound[indexTurn].isSkill)
-                return;
-            else
-            {
-                uIManager.img_skill1.color = Color.red;
-                uIManager.img_attack.color = Color.white;
-                listRound[indexTurn].isSkill = true;
-                CheckCanAttack(listRound[indexTurn]);
-            }
-        }
-        else
-        {
-            if (listRound[indexTurn].statHero.hero_mana >= baseData.ListStatsSkillHero[listRound[indexTurn].dataHero.skillDataHeroes[3].idSkill].mana)
-            {
-                uIManager.img_attack.color = Color.red;
-                uIManager.img_skill1.color = Color.blue;
-            }
-            else
-            {
-                uIManager.img_skill1.color = Color.white;
-                uIManager.img_attack.color = Color.red;
-            }
-            listRound[indexTurn].isSkill = false;
-            CheckCanAttack(listRound[indexTurn]);
-        }
-    }
-    public void ShowTextEndTurn()
-    {
-        GameObject go = Pool(txtClone, transform);
-        TextMeshPro textMeshPro = go.GetComponent<TextMeshPro>();
-        go.transform.position = Vector3.zero;
-        textMeshPro.text = "Hero can't attack";
-        //textMeshPro.autoSizeTextContainer = true;
-        textMeshPro.rectTransform.pivot = new Vector2(0.5f, 0);
-
-        textMeshPro.alignment = TextAlignmentOptions.Bottom;
-        textMeshPro.fontSize = 15;
-        textMeshPro.enableKerning = false;
-        textMeshPro.sortingOrder = 50;
-        textMeshPro.color = new Color32(255, 255, 0, 255);
-
-        Vector3 posEnd = new Vector3(go.transform.position.x, go.transform.position.y + 2, go.transform.position.z);
-        go.transform.DOMove(posEnd, 1f, false).OnComplete(delegate
-        {
-            listRound[indexTurn].objSelected.SetActive(false);
-            NextTurn();
-            //textMeshPro.autoSizeTextContainer = false;
-            DePool(go);
-        });
-    }
+    #endregion
+    #region Pool Object
     public GameObject Pool(GameObject obj, Transform trs)
     {
         GameObject objReturn;
@@ -468,7 +475,6 @@ public class BattleManager : MonoBehaviour
 
         return objReturn;
     }
-
     public void DePool(GameObject obj)
     {
         if (obj.activeSelf)
@@ -485,4 +491,5 @@ public class BattleManager : MonoBehaviour
             obj.SetActive(false);
         }
     }
+    #endregion
 }

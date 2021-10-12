@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Passive 1Skill80
   m_EditorClassIdentifier: 
   id: 80
-  skill_name: Basic Stone Skin
+  skill_name: Basic Armor Break
   rality: Common
   type_skill: Passive 1
-  detail: -Dame Reduction 5%/10%/15%
+  detail: -Armor Reduction 5%/10%/15%
   origin:
   - All
   mana: 0
@@ -33,11 +33,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: dame_reduction
+    - effect: armor_reduction
       rate:
-      - 0.05
-      - 0.1
-      - 0.15
+      - -0.05
+      - -0.1
+      - -0.15
     round: 0
     max_stack: 0
     effect_dame:

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Passive 1Skill85
   m_EditorClassIdentifier: 
   id: 85
-  skill_name: Advanced Armor Break
+  skill_name: Advanced Windwalk
   rality: Rare
   type_skill: Passive 1
-  detail: -Armor Reduction 10%/15%/20%
+  detail: -Dodge Chance 10%/15%/20%
   origin:
   - All
   mana: 0
@@ -33,11 +33,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: armor_reduction
+    - effect: dodge_chance
       rate:
-      - -0.1
-      - -0.15
-      - -0.2
+      - 0.1
+      - 0.15
+      - 0.2
     round: 0
     max_stack: 0
     effect_dame:

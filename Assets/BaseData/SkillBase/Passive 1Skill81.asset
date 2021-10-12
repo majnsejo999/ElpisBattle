@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Passive 1Skill81
   m_EditorClassIdentifier: 
   id: 81
-  skill_name: Advanced Stone Skin
+  skill_name: Advanced Armor Break
   rality: Rare
   type_skill: Passive 1
-  detail: -Dame Reduction 10%/15%/20%
+  detail: -Armor Reduction 10%/15%/20%
   origin:
   - All
   mana: 0
@@ -33,11 +33,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: dame_reduction
+    - effect: armor_reduction
       rate:
-      - 0.1
-      - 0.15
-      - 0.2
+      - -0.1
+      - -0.15
+      - -0.2
     round: 0
     max_stack: 0
     effect_dame:

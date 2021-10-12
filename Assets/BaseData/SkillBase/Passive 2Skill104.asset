@@ -13,26 +13,19 @@ MonoBehaviour:
   m_Name: Passive 2Skill104
   m_EditorClassIdentifier: 
   id: 104
-  skill_name: Basic Shallow Grave
+  skill_name: Basic Blood Dragon
   rality: Common
   type_skill: Passive 2
-  detail: '-When HP = 0, stay at battle one more round
-
-    -Buff all teammate 5%
-    HP next 3 rounds
-
-    -Trigger one'
+  detail: -Regen 5/7.5/10% Max HP each round
   origin:
-  - Dwarf
-  - Elf
-  - Demon
+  - All
   mana: 0
   spriteSkill: {fileID: 0}
   statsSkillNormals:
     target:
-    - 4
-    - 4
-    - 4
+    - 1
+    - 1
+    - 1
     require: none
     type_damge: none
     damge:
@@ -40,18 +33,13 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: immortal
-      rate:
-      - 1
-      - 1
-      - 1
     - effect: regen_hp
       rate:
       - 0.05
+      - 0.075
       - 0.1
-      - 0.15
-    round: 3
-    max_stack: 1
+    round: 0
+    max_stack: 0
     effect_dame:
     - 0
     - 0

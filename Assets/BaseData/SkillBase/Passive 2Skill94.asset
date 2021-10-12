@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: Passive 2Skill94
   m_EditorClassIdentifier: 
   id: 94
-  skill_name: Expert Retaliate
+  skill_name: Expert Counterattack
   rality: Epic
   type_skill: Passive 2
-  detail: -Return 50%/60%/70% dame to enemy when get hit
+  detail: -Counterattack enemy(100%/110%/120% physic dame) when get hit
   origin:
+  - Demon
+  - Naga
+  - Angel
   - Orc
-  - Human
-  - Dwarf
   mana: 0
   spriteSkill: {fileID: 0}
   statsSkillNormals:
@@ -35,11 +36,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: return_dame
+    - effect: counter_dame
       rate:
-      - 0.5
-      - 0.6
-      - 0.7
+      - 1
+      - 1.1
+      - 1.2
     round: 0
     max_stack: 0
     effect_dame:

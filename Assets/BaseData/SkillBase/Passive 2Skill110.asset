@@ -13,14 +13,12 @@ MonoBehaviour:
   m_Name: Passive 2Skill110
   m_EditorClassIdentifier: 
   id: 110
-  skill_name: Expert Pot of Mana
+  skill_name: Expert Life Steal
   rality: Epic
   type_skill: Passive 2
-  detail: -Start battle with 15/20/25 Mana
+  detail: -Lifesteal 4%/6%/8% Enemy HP
   origin:
-  - Elf
-  - Naga
-  - Human
+  - All
   mana: 0
   spriteSkill: {fileID: 0}
   statsSkillNormals:
@@ -35,11 +33,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: mana_start
+    - effect: life_steal_enemy_hp
       rate:
-      - 15
-      - 20
-      - 25
+      - 0.04
+      - 0.06
+      - 0.08
     round: 0
     max_stack: 0
     effect_dame:

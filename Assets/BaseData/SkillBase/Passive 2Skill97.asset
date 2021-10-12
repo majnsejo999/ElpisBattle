@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Passive 2Skill97
   m_EditorClassIdentifier: 
   id: 97
-  skill_name: Advanced Counterattack
+  skill_name: Advanced Reincarnation
   rality: Rare
   type_skill: Passive 2
-  detail: -Counterattack enemy(90%/100%/110% physic dame) when get hit
+  detail: '-Revive with 40%/50%/60% of HP after death
+
+    -Trigger one'
   origin:
+  - Elf
   - Demon
-  - Naga
   - Angel
-  - Orc
+  - Naga
   mana: 0
   spriteSkill: {fileID: 0}
   statsSkillNormals:
@@ -36,11 +38,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: counter_dame
+    - effect: revive
       rate:
-      - 0.9
-      - 1
-      - 1.1
+      - 0.4
+      - 0.5
+      - 0.6
     round: 0
     max_stack: 0
     effect_dame:

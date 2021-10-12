@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ultimate 1Skill155
   m_EditorClassIdentifier: 
   id: 155
-  skill_name: Master Spectral Dagger
+  skill_name: Master Meteor
   rality: Legendary
   type_skill: Ultimate 1
   detail: -Attack all enemy

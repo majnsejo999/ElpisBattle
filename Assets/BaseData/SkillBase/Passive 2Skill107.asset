@@ -13,26 +13,19 @@ MonoBehaviour:
   m_Name: Passive 2Skill107
   m_EditorClassIdentifier: 
   id: 107
-  skill_name: Master Shallow Grave
+  skill_name: Master Blood Dragon
   rality: Legendary
   type_skill: Passive 2
-  detail: '-When HP = 0, stay at battle one more round
-
-    -Buff all teammate 20%
-    HP next 3 rounds
-
-    -Trigger one'
+  detail: -Regen 15/22.5/30% Max HP each round
   origin:
-  - Dwarf
-  - Elf
-  - Demon
+  - All
   mana: 0
   spriteSkill: {fileID: 0}
   statsSkillNormals:
     target:
-    - 4
-    - 4
-    - 4
+    - 1
+    - 1
+    - 1
     require: none
     type_damge: none
     damge:
@@ -40,18 +33,13 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: immortal
-      rate:
-      - 1
-      - 1
-      - 1
     - effect: regen_hp
       rate:
-      - 0.2
-      - 0.25
+      - 0.15
+      - 0.225
       - 0.3
-    round: 3
-    max_stack: 1
+    round: 0
+    max_stack: 0
     effect_dame:
     - 0
     - 0

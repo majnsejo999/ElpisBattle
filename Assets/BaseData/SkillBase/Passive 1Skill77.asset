@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Passive 1Skill77
   m_EditorClassIdentifier: 
   id: 77
-  skill_name: Advanced Magic Skin
+  skill_name: Advanced Stone Skin
   rality: Rare
   type_skill: Passive 1
-  detail: -Magic Resistance 30%/35%/40%
+  detail: -Dame Reduction 10%/15%/20%
   origin:
   - All
   mana: 0
@@ -33,11 +33,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: magic_resist
+    - effect: dame_reduction
       rate:
-      - 0.3
-      - 0.35
-      - 0.4
+      - 0.1
+      - 0.15
+      - 0.2
     round: 0
     max_stack: 0
     effect_dame:

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Passive 1Skill86
   m_EditorClassIdentifier: 
   id: 86
-  skill_name: Expert Armor Break
+  skill_name: Expert Windwalk
   rality: Epic
   type_skill: Passive 1
-  detail: -Armor Reduction 15%/20%/25%
+  detail: -Dodge Chance 15%/20%/25%
   origin:
   - All
   mana: 0
@@ -33,11 +33,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: armor_reduction
+    - effect: dodge_chance
       rate:
-      - -0.15
-      - -0.2
-      - -0.25
+      - 0.15
+      - 0.2
+      - 0.25
     round: 0
     max_stack: 0
     effect_dame:

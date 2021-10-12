@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Passive 1Skill76
   m_EditorClassIdentifier: 
   id: 76
-  skill_name: Basic Magic Skin
+  skill_name: Basic Stone Skin
   rality: Common
   type_skill: Passive 1
-  detail: -Magic Resistance 25%/30%/35%
+  detail: -Dame Reduction 5%/10%/15%
   origin:
   - All
   mana: 0
@@ -33,11 +33,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: magic_resist
+    - effect: dame_reduction
       rate:
-      - 0.25
-      - 0.3
-      - 0.35
+      - 0.05
+      - 0.1
+      - 0.15
     round: 0
     max_stack: 0
     effect_dame:

@@ -13,14 +13,12 @@ MonoBehaviour:
   m_Name: Passive 2Skill109
   m_EditorClassIdentifier: 
   id: 109
-  skill_name: Advanced Pot of Mana
+  skill_name: Advanced Life Steal
   rality: Rare
   type_skill: Passive 2
-  detail: -Start battle with 10/15/20 Mana
+  detail: -Lifesteal 3%/4.5%/6% Enemy HP
   origin:
-  - Elf
-  - Naga
-  - Human
+  - All
   mana: 0
   spriteSkill: {fileID: 0}
   statsSkillNormals:
@@ -35,11 +33,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: mana_start
+    - effect: life_steal_enemy_hp
       rate:
-      - 10
-      - 15
-      - 20
+      - 0.03
+      - 0.045
+      - 0.6
     round: 0
     max_stack: 0
     effect_dame:

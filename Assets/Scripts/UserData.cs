@@ -60,16 +60,17 @@ public class UserData : MonoBehaviour
     public void AddSkill(List<SkillDataHero> listSkill)
     {
         int a1 = Random.Range(0, 39);
+        //int a1 = 36;
         SkillDataHero skillDataHero1 = new SkillDataHero();
         skillDataHero1.idSkill = baseData.ListStatsSkillHero[a1].id;
         skillDataHero1.levelSkill = 1;
         listSkill.Add(skillDataHero1);
-        int a2 = Random.Range(40, 83);
+        int a2 = Random.Range(40, 87);
         SkillDataHero skillDataHero2 = new SkillDataHero();
         skillDataHero2.idSkill = baseData.ListStatsSkillHero[a2].id;
         skillDataHero2.levelSkill = 1;
         listSkill.Add(skillDataHero2);
-        int a3 = Random.Range(84, 119);
+        int a3 = Random.Range(88, 119);
         SkillDataHero skillDataHero3 = new SkillDataHero();
         skillDataHero3.idSkill = baseData.ListStatsSkillHero[a3].id;
         skillDataHero3.levelSkill = 1;

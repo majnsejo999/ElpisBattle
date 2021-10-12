@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Passive 1Skill83
   m_EditorClassIdentifier: 
   id: 83
-  skill_name: Master Stone Skin
+  skill_name: Expert Armor Break
   rality: Legendary
   type_skill: Passive 1
-  detail: -Dame Reduction 20%/30%/40%
+  detail: -Armor Reduction 20%/30%/40%
   origin:
   - All
   mana: 0
@@ -33,11 +33,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: dame_reduction
+    - effect: armor_reduction
       rate:
-      - 0.2
-      - 0.3
-      - 0.4
+      - -0.2
+      - -0.3
+      - -0.4
     round: 0
     max_stack: 0
     effect_dame:

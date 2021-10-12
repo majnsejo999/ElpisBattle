@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Passive 2Skill96
   m_EditorClassIdentifier: 
   id: 96
-  skill_name: Basic Counterattack
+  skill_name: Basic Reincarnation
   rality: Common
   type_skill: Passive 2
-  detail: -Counterattack enemy(80%/90%/100% physic dame) when get hit
+  detail: '-Revive with 30%/40%/50% of HP after death
+
+    -Trigger one'
   origin:
+  - Elf
   - Demon
-  - Naga
   - Angel
-  - Orc
+  - Naga
   mana: 0
   spriteSkill: {fileID: 0}
   statsSkillNormals:
@@ -36,11 +38,11 @@ MonoBehaviour:
     - 0
     - 0
     effectSkill:
-    - effect: counter_dame
+    - effect: revive
       rate:
-      - 0.8
-      - 0.9
-      - 1
+      - 0.3
+      - 0.4
+      - 0.5
     round: 0
     max_stack: 0
     effect_dame:
